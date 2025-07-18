@@ -83,7 +83,7 @@ const Footer = () => {
               <Typography variant='body2' sx={{ ml: 2 }}>
                 &quot;Honesty is very expensive Gift, Don&apos;t expect it from
                 Cheap People.&quot;
-                <br />- Vivek kasundra
+                <br />- Vivek kanani
               </Typography>
             </Box>
           </Grid>
