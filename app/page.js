@@ -48,15 +48,15 @@ export default function Home() {
       >
         LAVISH POLYPACK LLP has come up with a huge range of excellent quality
         plastic products. Our vision is futuristic, and we stand as a recognized
-        brand in today's competitive corporate world. This is due to tremendous
-        effort & excellent input to attain quality & effective products. We have
-        a fully integrated, well-built manufacturing facility with in-house
-        designing and R&D. Our infrastructure houses raw material, production,
-        and packing departments. The success of our company is driven by our
-        management, which coordinates perfectly to understand customer needs,
-        manufacturing, packing, and dispatch. We have a robust network of
-        dealers throughout the country and aim to meet customer expectations
-        through them.
+        brand in today&apos;s competitive corporate world. This is due to
+        tremendous effort & excellent input to attain quality & effective
+        products. We have a fully integrated, well-built manufacturing facility
+        with in-house designing and R&D. Our infrastructure houses raw material,
+        production, and packing departments. The success of our company is
+        driven by our management, which coordinates perfectly to understand
+        customer needs, manufacturing, packing, and dispatch. We have a robust
+        network of dealer&apos;s throughout the country and aim to meet customer
+        expectations through them.
       </Typography>
       <Box sx={{ textAlign: 'center', mb: 4 }}>
         <Link href='/about' passHref>

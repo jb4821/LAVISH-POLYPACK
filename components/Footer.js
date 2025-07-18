@@ -70,7 +70,7 @@ const Footer = () => {
           </Grid>
           <Grid item xs={12} sm={4}>
             <Typography variant='h6' gutterBottom>
-              Chairman's Word
+              Chairman&apos;s Word
             </Typography>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
               <Image
@@ -81,8 +81,8 @@ const Footer = () => {
                 style={{ borderRadius: '50%' }}
               />
               <Typography variant='body2' sx={{ ml: 2 }}>
-                "Honesty is very expensive Gift, Don't expect it from Cheap
-                People."
+                &quot;Honesty is very expensive Gift, Don&apos;t expect it from
+                Cheap People.&quot;
                 <br />- Vivek kasundra
               </Typography>
             </Box>
