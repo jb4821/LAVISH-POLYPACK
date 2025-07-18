@@ -1,103 +1,139 @@
-import Image from "next/image";
+'use client';
+import {
+  Container,
+  Typography,
+  Grid,
+  Card,
+  CardContent,
+  Button,
+  Box,
+  CardMedia,
+} from '@mui/material';
+import ImageSlider from '../components/ImageSlider';
+import Link from 'next/link';
+import { products } from '../lib/products';
+import Stats from '../components/Stats';
+import { useState } from 'react';
+import Lightbox from 'yet-another-react-lightbox';
+import Zoom from 'yet-another-react-lightbox/plugins/zoom';
+import 'yet-another-react-lightbox/styles.css';
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const displayedProducts = products.slice(0, 12);
+  const [open, setOpen] = useState(false);
+  const [currentImage, setCurrentImage] = useState('');
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+  const handleImageClick = (image) => {
+    setCurrentImage(image);
+    setOpen(true);
+  };
+
+  return (
+    <Container>
+      <ImageSlider />
+      <Typography
+        variant='h2'
+        component='h1'
+        gutterBottom
+        align='center'
+        sx={{ mt: 4 }}
+      >
+        Welcome to LAVISH POLYPACK LLP
+      </Typography>
+      <Typography
+        variant='body1'
+        align='center'
+        color='text.secondary'
+        sx={{ mb: 4, maxWidth: '800px', mx: 'auto' }}
+      >
+        LAVISH POLYPACK LLP has come up with a huge range of excellent quality
+        plastic products. Our vision is futuristic, and we stand as a recognized
+        brand in today's competitive corporate world. This is due to tremendous
+        effort & excellent input to attain quality & effective products. We have
+        a fully integrated, well-built manufacturing facility with in-house
+        designing and R&D. Our infrastructure houses raw material, production,
+        and packing departments. The success of our company is driven by our
+        management, which coordinates perfectly to understand customer needs,
+        manufacturing, packing, and dispatch. We have a robust network of
+        dealers throughout the country and aim to meet customer expectations
+        through them.
+      </Typography>
+      <Box sx={{ textAlign: 'center', mb: 4 }}>
+        <Link href='/about' passHref>
+          <Button variant='contained' size='large'>
+            Read More
+          </Button>
+        </Link>
+      </Box>
+
+      <Typography
+        variant='h2'
+        component='h2'
+        gutterBottom
+        align='center'
+        sx={{ mt: 8, mb: 4 }}
+      >
+        Our Products
+      </Typography>
+      <Grid container spacing={4}>
+        {displayedProducts.map((product) => (
+          <Grid item key={product.id} xs={12} sm={6} md={3}>
+            <Card
+              sx={{
+                height: '100%',
+                width: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
+              <CardMedia
+                component='img'
+                sx={{
+                  height: 200,
+                  width: '100%',
+                  objectFit: 'contain',
+                  pt: 2,
+                  cursor: 'pointer',
+                }}
+                image={product.image}
+                alt={product.name}
+                onClick={() => handleImageClick(product.image)}
+              />
+              <CardContent sx={{ flexGrow: 1 }}>
+                <Typography gutterBottom variant='h5' component='div' noWrap>
+                  {product.name}
+                </Typography>
+                <Link href={`/products/${product.id}`} passHref>
+                  <Button size='small'>View More</Button>
+                </Link>
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+      <Box sx={{ textAlign: 'center', mt: 4, mb: 4 }}>
+        <Link href='/products' passHref>
+          <Button variant='contained' size='large'>
+            View All Products
+          </Button>
+        </Link>
+      </Box>
+      <Stats />
+      <Lightbox
+        open={open}
+        close={() => setOpen(false)}
+        slides={[{ src: currentImage }]}
+        plugins={[Zoom]}
+        zoom={{
+          maxZoomPixelRatio: 3,
+          zoomInMultiplier: 2,
+          doubleTapDelay: 300,
+          doubleClickDelay: 500,
+          doubleClickMaxStops: 2,
+        }}
+        carousel={{ finite: true }} // Prevents slideshow behavior
+        controller={{ closeOnPullDown: true, closeOnBackdropClick: true }}
+      />
+    </Container>
   );
 }
