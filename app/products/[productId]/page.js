@@ -34,6 +34,7 @@ import {
 } from '@mui/icons-material';
 import Link from 'next/link';
 import { products } from '../../../lib/products';
+import Image from 'next/image';
 
 const ProductDetailsPage = () => {
   const params = useParams();
@@ -55,7 +56,7 @@ const ProductDetailsPage = () => {
             Product Not Found
           </Typography>
           <Typography variant="h6" sx={{ mb: 4, opacity: 0.9 }}>
-            The product you're looking for doesn't exist or may have been moved.
+            The product you&apos;re looking for doesn&apos;t exist or may have been moved.
           </Typography>
           <Link href="/products" passHref>
             <Button 
@@ -271,19 +272,7 @@ const ProductDetailsPage = () => {
               }}
               onClick={() => setImageDialog(true)}
             >
-              <img
-                src={product.image}
-                alt={product.name}
-                style={{
-                  width: '100%',
-                  height: '450px',
-                  objectFit: 'cover',
-                }}
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = '/products/pp-bag.jpg';
-                }}
-              />
+              <Image src={product.image} alt={product.name} width={400} height={400} style={{ width: '100%', height: 'auto', borderRadius: 8 }} onError={e => { e.target.onerror = null; e.target.src = '/products/pp-bag.jpg'; }} />
               <Box
                 sx={{
                   position: 'absolute',
@@ -757,9 +746,11 @@ const ProductDetailsPage = () => {
           </IconButton>
         </DialogTitle>
         <DialogContent sx={{ p: 0 }}>
-          <img
+          <Image
             src={product.image}
             alt={product.name}
+            width={800}
+            height={800}
             style={{
               width: '100%',
               height: 'auto',

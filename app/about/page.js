@@ -197,7 +197,7 @@ const AboutPage = () => {
             fontWeight: 400,
             lineHeight: 1.4
           }}>
-            Leading the Future of Packaging Solutions with Innovation & Excellence
+            Leading the Future of Packaging Solutions with Innovation &amp; Excellence
           </Typography>
         </Box>
       </Box>
@@ -256,10 +256,10 @@ const AboutPage = () => {
               color: 'text.primary',
               textAlign: 'justify'
             }}>
-              At Lavish Polypack LLP, we are a leading manufacturer of high-quality PP Woven Fabrics and PP Woven Bags, 
-              proudly serving a wide range of industries across India and abroad. With a strong commitment to innovation, 
-              durability, and eco-friendly practices, we deliver packaging solutions that are tailored to meet the evolving 
-              needs of our clients.
+               At Lavish Polypack LLP, we are a leading manufacturer of high-quality PP Woven Fabrics and PP Woven Bags, 
+    proudly serving a wide range of industries across India and abroad. With a strong commitment to innovation, 
+    durability, and eco-friendly practices, we deliver packaging solutions that are tailored to meet the evolving 
+    needs of our clients.
             </Typography>
           </Grid>
           <Grid item xs={12} md={6}>
@@ -270,8 +270,8 @@ const AboutPage = () => {
               textAlign: 'justify'
             }}>
               Equipped with modern machinery and a skilled workforce, our facility ensures consistent quality, timely delivery, 
-              and custom production capabilities. From agriculture to industrial packaging, we're trusted for strength, 
-              reliability, and service excellence worldwide.
+    and custom production capabilities. From agriculture to industrial packaging, we&apos;re trusted for strength, 
+    reliability, and service excellence worldwide.
             </Typography>
           </Grid>
         </Grid>

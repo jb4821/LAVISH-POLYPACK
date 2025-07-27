@@ -257,7 +257,7 @@ const ContactPage = () => {
             fontWeight: 400,
             lineHeight: 1.4
           }}>
-            Ready to Partner with India's Leading Packaging Solutions Provider
+            Ready to Partner with India&apos;s Leading Packaging Solutions Provider
           </Typography>
         </Box>
       </Box>
