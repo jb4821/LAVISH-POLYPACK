@@ -49,7 +49,7 @@ const FloatingActionButtons = () => {
         sx={{
           position: 'fixed',
           bottom: '5rem',
-          right: '5px',
+          right: '10px',
           zIndex: 1000,
         }}
       >
@@ -72,7 +72,7 @@ const FloatingActionButtons = () => {
           sx={{
             position: 'fixed',
             bottom: '5px',
-            right: '5px',
+            right: '10px',
             zIndex: 1000,
           }}
         >

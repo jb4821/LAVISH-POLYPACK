@@ -11,8 +11,10 @@ import {
   Divider,
   IconButton,
   Fade,
+  Chip,
+  Stack,
 } from '@mui/material';
-import { Favorite, FavoriteBorder, Visibility, Share } from '@mui/icons-material';
+import { Favorite, FavoriteBorder, Visibility, Share, Star, ArrowForward } from '@mui/icons-material';
 import Link from 'next/link';
 import { products } from '../../lib/products';
 import { useRouter } from 'next/navigation';
@@ -83,202 +85,263 @@ const ProductsPage = () => {
         {products.map((product) => (
           <Grid item key={product.id} xs={12} sm={6} lg={4} xl={3}>
             <Card
-              onMouseEnter={() => setHoveredCard(product.id)}
-              onMouseLeave={() => setHoveredCard(null)}
-              sx={{
-                height: 480,
-                maxWidth: 360,
-                mx: 'auto',
-                display: 'flex',
-                flexDirection: 'column',
-                borderRadius: 4,
-                border: '1px solid #ecf0f1',
-                boxShadow: '0 2px 12px rgba(52, 73, 94, 0.08)',
-                transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                cursor: 'pointer',
-                position: 'relative',
-                overflow: 'hidden',
-                backgroundColor: '#fff',
-                '&:hover': {
-                  transform: 'translateY(-12px)',
-                  boxShadow: '0 20px 40px rgba(52, 73, 94, 0.12)',
-                  borderColor: '#e67e22',
-                  '& .product-image': {
-                    transform: 'scale(1.08)',
-                  },
-                  '& .product-overlay': {
-                    opacity: 1,
-                  },
-                  '& .quick-actions': {
-                    opacity: 1,
-                    transform: 'translateY(0)',
-                  },
-                },
-              }}
-              onClick={() => handleProductClick(product.id)}
-            >
-              {/* Image Container */}
-              <Box
-                sx={{
-                  width: '100%',
-                  height: 220,
-                  position: 'relative',
-                  backgroundColor: '#f8f9fa',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  overflow: 'hidden',
-                }}
-              >
-                <CardMedia
-                  component='img'
-                  className="product-image"
-                  sx={{
-                    maxHeight: '85%',
-                    maxWidth: '85%',
-                    objectFit: 'contain',
-                    transition: 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                    filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.1))',
-                  }}
-                  image={product?.image}
-                  alt={product.name}
-                  onError={e => { 
-                    e.target.onerror = null; 
-                    e.target.src = '/products/pp-bag.jpg'; 
-                  }}
-                />
-                
-                {/* Overlay with gradient */}
-                <Box
-                  className="product-overlay"
-                  sx={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    background: 'linear-gradient(45deg, rgba(230, 126, 34, 0.1) 0%, rgba(243, 156, 18, 0.05) 100%)',
-                    opacity: 0,
-                    transition: 'opacity 0.3s ease-in-out',
-                  }}
-                />
-              </Box>
-
-              {/* Divider */}
-              <Divider 
-                sx={{ 
-                  width: '85%', 
-                  mx: 'auto', 
-                  my: 1.5,
-                  background: 'linear-gradient(90deg, transparent, #ecf0f1, transparent)',
-                  height: '2px',
-                }} 
-              />
-
-              {/* Content Section */}
-              <CardContent 
-                sx={{ 
-                  flexGrow: 1, 
-                  textAlign: 'center', 
-                  p: 2.5, 
-                  width: '100%',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                }}
-              >
-                <Box>
-                  <Typography 
-                    gutterBottom 
-                    variant='h6' 
-                    component='div' 
-                    sx={{ 
-                      fontWeight: 700, 
-                      fontSize: '1.2rem', 
-                      mb: 1.5,
-                      color: '#2c3e50',
-                      lineHeight: 1.3,
-                      letterSpacing: '-0.02em',
-                      minHeight: '1.5em',
+                    onMouseEnter={() => setHoveredCard(product.id)}
+                    onMouseLeave={() => setHoveredCard(null)}
+                    sx={{
+                      height: 520,
+                      maxWidth: 380,
+                      mx: 'auto',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      borderRadius: 2,
+                      border: '1px solid rgba(139, 69, 19, 0.1)',
+                      boxShadow: '0 2px 20px rgba(139, 69, 19, 0.08)',
+                      transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                      cursor: 'pointer',
+                      position: 'relative',
                       overflow: 'hidden',
-                      display: '-webkit-box',
-                      WebkitLineClamp: 1,
-                      WebkitBoxOrient: 'vertical',
+                      background: 'rgba(255, 255, 255, 0.98)',
+                      backdropFilter: 'blur(20px)',
+                      '&::before': {
+                        content: '""',
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        height: '2px',
+                        background: 'linear-gradient(90deg, #8B4513, #D4AF37, #8B4513)',
+                        opacity: 0,
+                        transition: 'opacity 0.3s ease',
+                      },
+                      '&:hover': {
+                        transform: 'translateY(-8px)',
+                        boxShadow: '0 20px 40px rgba(139, 69, 19, 0.15)',
+                        borderColor: '#8B4513',
+                        '&::before': {
+                          opacity: 1,
+                        },
+                        '& .product-image': {
+                          transform: 'scale(1.05)',
+                        },
+                        '& .product-overlay': {
+                          opacity: 1,
+                        },
+                        '& .product-badge': {
+                          opacity: 1,
+                          transform: 'translateY(0)',
+                        },
+                      },
                     }}
                   >
-                    {product?.name}
-                  </Typography>
-                  
-                  {product.description && (
-                    <Typography 
-                      variant='body2' 
-                      color='text.secondary' 
+                    {/* Enhanced Image Container */}
+                    <Box
                       sx={{
-                        lineHeight: 1.5,
-                        color: '#7f8c8d',
-                        fontSize: '0.9rem',
-                        minHeight: '3em',
+                        width: '100%',
+                        height: 240,
+                        position: 'relative',
+                        background: '#F8F6F3',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
                         overflow: 'hidden',
-                        display: '-webkit-box',
-                        WebkitLineClamp: 2,
-                        WebkitBoxOrient: 'vertical',
                       }}
                     >
-                      {truncateDescription(product.description, 80)}
-                    </Typography>
-                  )}
-                </Box>
-
-                {/* VIEW MORE Button */}
-                {hoveredCard === product.id && (
-                  <Fade in={true} timeout={300}>
-                  <Box sx={{ width: '100%', mt: 'auto' }}>
-                    <Link href={`/products/${product.id}`} passHref>
-                      <Button
-                        variant='contained'
-                        size='medium'
+                      {/* Quality Badge */}
+                      <Chip
+                        icon={<Star sx={{ fontSize: '16px !important' }} />}
+                        label="Premium"
+                        size="small"
+                        className="product-badge"
                         sx={{
-                          width: '100%',
+                          position: 'absolute',
+                          top: 16,
+                          right: 16,
+                          background: '#D4AF37',
+                          color: 'white',
                           fontWeight: 600,
-                          borderRadius: 3,
-                          fontSize: '0.95rem',
-                          py: 1.2,
-                          textTransform: 'uppercase',
-                          letterSpacing: '0.5px',
-                          background: 'linear-gradient(135deg, #e67e22 0%, #f39c12 100%)',
-                          color: '#fff',
-                          boxShadow: '0 4px 15px rgba(230, 126, 34, 0.3)',
-                          transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                          position: 'relative',
-                          overflow: 'hidden',
-                          '&:hover': {
-                            background: 'linear-gradient(135deg, #d35400 0%, #e67e22 100%)',
-                            boxShadow: '0 6px 20px rgba(230, 126, 34, 0.4)',
-                            transform: 'translateY(-2px)',
-                          },
-                          '&::before': {
-                            content: '""',
-                            position: 'absolute',
-                            top: 0,
-                            left: '-100%',
-                            width: '100%',
-                            height: '100%',
-                            background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
-                            transition: 'left 0.5s',
-                          },
-                          '&:hover::before': {
-                            left: '100%',
-                          },
+                          fontSize: '0.75rem',
+                          fontFamily: '"Inter", sans-serif',
+                          opacity: 0,
+                          transform: 'translateY(-10px)',
+                          transition: 'all 0.3s ease',
+                          zIndex: 2,
                         }}
-                      >
-                        View Details
-                      </Button>
-                    </Link>
-                  </Box>
-                </Fade>
-                )}
-              </CardContent>
-            </Card>
+                      />
+
+                      <CardMedia
+                        component="img"
+                        className="product-image"
+                        sx={{
+                          maxHeight: '80%',
+                          maxWidth: '80%',
+                          objectFit: 'contain',
+                          transition: 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                          filter: 'drop-shadow(0 8px 16px rgba(139, 69, 19, 0.1))',
+                        }}
+                        image={product.image}
+                        alt={product.name}
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = '/products/pp-bag.jpg';
+                        }}
+                        onClick={() => handleImageClick(product.image)}
+                      />
+
+                      {/* Enhanced Overlay */}
+                      <Box
+                        className="product-overlay"
+                        sx={{
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          background: 'linear-gradient(135deg, rgba(139, 69, 19, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%)',
+                          opacity: 0,
+                          transition: 'opacity 0.3s ease-in-out',
+                        }}
+                      />
+                    </Box>
+
+                    {/* Enhanced Divider */}
+                    <Divider
+                      sx={{
+                        width: '90%',
+                        mx: 'auto',
+                        my: 2,
+                        background: 'linear-gradient(90deg, transparent, #D4AF37, transparent)',
+                        height: '1px',
+                        borderRadius: '0.5px',
+                      }}
+                    />
+
+                    {/* Enhanced Content Section */}
+                    <CardContent
+                      sx={{
+                        flexGrow: 1,
+                        textAlign: 'center',
+                        p: 3,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'space-between',
+                      }}
+                    >
+                      <Box>
+                        <Typography
+                          gutterBottom
+                          variant="h6"
+                          component="div"
+                          sx={{
+                            fontWeight: 600,
+                            fontSize: '1.2rem',
+                            mb: 2,
+                            color: '#2D2D2D',
+                            lineHeight: 1.3,
+                            letterSpacing: '0.5px',
+                            minHeight: '1.6em',
+                            overflow: 'hidden',
+                            display: '-webkit-box',
+                            WebkitLineClamp: 1,
+                            WebkitBoxOrient: 'vertical',
+                            fontFamily: '"Inter", sans-serif',
+                          }}
+                        >
+                          {product.name}
+                        </Typography>
+
+                        {product.description && (
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              lineHeight: 1.6,
+                              color: '#666',
+                              fontSize: '0.9rem',
+                              minHeight: '3.2em',
+                              overflow: 'hidden',
+                              display: '-webkit-box',
+                              WebkitLineClamp: 2,
+                              WebkitBoxOrient: 'vertical',
+                              mb: 2,
+                              fontFamily: '"Inter", sans-serif',
+                            }}
+                          >
+                            {truncateDescription(product.description, 100)}
+                          </Typography>
+                        )}
+
+                        {/* Feature Tags */}
+                        <Stack direction="row" spacing={1} justifyContent="center" sx={{ mb: 2 }}>
+                          <Chip
+                            label="Durable"
+                            size="small"
+                            sx={{
+                              background: 'rgba(139, 69, 19, 0.1)',
+                              color: '#8B4513',
+                              fontSize: '0.75rem',
+                              fontWeight: 500,
+                              fontFamily: '"Inter", sans-serif',
+                            }}
+                          />
+                          <Chip
+                            label="Eco-Friendly"
+                            size="small"
+                            sx={{
+                              background: 'rgba(212, 175, 55, 0.1)',
+                              color: '#D4AF37',
+                              fontSize: '0.75rem',
+                              fontWeight: 500,
+                              fontFamily: '"Inter", sans-serif',
+                            }}
+                          />
+                        </Stack>
+                      </Box>
+
+                      <Box sx={{ width: '100%', mt: 'auto' }}>
+                          <Link href={`/products/${product.id}`} passHref>
+                            <Button
+                              variant="contained"
+                              fullWidth
+                              endIcon={<ArrowForward />}
+                              sx={{
+                                fontWeight: 500,
+                                borderRadius: 1,
+                                fontSize: '0.9rem',
+                                py: 1.5,
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.5px',
+                                background: '#8B4513',
+                                color: 'white',
+                                boxShadow: '0 4px 15px rgba(139, 69, 19, 0.3)',
+                                transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                                fontFamily: '"Inter", sans-serif',
+                                position: 'relative',
+                                overflow: 'hidden',
+                                '&::before': {
+                                  content: '""',
+                                  position: 'absolute',
+                                  top: 0,
+                                  left: '-100%',
+                                  width: '100%',
+                                  height: '100%',
+                                  background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
+                                  transition: 'left 0.5s',
+                                },
+                                '&:hover': {
+                                  background: '#6D3410',
+                                  transform: 'translateY(-2px)',
+                                  boxShadow: '0 8px 25px rgba(139, 69, 19, 0.4)',
+                                  '&::before': {
+                                    left: '100%',
+                                  },
+                                },
+                              }}
+                            >
+                              View Details
+                            </Button>
+                          </Link>
+                        </Box>
+                    </CardContent>
+                  </Card>
           </Grid>
         ))}
       </Grid>

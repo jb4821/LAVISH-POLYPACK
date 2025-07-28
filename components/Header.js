@@ -1,88 +1,157 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { AppBar, Toolbar, Typography, Button, Drawer, IconButton, List, ListItem, ListItemText, ListItemButton, Box } from '@mui/material';
+import { 
+  AppBar, 
+  Toolbar, 
+  Typography, 
+  Button, 
+  Drawer, 
+  IconButton, 
+  List, 
+  ListItem, 
+  ListItemText, 
+  ListItemButton, 
+  Box,
+  Container,
+  Divider
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { usePathname } from 'next/navigation';
+import InquiryModal from './InquiryModal';
 
 const Header = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [modalOpen, setModalOpen] = useState(true); // Always open on load
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
   const pathname = usePathname();
 
   const navLinks = [
     { href: '/', label: 'Home' },
     { href: '/products', label: 'Products' },
-    { href: '/about', label: 'About Us' },
+    { href: '/about', label: 'About' },
     { href: '/contact', label: 'Contact' },
   ];
 
-  // Handle scroll effect
+  // Enhanced scroll handler
   useEffect(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 10;
-      setScrolled(isScrolled);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const isScrolled = window.scrollY > 50;
+          if (isScrolled !== scrolled) {
+            setScrolled(isScrolled);
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
+  }, [scrolled]);
+
+  useEffect(() => {
+    setModalOpen(true); // Show modal every page load/refresh
   }, []);
+
+  const handleDrawerToggle = () => {
+    setDrawerOpen(!drawerOpen);
+  };
 
   const drawer = (
     <Drawer 
       anchor="left" 
       open={drawerOpen} 
-      onClose={() => setDrawerOpen(false)}
+      onClose={handleDrawerToggle}
       PaperProps={{
         sx: {
-          background: 'linear-gradient(135deg, #2c3e50 0%, #34495e 100%)',
-          color: 'white',
-          width: 280,
+          background: '#FEFEFE',
+          color: '#2D2D2D',
+          width: 340,
+          boxShadow: '0 0 50px rgba(0, 0, 0, 0.1)',
+          borderRight: '1px solid #F0F0F0',
         }
       }}
     >
       <Box sx={{ 
-        p: 3, 
-        borderBottom: '1px solid rgba(236, 240, 241, 0.2)',
-        background: 'linear-gradient(135deg, #e67e22 0%, #f39c12 100%)',
+        p: 4, 
+        borderBottom: '1px solid #F0F0F0',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
       }}>
         <Typography 
-          variant="h6" 
+          variant="h5" 
           sx={{ 
-            fontWeight: 700,
-            color: 'white',
-            textAlign: 'center',
-            letterSpacing: '0.5px'
+            fontWeight: 300,
+            color: '#8B4513',
+            letterSpacing: '3px',
+            fontSize: '1.4rem',
+            fontFamily: '"Playfair Display", serif',
           }}
         >
-          LAVISH POLYPACK LLP
+          LAVISH POLYPACK
         </Typography>
+        <IconButton
+          onClick={handleDrawerToggle}
+          sx={{ 
+            color: '#666',
+            p: 1,
+            '&:hover': {
+              backgroundColor: '#F8F8F8',
+              color: '#8B4513',
+            }
+          }}
+        >
+          <CloseIcon fontSize="small" />
+        </IconButton>
       </Box>
-      <List sx={{ pt: 2 }}>
-        {navLinks.map((link) => (
-          <ListItem key={link.href} disablePadding sx={{ mb: 0.5 }}>
+      
+      <List sx={{ pt: 3, px: 2 }}>
+        {navLinks.map((link, index) => (
+          <ListItem key={link.href} disablePadding sx={{ mb: 1 }}>
             <ListItemButton
               component={Link}
               href={link.href}
-              onClick={() => setDrawerOpen(false)}
+              onClick={handleDrawerToggle}
               selected={pathname === link.href}
               sx={{
-                mx: 2,
-                borderRadius: 2,
+                py: 2,
+                px: 3,
+                borderRadius: 1,
                 transition: 'all 0.3s ease',
                 '&:hover': {
-                  backgroundColor: 'rgba(230, 126, 34, 0.1)',
-                  transform: 'translateX(8px)',
+                  backgroundColor: '#F8F6F3',
+                  '& .MuiTypography-root': {
+                    color: '#8B4513',
+                    transform: 'translateX(8px)',
+                  }
                 },
                 '&.Mui-selected': {
-                  backgroundColor: 'rgba(230, 126, 34, 0.2)',
-                  borderLeft: '4px solid #e67e22',
-                  '&:hover': {
-                    backgroundColor: 'rgba(230, 126, 34, 0.3)',
+                  backgroundColor: '#F8F6F3',
+                  '& .MuiTypography-root': {
+                    color: '#8B4513',
+                    fontWeight: 500,
+                  },
+                  '&::after': {
+                    content: '""',
+                    position: 'absolute',
+                    left: 0,
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    width: '3px',
+                    height: '60%',
+                    backgroundColor: '#8B4513',
+                    borderRadius: '0 2px 2px 0',
                   }
                 }
               }}
@@ -91,8 +160,12 @@ const Header = () => {
                 primary={link.label}
                 sx={{
                   '& .MuiTypography-root': {
-                    fontWeight: pathname === link.href ? 600 : 400,
-                    fontSize: '1.05rem',
+                    fontWeight: pathname === link.href ? 500 : 400,
+                    fontSize: '1rem',
+                    letterSpacing: '0.5px',
+                    color: pathname === link.href ? '#8B4513' : '#555',
+                    transition: 'all 0.3s ease',
+                    fontFamily: '"Inter", sans-serif',
                   }
                 }}
               />
@@ -100,132 +173,179 @@ const Header = () => {
           </ListItem>
         ))}
       </List>
+      
+      <Divider sx={{ mx: 3, my: 3, backgroundColor: '#F0F0F0' }} />
+      
+      <Box sx={{ px: 4, pb: 4 }}>
+        <Typography variant="body2" sx={{ 
+          color: '#999', 
+          mb: 2, 
+          fontSize: '0.85rem',
+          letterSpacing: '0.5px'
+        }}>
+          CONTACT INFO
+        </Typography>
+        <Typography variant="body2" sx={{ color: '#666', mb: 1 }}>
+          +91 98765 43210
+        </Typography>
+        <Typography variant="body2" sx={{ color: '#666' }}>
+          info@lavishpolypack.com
+        </Typography>
+      </Box>
     </Drawer>
   );
 
   return (
-    <AppBar 
-      position='sticky'
-      elevation={scrolled ? 4 : 0}
-      sx={{
-        background: scrolled 
-          ? 'linear-gradient(135deg, #d35400 0%, #e67e22 100%)'
-          : 'linear-gradient(135deg, #e67e22 0%, #f39c12 100%)',
-        backdropFilter: 'blur(10px)',
-        borderBottom: scrolled ? 'none' : '1px solid rgba(255, 255, 255, 0.1)',
-        transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-        boxShadow: scrolled 
-          ? '0 4px 20px rgba(230, 126, 34, 0.3)' 
-          : '0 2px 10px rgba(230, 126, 34, 0.1)',
-      }}
-    >
-      <Toolbar sx={{ 
-        minHeight: { xs: 64, sm: 70 },
-        px: { xs: 2, sm: 3, md: 4 }
-      }}>
-        {isMobile && (
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            onClick={() => setDrawerOpen(true)}
-            sx={{ 
-              mr: 2,
-              p: 1.5,
-              borderRadius: 2,
-              transition: 'all 0.3s ease',
-              '&:hover': {
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                transform: 'scale(1.1)',
-              }
-            }}
-          >
-            <MenuIcon />
-          </IconButton>
-        )}
-        
-        <Typography 
-          variant='h6' 
-          component='div' 
-          sx={{ 
-            flexGrow: 1,
-            fontWeight: 700,
-            fontSize: { xs: '1.1rem', sm: '1.3rem', md: '1.5rem' },
-            letterSpacing: '0.5px',
-            textShadow: '0 2px 4px rgba(0,0,0,0.1)',
-          }}
-        >
-          <Link href='/' passHref style={{ textDecoration: 'none' }}>
-            <Button 
-              sx={{ 
-                color: 'white',
-                fontSize: 'inherit',
-                fontWeight: 'inherit',
-                letterSpacing: 'inherit',
-                textTransform: 'none',
-                p: 0,
-                minWidth: 'auto',
-                '&:hover': {
-                  backgroundColor: 'transparent',
-                  transform: 'scale(1.02)',
-                },
-                transition: 'all 0.3s ease',
-              }}
-            >
-              LAVISH POLYPACK LLP
-            </Button>
-          </Link>
-        </Typography>
-        
-        {!isMobile && (
-          <Box component="nav" sx={{ display: 'flex', gap: 1 }}>
-            {navLinks.map((link) => (
-              <Link href={link.href} passHref key={link.href} style={{ textDecoration: 'none' }}>
-                <Button 
-                  sx={{ 
-                    color: 'white',
-                    fontSize: '1rem',
-                    fontWeight: pathname === link.href ? 600 : 500,
-                    px: 3,
-                    py: 1,
-                    borderRadius: 3,
-                    textTransform: 'none',
-                    letterSpacing: '0.3px',
-                    position: 'relative',
-                    overflow: 'hidden',
-                    border: pathname === link.href ? '2px solid rgba(255, 255, 255, 0.3)' : '2px solid transparent',
-                    backgroundColor: pathname === link.href ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
-                    transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                    '&:hover': {
-                      backgroundColor: 'rgba(255, 255, 255, 0.15)',
-                      transform: 'translateY(-2px)',
-                      boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
-                      border: '2px solid rgba(255, 255, 255, 0.4)',
-                    },
-                    '&::before': {
-                      content: '""',
-                      position: 'absolute',
-                      top: 0,
-                      left: '-100%',
-                      width: '100%',
-                      height: '100%',
-                      background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
-                      transition: 'left 0.5s',
-                    },
-                    '&:hover::before': {
-                      left: '100%',
-                    },
-                  }}
-                >
-                  {link.label}
-                </Button>
+    <>
+      <AppBar 
+        position='fixed'
+        elevation={0}
+        sx={{
+          background: scrolled 
+            ? 'rgba(255, 255, 255, 0.98)'
+            : 'rgba(255, 255, 255, 0.95)',
+          backdropFilter: 'blur(20px)',
+          borderBottom: scrolled 
+            ? '1px solid rgba(139, 69, 19, 0.08)' 
+            : '1px solid rgba(0, 0, 0, 0.05)',
+          transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+          boxShadow: scrolled 
+            ? '0 2px 40px rgba(0, 0, 0, 0.08)' 
+            : '0 1px 20px rgba(0, 0, 0, 0.03)',
+          color: '#2D2D2D',
+        }}
+      >
+        <Container maxWidth="xl" disableGutters>
+          <Toolbar sx={{ 
+            minHeight: { xs: 70, sm: 80 },
+            px: { xs: 2, sm: 4 },
+            justifyContent: 'space-between',
+          }}>
+            {/* Mobile Menu Button */}
+            {isMobile && (
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                onClick={handleDrawerToggle}
+                sx={{ 
+                  mr: 2,
+                  p: 1.5,
+                  color: '#8B4513',
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    backgroundColor: 'rgba(139, 69, 19, 0.08)',
+                    transform: 'scale(1.05)',
+                  }
+                }}
+              >
+                <MenuIcon />
+              </IconButton>
+            )}
+            
+            {/* Logo */}
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Link href='/' passHref style={{ textDecoration: 'none' }}>
+                <Box sx={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    transform: 'scale(1.02)',
+                  }
+                }}>
+                  <Typography 
+                    variant="h4"
+                    sx={{ 
+                      color: '#8B4513',
+                      fontSize: { xs: '1.3rem', sm: '1.6rem', md: '1.8rem' },
+                      fontWeight: 300,
+                      letterSpacing: '3px',
+                      textTransform: 'uppercase',
+                      fontFamily: '"Playfair Display", serif',
+                    }}
+                  >
+                    LAVISH
+                  </Typography>
+                  <Box sx={{ 
+                    width: '2px', 
+                    height: '30px', 
+                    backgroundColor: '#D4AF37', 
+                    mx: 2,
+                    display: { xs: 'none', sm: 'block' }
+                  }} />
+                  <Typography 
+                    variant="h6"
+                    sx={{ 
+                      color: '#666',
+                      fontSize: { xs: '0.9rem', sm: '1rem' },
+                      fontWeight: 400,
+                      letterSpacing: '2px',
+                      display: { xs: 'none', sm: 'block' },
+                      fontFamily: '"Inter", sans-serif',
+                    }}
+                  >
+                    POLYPACK
+                  </Typography>
+                </Box>
               </Link>
-            ))}
-          </Box>
-        )}
-      </Toolbar>
+            </Box>
+            
+            {/* Desktop Navigation */}
+            {!isMobile && (
+              <Box component="nav">
+                {navLinks.map((link) => (
+                  <Link href={link.href} passHref key={link.href} style={{ textDecoration: 'none'}}>
+                    <Button 
+                      sx={{ 
+                        color: pathname === link.href ? '#8B4513' : '#555',
+                        fontSize: '0.95rem',
+                        fontWeight: pathname === link.href ? 500 : 400,
+                        px: 3,
+                        py: 2,
+                        textTransform: 'uppercase',
+                        letterSpacing: '1px',
+                        position: 'relative',
+                        fontFamily: '"Inter", sans-serif',
+                        transition: 'all 0.3s ease',
+                        '&:hover': {
+                          backgroundColor: 'transparent',
+                          color: '#8B4513',
+                          '&::after': {
+                            width: '100%',
+                          }
+                        },
+                        '&::after': {
+                          content: '""',
+                          position: 'absolute',
+                          bottom: 8,
+                          left: '50%',
+                          transform: 'translateX(-50%)',
+                          width: pathname === link.href ? '80%' : '0%',
+                          height: '1px',
+                          backgroundColor: '#D4AF37',
+                          transition: 'all 0.3s ease',
+                        },
+                      }}
+                    >
+                      {link.label}
+                    </Button>
+                  </Link>
+                ))}
+              </Box>
+            )}
+          </Toolbar>
+        </Container>
+      </AppBar>
+      
       {drawer}
-    </AppBar>
+      
+      <InquiryModal open={modalOpen} onClose={() => setModalOpen(false)} />
+      
+      {/* Spacer to prevent content from hiding behind fixed header */}
+      <Box sx={{ height: { xs: 70, sm: 80 } }} />
+    </>
   );
 };
 

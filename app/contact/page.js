@@ -1,5 +1,5 @@
-'use client';
-import React, { useState } from 'react';
+"use client";
+import React, { useState, useRef } from "react";
 import {
   Container,
   Typography,
@@ -15,7 +15,10 @@ import {
   IconButton,
   Snackbar,
   Alert,
-} from '@mui/material';
+  CircularProgress,
+  Fade,
+  Zoom,
+} from "@mui/material";
 import {
   LocationOn,
   Phone,
@@ -24,556 +27,793 @@ import {
   Public,
   Send,
   ContentCopy,
-} from '@mui/icons-material';
+  WhatsApp,
+  Schedule,
+} from "@mui/icons-material";
+import ContactInfoGrid from "@/components/ContactInfoGrid";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
-    productName: '',
-    message: '',
-    name: '',
-    email: '',
-    mobile: '',
-    location: '',
+    productName: "",
+    message: "",
+    name: "",
+    email: "",
+    mobile: "",
+    location: "",
+    inquiryType: "general",
   });
-  const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: "",
+    severity: "success",
+  });
+  const [loading, setLoading] = useState(false);
+  const [lastInquiry, setLastInquiry] = useState(null);
 
   const contactDetails = [
     {
-      icon: LocationOn,
-      title: 'Our Location',
-      text: 'LAVISH POLYPACK LLP, Tankara, Gujarat 363650, India',
-      color: '#e74c3c',
+      icon: Phone,
+      title: "General Inquiry",
+      text: "+91-9879260200",
+      color: "#D4AF37",
       copyable: true,
+      action: () => window.open("tel:+919879260200"),
     },
     {
       icon: Phone,
-      title: 'General Inquiry',
-      text: '+91-9879260200',
-      color: '#3498db',
+      title: "Customer Support",
+      text: "+91-9979466066",
+      color: "#D4AF37",
       copyable: true,
-    },
-    {
-      icon: Phone,
-      title: 'Customer Support',
-      text: '+91-9979466066',
-      color: '#3498db',
-      copyable: true,
+      action: () => window.open("tel:+919979466066"),
     },
     {
       icon: Business,
-      title: 'Domestic Bag Inquiry',
-      text: '+91-9904972444',
-      color: '#f39c12',
+      title: "Domestic Bag Inquiry",
+      text: "+91-9904972444",
+      color: "#8B4513",
       copyable: true,
+      action: () => window.open("tel:+919904972444"),
     },
     {
       icon: Public,
-      title: 'Export Inquiry',
-      text: '+91-7567781212',
-      color: '#e67e22',
+      title: "Export Inquiry",
+      text: "+91-7567781212",
+      color: "#D4AF37",
       copyable: true,
+      action: () => window.open("tel:+917567781212"),
     },
     {
       icon: Email,
-      title: 'General Email',
-      text: 'info@lavishpolypack.com',
-      color: '#9b59b6',
+      title: "General Email",
+      text: "info@lavishpolypack.com",
+      color: "#8B4513",
       copyable: true,
+      action: () => window.open("mailto:info@lavishpolypack.com"),
     },
     {
       icon: Email,
-      title: 'Export Email',
-      text: 'exports@lavishpolypack.com',
-      color: '#1abc9c',
+      title: "Export Email",
+      text: "exports@lavishpolypack.com",
+      color: "#D4AF37",
       copyable: true,
+      action: () => window.open("mailto:exports@lavishpolypack.com"),
     },
     {
       icon: Email,
-      title: 'Alternative Email',
-      text: 'kushpolyflex@gmail.com',
-      color: '#27ae60',
+      title: "Alternative Email",
+      text: "kushpolyflex@gmail.com",
+      color: "#8B4513",
       copyable: true,
+      action: () => window.open("mailto:kushpolyflex@gmail.com"),
     },
+    {
+      icon: LocationOn,
+      title: "Our Location",
+      text: "LAVISH POLYPACK LLP, Tankara, Gujarat 363650, India",
+      color: "#8B4513",
+      copyable: true,
+      action: () =>
+        window.open(
+          "https://maps.google.com/?q=LAVISH+POLYPACK+LLP+Tankara+Gujarat",
+          "_blank"
+        ),
+    },
+  ];
+
+  const whatsappNumbers = [
+    { number: "+919879260200", label: "General Inquiry" },
+    { number: "+919979466066", label: "Customer Support" },
+    { number: "+919904972444", label: "Domestic Bags" },
+    { number: "+917567781212", label: "Export Inquiry" },
   ];
 
   const handleInputChange = (field) => (event) => {
     setFormData({ ...formData, [field]: event.target.value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Here you would typically handle form submission
-    setSnackbar({
-      open: true,
-      message: 'Your inquiry has been sent successfully!',
-      severity: 'success'
-    });
-    // Reset form
-    setFormData({
-      productName: '',
-      message: '',
-      name: '',
-      email: '',
-      mobile: '',
-      location: '',
-    });
+    setLoading(true);
+
+    // Validate required fields
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.mobile ||
+      !formData.message
+    ) {
+      setSnackbar({
+        open: true,
+        message: "Please fill in all required fields",
+        severity: "error",
+      });
+      setLoading(false);
+      return;
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setSnackbar({
+        open: true,
+        message: "Please enter a valid email address",
+        severity: "error",
+      });
+      setLoading(false);
+      return;
+    }
+
+    // Mobile validation (Indian mobile number)
+    const mobileRegex = /^[6-9]\d{9}$/;
+    const cleanMobile = formData.mobile.replace(/[^\d]/g, "");
+    if (!mobileRegex.test(cleanMobile)) {
+      setSnackbar({
+        open: true,
+        message: "Please enter a valid 10-digit mobile number",
+        severity: "error",
+      });
+      setLoading(false);
+      return;
+    }
+
+    // Prepare data for API
+    const payload = {
+      name: formData.name,
+      email: formData.email,
+      mobile: cleanMobile,
+      location: formData.location || 'Not specified',
+      product: formData.productName || 'General Inquiry',
+      inquiry_type: formData.inquiryType || 'general',
+      message: formData.message,
+    };
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error('Failed to send inquiry');
+      const inquiryTime = new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
+      setLastInquiry({ ...payload, time: inquiryTime });
+      setSnackbar({
+        open: true,
+        message:
+          "✅ Your inquiry has been sent successfully! We'll contact you within 24 hours.",
+        severity: "success",
+      });
+      setFormData({
+        productName: "",
+        message: "",
+        name: "",
+        email: "",
+        mobile: "",
+        location: "",
+        inquiryType: "general",
+      });
+    } catch (error) {
+      setSnackbar({
+        open: true,
+        message:
+          "Failed to send inquiry. Please try again or contact us directly.",
+        severity: "error",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text).then(() => {
       setSnackbar({
         open: true,
-        message: 'Copied to clipboard!',
-        severity: 'info'
+        message: "Copied to clipboard! 📋",
+        severity: "info",
       });
     });
   };
 
-  const ContactCard = ({ detail, index }) => {
-    const IconComponent = detail.icon;
-    return (
-      <Card sx={{
-        mb: 2,
-        position: 'relative',
-        background: `linear-gradient(135deg, ${detail.color}08 0%, ${detail.color}15 100%)`,
-        border: `2px solid ${detail.color}20`,
-        transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-        overflow: 'hidden',
-        '&:hover': {
-          transform: 'translateY(-4px)',
-          boxShadow: `0 12px 30px ${detail.color}25`,
-          border: `2px solid ${detail.color}40`,
+  const commonTextFieldStyles = {
+    sx: {
+      "& .MuiOutlinedInput-root": {
+        fontFamily: '"Inter", sans-serif',
+        "&:hover fieldset": { borderColor: "#8B4513" },
+        "&.Mui-focused fieldset": {
+          borderColor: "#D4AF37",
         },
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          top: 0,
-          left: '-100%',
-          width: '100%',
-          height: '100%',
-          background: `linear-gradient(90deg, transparent, ${detail.color}10, transparent)`,
-          transition: 'left 0.6s ease',
-        },
-        '&:hover::before': {
-          left: '100%',
-        }
-      }}>
-        <CardContent sx={{ p: 3, display: 'flex', alignItems: 'center', position: 'relative', zIndex: 1 }}>
-          <Avatar sx={{
-            width: 50,
-            height: 50,
-            mr: 3,
-            background: `linear-gradient(135deg, ${detail.color} 0%, ${detail.color}cc 100%)`,
-            color: 'white',
-            boxShadow: `0 6px 20px ${detail.color}30`,
-          }}>
-            <IconComponent sx={{ fontSize: 24 }} />
-          </Avatar>
-          <Box sx={{ flexGrow: 1 }}>
-            <Typography variant="h6" sx={{ 
-              fontWeight: 600, 
-              color: detail.color,
-              mb: 0.5,
-              fontSize: '1rem'
-            }}>
-              {detail.title}
-            </Typography>
-            <Typography variant="body2" color="text.primary" sx={{ 
-              fontSize: '0.95rem',
-              lineHeight: 1.4
-            }}>
-              {detail.text}
-            </Typography>
-          </Box>
-          {detail.copyable && (
-            <IconButton
-              onClick={() => copyToClipboard(detail.text)}
-              sx={{
-                ml: 1,
-                color: detail.color,
-                transition: 'all 0.3s ease',
-                '&:hover': {
-                  backgroundColor: `${detail.color}15`,
-                  transform: 'scale(1.1)',
-                }
-              }}
-            >
-              <ContentCopy sx={{ fontSize: 18 }} />
-            </IconButton>
-          )}
-        </CardContent>
-      </Card>
+      },
+      "& .MuiInputLabel-root.Mui-focused": {
+        color: "#8B4513",
+      },
+    },
+  };
+  const openWhatsApp = (number, message = "") => {
+    const text =
+      message ||
+      `Hello! I&apos;m interested in your packaging products. Can you please provide more information?`;
+    window.open(
+      `https://wa.me/${number.replace(/[^\d]/g, "")}?text=${encodeURIComponent(
+        text
+      )}`,
+      "_blank"
     );
   };
 
   return (
-    <Container maxWidth="xl" sx={{ py: 4 }}>
+    <Container maxWidth="xl" sx={{ py: 4, overflowX: 'hidden' }}>
       {/* Hero Section */}
-      <Box sx={{
-        textAlign: 'center',
-        mb: 8,
-        position: 'relative',
-        py: 6,
-        background: 'linear-gradient(135deg, #e67e22 0%, #f39c12 100%)',
-        borderRadius: 4,
-        color: 'white',
-        boxShadow: '0 15px 35px rgba(230, 126, 34, 0.3)',
-        overflow: 'hidden',
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: 'radial-gradient(circle at 70% 30%, rgba(255,255,255,0.1) 0%, transparent 50%)',
-          pointerEvents: 'none',
-        }
-      }}>
-        <Box sx={{ position: 'relative', zIndex: 1 }}>
-          <Chip
-            label="Get In Touch"
-            sx={{
-              mb: 3,
-              bgcolor: 'rgba(255,255,255,0.2)',
-              color: 'white',
-              fontWeight: 600,
-              fontSize: '0.9rem',
-              backdropFilter: 'blur(10px)',
-            }}
-          />
-          <Typography variant="h2" component="h1" gutterBottom sx={{
-            fontWeight: 800,
-            mb: 2,
-            textShadow: '0 4px 8px rgba(0,0,0,0.2)',
-            fontSize: { xs: '2.5rem', md: '3.5rem' }
-          }}>
-            Contact Us
-          </Typography>
-          <Typography variant="h5" sx={{
-            maxWidth: '800px',
-            mx: 'auto',
-            opacity: 0.95,
-            fontWeight: 400,
-            lineHeight: 1.4
-          }}>
-            Ready to Partner with India&apos;s Leading Packaging Solutions Provider
-          </Typography>
+      <Fade in={true} timeout={1000}>
+        <Box
+          sx={{
+            textAlign: "center",
+            mb: 8,
+            position: "relative",
+            py: 6,
+            background: "linear-gradient(135deg, #8B4513 0%, #D4AF37 100%)",
+            borderRadius: 3,
+            color: "white",
+            boxShadow: "0 15px 35px rgba(139, 69, 19, 0.3)",
+            overflow: "hidden",
+            "&::before": {
+              content: '""',
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background:
+                "radial-gradient(circle at 70% 30%, rgba(255,255,255,0.1) 0%, transparent 50%)",
+              pointerEvents: "none",
+            },
+          }}
+        >
+          <Box sx={{ position: "relative", zIndex: 1 }}>
+            <Chip
+              label="Get In Touch"
+              sx={{
+                mb: 3,
+                bgcolor: "rgba(255,255,255,0.2)",
+                color: "white",
+                fontWeight: 600,
+                fontSize: "0.9rem",
+                backdropFilter: "blur(10px)",
+                fontFamily: '"Inter", sans-serif',
+              }}
+            />
+            <Typography
+              variant="h2"
+              component="h1"
+              gutterBottom
+              sx={{
+                fontWeight: 300,
+                mb: 2,
+                textShadow: "0 2px 8px rgba(0,0,0,0.2)",
+                fontSize: { xs: "2.5rem", md: "3.5rem" },
+                fontFamily: '"Playfair Display", serif',
+                letterSpacing: "2px",
+              }}
+            >
+              Contact LAVISH POLYPACK
+            </Typography>
+            <Typography
+              variant="h5"
+              sx={{
+                maxWidth: "800px",
+                mx: "auto",
+                opacity: 0.95,
+                fontWeight: 300,
+                lineHeight: 1.4,
+                fontFamily: '"Inter", sans-serif',
+              }}
+            >
+              Partner with Gujarat&apos;s Premier Packaging Solutions Provider
+            </Typography>
+          </Box>
         </Box>
-      </Box>
+      </Fade>
 
       <Grid container spacing={6}>
         {/* Contact Details Column */}
         <Grid item xs={12} lg={5}>
-          <Paper elevation={0} sx={{
-            p: 4,
-            background: 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
-            border: '2px solid #e67e2220',
-            borderRadius: 3,
-            position: 'relative',
-            overflow: 'hidden',
-            height: 'fit-content',
-            '&::before': {
-              content: '""',
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '6px',
-              background: 'linear-gradient(90deg, #e67e22, #f39c12, #e67e22)',
-            }
-          }}>
-            <Typography variant="h4" component="h2" gutterBottom sx={{
-              fontWeight: 700,
-              mb: 4,
-              color: '#2c3e50',
-              textAlign: 'center',
-              position: 'relative',
-              '&::after': {
-                content: '""',
-                position: 'absolute',
-                bottom: -12,
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: '80px',
-                height: '4px',
-                background: 'linear-gradient(90deg, #e67e22, #f39c12)',
-                borderRadius: 2,
-              }
-            }}>
-              Contact Information
-            </Typography>
-            
-            {contactDetails.map((detail, index) => (
-              <ContactCard key={index} detail={detail} index={index} />
-            ))}
-          </Paper>
+          <Fade in={true} timeout={1200}>
+            <Paper
+              elevation={0}
+              sx={{
+                p: 4,
+                background: "rgba(255, 255, 255, 0.95)",
+                border: "1px solid rgba(139, 69, 19, 0.1)",
+                borderRadius: 3,
+                position: "relative",
+                overflow: "hidden",
+                height: "fit-content",
+                backdropFilter: "blur(20px)",
+              }}
+            >
+              <Typography
+                variant="h4"
+                component="h2"
+                gutterBottom
+                sx={{
+                  fontWeight: 300,
+                  mb: 4,
+                  color: "#8B4513",
+                  textAlign: "center",
+                  position: "relative",
+                  fontFamily: '"Playfair Display", serif',
+                  letterSpacing: "1px",
+                  "&::after": {
+                    content: '""',
+                    position: "absolute",
+                    bottom: -12,
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    width: "80px",
+                    height: "2px",
+                    background: "linear-gradient(90deg, #8B4513, #D4AF37)",
+                    borderRadius: 2,
+                  },
+                }}
+              >
+                Contact Information
+              </Typography>
+
+              <ContactInfoGrid contactDetails={contactDetails} />
+
+              {/* WhatsApp Quick Actions */}
+              <Box
+                sx={{
+                  mt: 4,
+                  p: 3,
+                  background:
+                    "linear-gradient(135deg, #25D366 0%, #128C7E 100%)",
+                  borderRadius: 2,
+                  color: "white",
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  sx={{
+                    mb: 2,
+                    display: "flex",
+                    alignItems: "center",
+                    fontFamily: '"Inter", sans-serif',
+                  }}
+                >
+                  <WhatsApp sx={{ mr: 1 }} />
+                  Quick WhatsApp
+                </Typography>
+                <Grid container spacing={1}>
+                  {whatsappNumbers.map((item, index) => (
+                    <Grid item xs={6} key={index}>
+                      <Button
+                        fullWidth
+                        size="small"
+                        onClick={() => openWhatsApp(item.number)}
+                        sx={{
+                          color: "white",
+                          border: "1px solid rgba(255,255,255,0.3)",
+                          fontSize: "0.75rem",
+                          py: 1,
+                          "&:hover": {
+                            backgroundColor: "rgba(255,255,255,0.1)",
+                          },
+                        }}
+                      >
+                        {item.label}
+                      </Button>
+                    </Grid>
+                  ))}
+                </Grid>
+              </Box>
+            </Paper>
+          </Fade>
         </Grid>
 
         {/* Form and Map Column */}
         <Grid item xs={12} lg={7}>
           <Grid container spacing={4}>
             {/* Contact Form */}
-            <Grid item xs={12}>
-              <Paper elevation={0} sx={{
-                p: 5,
-                background: 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
-                border: '2px solid #f39c1220',
-                borderRadius: 3,
-                position: 'relative',
-                overflow: 'hidden',
-                '&::before': {
-                  content: '""',
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: '100%',
-                  height: '6px',
-                  background: 'linear-gradient(90deg, #f39c12, #e67e22, #f39c12)',
-                }
-              }}>
-                <Typography variant="h4" component="h2" gutterBottom sx={{
-                  fontWeight: 700,
-                  mb: 4,
-                  color: '#2c3e50',
-                  textAlign: 'center',
-                  position: 'relative',
-                  '&::after': {
-                    content: '""',
-                    position: 'absolute',
-                    bottom: -12,
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    width: '100px',
-                    height: '4px',
-                    background: 'linear-gradient(90deg, #f39c12, #e67e22)',
-                    borderRadius: 2,
-                  }
-                }}>
-                  Send Your Inquiry
-                </Typography>
-
-                <form onSubmit={handleSubmit}>
-                  <TextField
-                    label="Product Name"
-                    variant="outlined"
-                    fullWidth
-                    margin="normal"
-                    value={formData.productName}
-                    onChange={handleInputChange('productName')}
+            <Grid item xs={12} lg={7}>
+              <Fade in={true} timeout={1400}>
+                <Paper
+                  elevation={0}
+                  sx={{
+                    p: 5,
+                    background: "rgba(255, 255, 255, 0.95)",
+                    border: "1px solid rgba(212, 175, 55, 0.1)",
+                    borderRadius: 3,
+                    position: "relative",
+                    overflow: "hidden",
+                    backdropFilter: "blur(20px)",
+                  }}
+                >
+                  <Typography
+                    variant="h4"
+                    component="h2"
+                    gutterBottom
                     sx={{
-                      '& .MuiOutlinedInput-root': {
-                        '&:hover fieldset': { borderColor: '#e67e22' },
-                        '&.Mui-focused fieldset': { borderColor: '#f39c12' },
+                      fontWeight: 300,
+                      mb: 4,
+                      color: "#8B4513",
+                      textAlign: "center",
+                      position: "relative",
+                      fontFamily: '"Playfair Display", serif',
+                      letterSpacing: "1px",
+                      "&::after": {
+                        content: '""',
+                        position: "absolute",
+                        bottom: -12,
+                        left: "50%",
+                        transform: "translateX(-50%)",
+                        width: "100px",
+                        height: "2px",
+                        background: "linear-gradient(90deg, #D4AF37, #8B4513)",
+                        borderRadius: 2,
                       },
-                      '& .MuiInputLabel-root.Mui-focused': { color: '#e67e22' },
-                    }}
-                  />
-                  
-                  <TextField
-                    label="Your Message"
-                    variant="outlined"
-                    fullWidth
-                    multiline
-                    rows={4}
-                    margin="normal"
-                    value={formData.message}
-                    onChange={handleInputChange('message')}
-                    sx={{
-                      '& .MuiOutlinedInput-root': {
-                        '&:hover fieldset': { borderColor: '#e67e22' },
-                        '&.Mui-focused fieldset': { borderColor: '#f39c12' },
-                      },
-                      '& .MuiInputLabel-root.Mui-focused': { color: '#e67e22' },
-                    }}
-                  />
-                  
-                  <Grid container spacing={2}>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        label="Full Name"
-                        variant="outlined"
-                        fullWidth
-                        margin="normal"
-                        value={formData.name}
-                        onChange={handleInputChange('name')}
-                        sx={{
-                          '& .MuiOutlinedInput-root': {
-                            '&:hover fieldset': { borderColor: '#e67e22' },
-                            '&.Mui-focused fieldset': { borderColor: '#f39c12' },
-                          },
-                          '& .MuiInputLabel-root.Mui-focused': { color: '#e67e22' },
-                        }}
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        label="Email Address"
-                        variant="outlined"
-                        fullWidth
-                        margin="normal"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleInputChange('email')}
-                        sx={{
-                          '& .MuiOutlinedInput-root': {
-                            '&:hover fieldset': { borderColor: '#e67e22' },
-                            '&.Mui-focused fieldset': { borderColor: '#f39c12' },
-                          },
-                          '& .MuiInputLabel-root.Mui-focused': { color: '#e67e22' },
-                        }}
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        label="Mobile Number"
-                        variant="outlined"
-                        fullWidth
-                        margin="normal"
-                        value={formData.mobile}
-                        onChange={handleInputChange('mobile')}
-                        sx={{
-                          '& .MuiOutlinedInput-root': {
-                            '&:hover fieldset': { borderColor: '#e67e22' },
-                            '&.Mui-focused fieldset': { borderColor: '#f39c12' },
-                          },
-                          '& .MuiInputLabel-root.Mui-focused': { color: '#e67e22' },
-                        }}
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        label="Your Location"
-                        variant="outlined"
-                        fullWidth
-                        margin="normal"
-                        value={formData.location}
-                        onChange={handleInputChange('location')}
-                        sx={{
-                          '& .MuiOutlinedInput-root': {
-                            '&:hover fieldset': { borderColor: '#e67e22' },
-                            '&.Mui-focused fieldset': { borderColor: '#f39c12' },
-                          },
-                          '& .MuiInputLabel-root.Mui-focused': { color: '#e67e22' },
-                        }}
-                      />
-                    </Grid>
-                  </Grid>
-                  
-                  <Button
-                    variant="contained"
-                    type="submit"
-                    size="large"
-                    startIcon={<Send />}
-                    sx={{
-                      mt: 3,
-                      px: 4,
-                      py: 1.5,
-                      fontSize: '1.1rem',
-                      fontWeight: 600,
-                      background: 'linear-gradient(135deg, #e67e22 0%, #f39c12 100%)',
-                      borderRadius: 3,
-                      textTransform: 'none',
-                      boxShadow: '0 8px 25px rgba(230, 126, 34, 0.3)',
-                      transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                      '&:hover': {
-                        background: 'linear-gradient(135deg, #d35400 0%, #e67e22 100%)',
-                        transform: 'translateY(-2px)',
-                        boxShadow: '0 12px 35px rgba(230, 126, 34, 0.4)',
-                      }
                     }}
                   >
-                    Send Inquiry
-                  </Button>
-                </form>
-              </Paper>
-            </Grid>
+                    Send Your Inquiry
+                  </Typography>
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      textAlign: 'center',
+                      color: '#8B4513',
+                      mb: 2,
+                      fontWeight: 400,
+                      fontFamily: '"Inter", sans-serif',
+                    }}
+                  >
+                    Fill out the form below and our team will get back to you promptly.
+                  </Typography>
 
+                  <form onSubmit={handleSubmit}>
+                    <Box
+                      sx={{
+                        maxWidth: "900px",
+                        mx: "auto",
+                        px: { xs: 2, sm: 3 },
+                        py: 4,
+                      }}
+                    >
+                      <Grid container spacing={3}>
+                        {/* Full Name & Email */}
+                        <Grid item xs={12} md={6}>
+                          <TextField
+                            label="Full Name *"
+                            variant="outlined"
+                            fullWidth
+                            value={formData.name}
+                            onChange={handleInputChange("name")}
+                            required
+                            placeholder="Enter your full name"
+                            {...commonTextFieldStyles}
+                          />
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                          <TextField
+                            label="Email Address *"
+                            variant="outlined"
+                            fullWidth
+                            type="email"
+                            value={formData.email}
+                            onChange={handleInputChange("email")}
+                            required
+                            placeholder="example@domain.com"
+                            {...commonTextFieldStyles}
+                          />
+                        </Grid>
+
+                        {/* Mobile & Location */}
+                        <Grid item xs={12} md={6}>
+                          <TextField
+                            label="Mobile Number *"
+                            variant="outlined"
+                            fullWidth
+                            value={formData.mobile}
+                            onChange={handleInputChange("mobile")}
+                            required
+                            placeholder="10-digit mobile number"
+                            inputProps={{ maxLength: 10 }}
+                            {...commonTextFieldStyles}
+                          />
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                          <TextField
+                            label="Your Location"
+                            variant="outlined"
+                            fullWidth
+                            value={formData.location}
+                            onChange={handleInputChange("location")}
+                            placeholder="City / State"
+                            {...commonTextFieldStyles}
+                          />
+                        </Grid>
+
+                        {/* Product Interest */}
+                        <Grid item xs={12}>
+                          <TextField
+                            label="Product Name / Interest"
+                            variant="outlined"
+                            fullWidth
+                            value={formData.productName}
+                            onChange={handleInputChange("productName")}
+                            placeholder="e.g., FIBC Bags, PP Woven Bags, etc."
+                            {...commonTextFieldStyles}
+                          />
+                        </Grid>
+
+                        {/* Message */}
+                        <Grid item xs={12}>
+                          <TextField
+                            label="Your Message *"
+                            variant="outlined"
+                            fullWidth
+                            multiline
+                            rows={4}
+                            value={formData.message}
+                            onChange={handleInputChange("message")}
+                            required
+                            placeholder="Describe your requirements, timeline, or any specific questions..."
+                            {...commonTextFieldStyles}
+                          />
+                        </Grid>
+                      </Grid>
+                    </Box>
+                    <Box
+                      sx={{ mt: 4, display: "flex", gap: 2, flexWrap: "wrap" }}
+                    >
+                      <Button
+                        variant="contained"
+                        type="submit"
+                        size="large"
+                        disabled={loading}
+                        startIcon={
+                          loading ? (
+                            <CircularProgress size={20} color="inherit" />
+                          ) : (
+                            <Send />
+                          )
+                        }
+                        sx={{
+                          px: 4,
+                          py: 1.5,
+                          fontSize: "1.1rem",
+                          fontWeight: 500,
+                          background:
+                            "linear-gradient(135deg, #8B4513 0%, #D4AF37 100%)",
+                          borderRadius: 2,
+                          textTransform: "none",
+                          boxShadow: "0 8px 25px rgba(139, 69, 19, 0.3)",
+                          transition: "all 0.3s ease",
+                          fontFamily: '"Inter", sans-serif',
+                          "&:hover": {
+                            background:
+                              "linear-gradient(135deg, #7A3F0F 0%, #B8941F 100%)",
+                            transform: "translateY(-2px)",
+                            boxShadow: "0 12px 35px rgba(139, 69, 19, 0.4)",
+                          },
+                          "&:disabled": {
+                            background: "rgba(139, 69, 19, 0.3)",
+                          },
+                        }}
+                      >
+                        {loading ? "Sending..." : "Send Inquiry"}
+                      </Button>
+
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 1,
+                          color: "#666",
+                          fontSize: "0.9rem",
+                        }}
+                      >
+                        <Schedule sx={{ fontSize: 16 }} />
+                        We&apos;ll respond within 24 hours
+                      </Box>
+                    </Box>
+                  </form>
+                </Paper>
+              </Fade>
+            </Grid>
             {/* Map Section */}
             <Grid item xs={12}>
-            <Box
-  sx={{
-    mt: 6,
-    width: '100vw',
-    position: 'relative',
-    left: '50%',
-    right: '50%',
-    transform: 'translateX(-50%)',
-    px: { xs: 2, md: 4 },
-  }}
->
-  <Paper
-    elevation={0}
-    sx={{
-      p: 2,
-      background: 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
-      border: '2px solid #e67e2220',
-      borderRadius: 3,
-      position: 'relative',
-      overflow: 'hidden',
-      maxWidth: '1600px',
-      mx: 'auto',
-      '&::before': {
-        content: '""',
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '6px',
-        background: 'linear-gradient(90deg, #e67e22, #f39c12, #e67e22)',
-      },
-    }}
-  >
-    <Typography
-      variant="h5"
-      component="h3"
-      gutterBottom
-      sx={{
-        fontWeight: 600,
-        mb: 3,
-        color: '#2c3e50',
-        textAlign: 'center',
-      }}
-    >
-      Find Us On Map
-    </Typography>
-    <Box
-      sx={{
-        height: { xs: '300px', md: '500px' },
-        width: '100%',
-        borderRadius: 2,
-        overflow: 'hidden',
-        border: '3px solid #e67e2230',
-        boxShadow: '0 8px 25px rgba(0,0,0,0.1)',
-      }}
-    >
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.81559806443!2d70.644480!3d22.596371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDM1JzQ2LjkiTiA3MMKwMzgnNDAuMSJF!5e0!3m2!1sen!2sus!4v1626883271884!5m2!1sen!2sus"
-        width="100%"
-        height="100%"
-        style={{ border: 0 }}
-        allowFullScreen=""
-        loading="lazy"
-      />
-    </Box>
-  </Paper>
-</Box>
+              <Fade in={true} timeout={1600}>
+                <Box
+                  sx={{
+                    width: "100%",
+                    px: { xs: 2, md: 4 },
+                    maxWidth: '100%',
+                    overflowX: 'hidden',
+                  }}
+                >
+                  <Paper
+                    elevation={0}
+                    sx={{
+                      p: 2,
+                      background: "rgba(255, 255, 255, 0.95)",
+                      border: "1px solid rgba(139, 69, 19, 0.1)",
+                      borderRadius: 3,
+                      position: "relative",
+                      overflow: "hidden",
+                      maxWidth: "100%",
+                      mx: "auto",
+                      backdropFilter: "blur(20px)",
+                    }}
+                  >
+                    <Typography
+                      variant="h5"
+                      component="h3"
+                      gutterBottom
+                      sx={{
+                        fontWeight: 300,
+                        mb: 3,
+                        color: "#8B4513",
+                        textAlign: "center",
+                        fontFamily: '"Playfair Display", serif',
+                        letterSpacing: "1px",
+                      }}
+                    >
+                      Find Us On Map
+                    </Typography>
+                    <Box
+                      sx={{
+                        height: { xs: "300px", md: "500px" },
+                        width: "100%",
+                        borderRadius: 2,
+                        overflow: "hidden",
+                        border: "2px solid rgba(139, 69, 19, 0.1)",
+                        boxShadow: "0 8px 25px rgba(0,0,0,0.1)",
+                      }}
+                    >
+                      <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.81559806443!2d70.644480!3d22.596371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDM1JzQ2LjkiTiA3MMKwMzgnNDAuMSJF!5e0!3m2!1sen!2sus!4v1626883271884!5m2!1sen!2sus"
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }}
+                        allowFullScreen=""
+                        loading="lazy"
+                        title="LAVISH POLYPACK Location"
+                      />
+                    </Box>
+                  </Paper>
+                </Box>
+              </Fade>
             </Grid>
           </Grid>
         </Grid>
       </Grid>
 
+      {/* Business Hours Section */}
+      <Fade in={true} timeout={1800}>
+        <Box
+          sx={{
+            mt: 8,
+            display: "flex",
+            justifyContent: "space-around",
+            alignContent: "center",
+          }}
+        >
+          <Grid container spacing={4}>
+            <Grid item xs={12} md={4}>
+              <Card
+                sx={{
+                  p: 3,
+                  textAlign: "center",
+                  background:
+                    "linear-gradient(135deg, #8B4513 0%, #D4AF37 100%)",
+                  color: "white",
+                  borderRadius: 3,
+                }}
+              >
+                <Schedule sx={{ fontSize: 40, mb: 2 }} />
+                <Typography
+                  variant="h6"
+                  sx={{ mb: 2, fontFamily: '"Inter", sans-serif' }}
+                >
+                  Business Hours
+                </Typography>
+                <Typography variant="body2" sx={{ opacity: 0.9 }}>
+                  Monday - Saturday: 9:00 AM - 6:00 PM
+                  <br />
+                  Sunday: Closed
+                </Typography>
+              </Card>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <Card
+                sx={{
+                  p: 3,
+                  textAlign: "center",
+                  background:
+                    "linear-gradient(135deg, #D4AF37 0%, #8B4513 100%)",
+                  color: "white",
+                  borderRadius: 3,
+                }}
+              >
+                <Email sx={{ fontSize: 40, mb: 2 }} />
+                <Typography
+                  variant="h6"
+                  sx={{ mb: 2, fontFamily: '"Inter", sans-serif' }}
+                >
+                  Email Response
+                </Typography>
+                <Typography variant="body2" sx={{ opacity: 0.9 }}>
+                  We respond to all emails
+                  <br />
+                  within 2-4 hours during business hours
+                </Typography>
+              </Card>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <Card
+                sx={{
+                  p: 3,
+                  textAlign: "center",
+                  background:
+                    "linear-gradient(135deg, #25D366 0%, #128C7E 100%)",
+                  color: "white",
+                  borderRadius: 3,
+                }}
+              >
+                <WhatsApp sx={{ fontSize: 40, mb: 2 }} />
+                <Typography
+                  variant="h6"
+                  sx={{ mb: 2, fontFamily: '"Inter", sans-serif' }}
+                >
+                  WhatsApp Support
+                </Typography>
+                <Typography variant="body2" sx={{ opacity: 0.9 }}>
+                  Get instant replies on WhatsApp
+                  <br />
+                  24/7 available for urgent queries
+                </Typography>
+              </Card>
+            </Grid>
+          </Grid>
+        </Box>
+      </Fade>
+
       {/* Snackbar for notifications */}
       <Snackbar
         open={snackbar.open}
-        autoHideDuration={4000}
+        autoHideDuration={6000}
         onClose={() => setSnackbar({ ...snackbar, open: false })}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       >
         <Alert
           onClose={() => setSnackbar({ ...snackbar, open: false })}
           severity={snackbar.severity}
-          sx={{ width: '100%' }}
+          sx={{
+            width: "100%",
+            fontFamily: '"Inter", sans-serif',
+            "& .MuiAlert-message": {
+              fontSize: "0.95rem",
+            },
+          }}
         >
           {snackbar.message}
         </Alert>
