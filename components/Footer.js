@@ -7,6 +7,7 @@ import {
   Grid,
   IconButton,
   Divider,
+  Stack,
 } from '@mui/material';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
@@ -52,6 +53,8 @@ const Footer = () => {
         mt: 'auto',
         position: 'relative',
         overflow: 'hidden',
+        pt: 6,
+        pb: 2,
         '&::before': {
           content: '""',
           position: 'absolute',
@@ -63,349 +66,228 @@ const Footer = () => {
         }
       }}
     >
-      {/* Main Footer Content */}
-      <Container maxWidth='lg' sx={{ py: { xs: 4, sm: 6 } }}>
-        <Grid container spacing={{ xs: 3, sm: 4, md: 5 }}>
-          {/* Quick Links Section */}
-          <Grid item xs={12} sm={6} md={3}>
-            <Box sx={{ textAlign: { xs: 'center', sm: 'left' } }}>
-              <Typography 
-                variant='h6' 
-                gutterBottom 
-                sx={{ 
-                  fontSize: { xs: '1.1rem', sm: '1.25rem' },
-                  fontWeight: 700,
-                  color: '#f39c12',
-                  mb: 3,
-                  position: 'relative',
-                  '&::after': {
-                    content: '""',
-                    position: 'absolute',
-                    bottom: -8,
-                    left: { xs: '50%', sm: 0 },
-                    transform: { xs: 'translateX(-50%)', sm: 'none' },
-                    width: 40,
-                    height: 3,
-                    background: 'linear-gradient(90deg, #e67e22, #f39c12)',
-                    borderRadius: 2,
-                  }
-                }}
-              >
-                Quick Links
-              </Typography>
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
-                {quickLinks.map((link) => (
-                  <Link 
-                    key={link.href}
-                    href={link.href} 
-                    color='inherit' 
-                    sx={{ 
-                      textDecoration: 'none',
-                      fontSize: { xs: '0.95rem', sm: '1rem' },
-                      transition: 'all 0.3s ease',
-                      position: 'relative',
-                      display: 'inline-block',
+      <Container maxWidth='lg'>
+        <Grid container spacing={6} alignItems="flex-start">
+          {/* Quick Links & Social */}
+          <Grid item xs={12} sm={6} md={4}>
+            <Typography
+              variant='h6'
+              sx={{
+                fontWeight: 700,
+                color: '#f39c12',
+                mb: 2,
+                letterSpacing: '1px',
+              }}
+            >
+              Quick Links
+            </Typography>
+            <Stack spacing={1.5} sx={{ mb: 3 }}>
+              {quickLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  color='inherit'
+                  sx={{
+                    textDecoration: 'none',
+                    fontSize: '1rem',
+                    fontWeight: 500,
+                    transition: 'color 0.3s',
+                    '&:hover': { color: '#f39c12' },
+                  }}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </Stack>
+            <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
+              {socialLinks.map((social) => {
+                const IconComponent = social.icon;
+                return (
+                  <IconButton
+                    key={social.label}
+                    href={social.href}
+                    target='_blank'
+                    sx={{
+                      color: '#f39c12',
+                      background: 'rgba(243,156,18,0.12)',
+                      border: '2px solid rgba(243,156,18,0.25)',
+                      transition: 'all 0.3s',
                       '&:hover': {
-                        color: '#f39c12',
-                        transform: 'translateX(8px)',
-                      },
-                      '&::before': {
-                        content: '"→"',
-                        position: 'absolute',
-                        left: -20,
-                        opacity: 0,
-                        transition: 'opacity 0.3s ease',
-                        color: '#e67e22',
-                      },
-                      '&:hover::before': {
-                        opacity: 1,
+                        background: 'linear-gradient(135deg, #e67e22, #f39c12)',
+                        color: 'white',
+                        border: '2px solid #f39c12',
+                        transform: 'scale(1.15)',
                       }
                     }}
                   >
-                    {link.label}
-                  </Link>
-                ))}
-              </Box>
-
-              {/* Social Media Icons */}
-              <Box sx={{ 
-                mt: 3, 
-                display: 'flex', 
-                justifyContent: { xs: 'center', sm: 'flex-start' }, 
-                gap: 1.5 
-              }}>
-                {socialLinks.map((social) => {
-                  const IconComponent = social.icon;
-                  return (
-                    <IconButton
-                      key={social.label}
-                      href={social.href}
-                      target='_blank'
-                      sx={{
-                        color: 'white',
-                        background: 'rgba(243, 156, 18, 0.1)',
-                        border: '2px solid rgba(243, 156, 18, 0.3)',
-                        transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                        '&:hover': {
-                          background: 'linear-gradient(135deg, #e67e22, #f39c12)',
-                          transform: 'translateY(-3px) scale(1.1)',
-                          boxShadow: '0 6px 20px rgba(243, 156, 18, 0.4)',
-                          border: '2px solid transparent',
-                        }
-                      }}
-                    >
-                      <IconComponent fontSize='small' />
-                    </IconButton>
-                  );
-                })}
-              </Box>
-            </Box>
+                    <IconComponent fontSize='medium' />
+                  </IconButton>
+                );
+              })}
+            </Stack>
           </Grid>
 
-          {/* Chairman's Word Section */}
-          <Grid item xs={12} sm={6} md={4}>
-            <Box sx={{ textAlign: { xs: 'center', sm: 'left' } }}>
-              <Typography 
-                variant='h6' 
-                gutterBottom 
-                sx={{ 
-                  fontSize: { xs: '1.1rem', sm: '1.25rem' },
-                  fontWeight: 700,
-                  color: '#f39c12',
-                  mb: 3,
-                  position: 'relative',
-                  '&::after': {
-                    content: '""',
-                    position: 'absolute',
-                    bottom: -8,
-                    left: { xs: '50%', sm: 0 },
-                    transform: { xs: 'translateX(-50%)', sm: 'none' },
-                    width: 40,
-                    height: 3,
-                    background: 'linear-gradient(90deg, #e67e22, #f39c12)',
-                    borderRadius: 2,
-                  }
-                }}
-              >
-                Chairman&apos;s Word
-              </Typography>
-              <Box sx={{ 
-                display: 'flex', 
-                alignItems: 'flex-start', 
-                flexDirection: { xs: 'column', sm: 'row' },
-                gap: 2,
-                p: 3,
-                background: 'rgba(243, 156, 18, 0.05)',
-                borderRadius: 3,
-                border: '1px solid rgba(243, 156, 18, 0.1)',
-                backdropFilter: 'blur(10px)',
-              }}>
-                <Box sx={{ 
-                  position: 'relative',
-                  alignSelf: { xs: 'center', sm: 'flex-start' },
-                  mb: { xs: 2, sm: 0 }
+          {/* Contact Info */}
+          <Grid item xs={12} sm={6} md={5}>
+            <Typography
+              variant='h6'
+              sx={{
+                fontWeight: 700,
+                color: '#f39c12',
+                mb: 2,
+                letterSpacing: '1px',
+              }}
+            >
+              Contact Information
+            </Typography>
+            <Stack spacing={2}>
+              <Stack direction="row" spacing={2} alignItems="flex-start">
+                <Box sx={{
+                  p: 1,
+                  borderRadius: 2,
+                  background: 'linear-gradient(135deg, #e67e22, #f39c12)',
+                  minWidth: 40,
+                  display: 'flex',
+                  justifyContent: 'center'
                 }}>
+                  <LocationOnIcon sx={{ fontSize: '1.4rem', color: 'white' }} />
                 </Box>
-                <Box sx={{ flex: 1, textAlign: { xs: 'center', sm: 'left' } }}>
-                  <Typography 
-                    variant='body2' 
-                    sx={{ 
-                      fontSize: { xs: '0.9rem', sm: '0.95rem' },
-                      lineHeight: 1.6,
-                      fontStyle: 'italic',
-                      color: '#ecf0f1',
-                      mb: 1
-                    }}
-                  >
-                    &quot;Honesty is very expensive Gift, Don&apos;t expect it from
-                    Cheap People.&quot;
-                  </Typography>
-                  <Typography 
-                    variant='body2' 
-                    sx={{ 
+                <Typography variant='body2' sx={{ color: '#ecf0f1', fontSize: '1rem', lineHeight: 1.7 }}>
+                  <strong style={{ color: '#f39c12' }}>LAVISH POLYPACK LLP</strong><br />
+                  Survey No 199/P1/P3/P1<br />
+                  Opp. Anjani Pipe<br />
+                  At - Otala, Tankara - Latipar Road<br />
+                  Tankara, Morbi - 363650
+                </Typography>
+              </Stack>
+              <Stack direction="row" spacing={2} alignItems="center">
+                <Box sx={{
+                  p: 1,
+                  borderRadius: 2,
+                  background: 'linear-gradient(135deg, #e67e22, #f39c12)',
+                  minWidth: 40,
+                  display: 'flex',
+                  justifyContent: 'center'
+                }}>
+                  <PhoneIcon sx={{ fontSize: '1.4rem', color: 'white' }} />
+                </Box>
+                <Typography variant='body2' sx={{ color: '#ecf0f1', fontSize: '1rem' }}>
+                  <Link
+                    href="tel:8238420382"
+                    sx={{
                       color: '#f39c12',
+                      textDecoration: 'none',
                       fontWeight: 600,
-                      fontSize: '0.9rem'
+                      '&:hover': { color: '#e67e22' }
                     }}
                   >
-                    - Vivek Kanani
-                  </Typography>
+                    +91 8238420382
+                  </Link>
+                </Typography>
+              </Stack>
+              <Stack direction="row" spacing={2} alignItems="center">
+                <Box sx={{
+                  p: 1,
+                  borderRadius: 2,
+                  background: 'linear-gradient(135deg, #e67e22, #f39c12)',
+                  minWidth: 40,
+                  display: 'flex',
+                  justifyContent: 'center'
+                }}>
+                  <EmailIcon sx={{ fontSize: '1.4rem', color: 'white' }} />
+                </Box>
+                <Typography variant='body2' sx={{ color: '#ecf0f1', fontSize: '1rem' }}>
+                  <Link
+                    href="mailto:lavishpolypack@gmail.com"
+                    sx={{
+                      color: '#f39c12',
+                      textDecoration: 'none',
+                      fontWeight: 600,
+                      '&:hover': { color: '#e67e22' }
+                    }}
+                  >
+                    lavishpolypack@gmail.com
+                  </Link>
+                </Typography>
+              </Stack>
+              <Box sx={{ mt: 2 }}>
+                <GoogleTranslate />
+                <Box sx={{ mt: 1 }}>
+                  <LiveClock />
                 </Box>
               </Box>
-            </Box>
+            </Stack>
           </Grid>
 
-          {/* Contact Information Section */}
-          <Grid item xs={12} sm={12} md={5}>
-            <Box sx={{ textAlign: { xs: 'center', sm: 'left' } }}>
-              <Typography 
-                variant='h6' 
-                gutterBottom 
-                sx={{ 
-                  fontSize: { xs: '1.1rem', sm: '1.25rem' },
-                  fontWeight: 700,
-                  color: '#f39c12',
-                  mb: 3,
-                  position: 'relative',
-                  '&::after': {
-                    content: '""',
-                    position: 'absolute',
-                    bottom: -8,
-                    left: { xs: '50%', sm: 0 },
-                    transform: { xs: 'translateX(-50%)', sm: 'none' },
-                    width: 40,
-                    height: 3,
-                    background: 'linear-gradient(90deg, #e67e22, #f39c12)',
+          {/* Certifications */}
+          <Grid item xs={12} md={3}>
+            <Typography
+              variant='h6'
+              sx={{
+                fontWeight: 700,
+                color: '#f39c12',
+                mb: 2,
+                letterSpacing: '1px',
+                textAlign: { xs: 'center', md: 'left' }
+              }}
+            >
+              Certifications
+            </Typography>
+            <Box
+              sx={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: 2,
+                justifyContent: { xs: 'center', md: 'flex-start' },
+                alignItems: 'center',
+              }}
+            >
+              {certifications.map((cert, index) => (
+                <Box
+                  key={index}
+                  sx={{
+                    p: 1,
                     borderRadius: 2,
-                  }
-                }}
-              >
-                Contact Information
-              </Typography>
-              
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
-                {/* Company Name */}
-                <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
-                  <Box sx={{ 
-                    p: 1, 
-                    borderRadius: 2, 
-                    background: 'linear-gradient(135deg, #e67e22, #f39c12)',
-                    minWidth: 40,
-                    display: 'flex',
-                    justifyContent: 'center'
-                  }}>
-                    <LocationOnIcon sx={{ fontSize: '1.2rem', color: 'white' }} />
-                  </Box>
-                  <Typography 
-                    variant='body2' 
-                    sx={{ 
-                      fontSize: { xs: '0.9rem', sm: '0.95rem' },
-                      lineHeight: 1.6,
-                      color: '#ecf0f1'
+                    background: 'rgba(255,255,255,0.07)',
+                    border: '1px solid rgba(243,156,18,0.18)',
+                    transition: 'all 0.3s',
+                    '&:hover': {
+                      transform: 'scale(1.08)',
+                      boxShadow: '0 8px 25px rgba(243,156,18,0.18)',
+                      border: '1px solid #f39c12',
+                    }
+                  }}
+                >
+                  <Image
+                    src={cert.src}
+                    alt={cert.alt}
+                    width={70}
+                    height={44}
+                    style={{
+                      filter: 'brightness(1.1)',
+                      transition: 'filter 0.3s'
                     }}
-                  >
-                    <strong style={{ color: '#f39c12' }}>LAVISH POLYPACK LLP</strong><br />
-                    Survey No 199/P1/P3/P1<br />
-                    Opp. Anjani Pipe<br />
-                    At - Otala, Tankara - Latipar Road<br />
-                    Tankara, Morbi - 363650
-                  </Typography>
+                  />
                 </Box>
-
-                {/* Phone */}
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                  <Box sx={{ 
-                    p: 1, 
-                    borderRadius: 2, 
-                    background: 'linear-gradient(135deg, #e67e22, #f39c12)',
-                    minWidth: 40,
-                    display: 'flex',
-                    justifyContent: 'center'
-                  }}>
-                    <PhoneIcon sx={{ fontSize: '1.2rem', color: 'white' }} />
-                  </Box>
-                  <Typography 
-                    variant='body2' 
-                    sx={{ 
-                      fontSize: { xs: '0.9rem', sm: '0.95rem' },
-                      color: '#ecf0f1'
-                    }}
-                  >
-                    <Link 
-                      href="tel:8238420382" 
-                      sx={{ 
-                        color: '#f39c12', 
-                        textDecoration: 'none',
-                        '&:hover': { color: '#e67e22' }
-                      }}
-                    >
-                      +91 8238420382
-                    </Link>
-                  </Typography>
-                </Box>
-
-                {/* Tools Section */}
-                <Box sx={{ mt: 2 }}>
-                  <GoogleTranslate />
-                  <Box sx={{ mt: 1 }}>
-                    <LiveClock />
-                  </Box>
-                </Box>
-              </Box>
+              ))}
             </Box>
           </Grid>
         </Grid>
 
-        {/* Certifications Section */}
-        <Divider sx={{ 
-          my: 5, 
-          background: 'linear-gradient(90deg, transparent, rgba(243, 156, 18, 0.5), transparent)' 
+        <Divider sx={{
+          my: 4,
+          background: 'linear-gradient(90deg, transparent, rgba(243,156,18,0.5), transparent)'
         }} />
-        
-        <Box sx={{ textAlign: 'center', mb: 4 }}>
-          <Typography 
-            variant='h6' 
-            sx={{ 
-              fontSize: { xs: '1.1rem', sm: '1.2rem' },
-              fontWeight: 700,
-              color: '#f39c12',
-              mb: 3
-            }}
-          >
-            Our Certifications & Partnerships
-          </Typography>
-          <Box
-            sx={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              justifyContent: 'center',
-              alignItems: 'center',
-              gap: 3,
-            }}
-          >
-            {certifications.map((cert, index) => (
-              <Box
-                key={index}
-                sx={{
-                  p: 2,
-                  borderRadius: 3,
-                  background: 'rgba(255, 255, 255, 0.05)',
-                  border: '1px solid rgba(243, 156, 18, 0.2)',
-                  transition: 'all 0.3s ease',
-                  '&:hover': {
-                    transform: 'translateY(-5px)',
-                    boxShadow: '0 8px 25px rgba(243, 156, 18, 0.2)',
-                    border: '1px solid rgba(243, 156, 18, 0.4)',
-                  }
-                }}
-              >
-                <Image
-                  src={cert.src}
-                  alt={cert.alt}
-                  width={80}
-                  height={50}
-                  style={{ 
-                    filter: 'brightness(1.1)',
-                    transition: 'filter 0.3s ease'
-                  }}
-                />
-              </Box>
-            ))}
-          </Box>
-        </Box>
 
-        {/* Copyright Section */}
-        <Divider sx={{ 
-          mb: 3, 
-          background: 'linear-gradient(90deg, transparent, rgba(243, 156, 18, 0.3), transparent)' 
-        }} />
-        <Typography 
-          variant='body2' 
-          align='center' 
-          sx={{ 
-            fontSize: { xs: '0.8rem', sm: '0.9rem' },
+        <Typography
+          variant='body2'
+          align='center'
+          sx={{
+            fontSize: { xs: '0.85rem', sm: '0.95rem' },
             color: '#bdc3c7',
-            lineHeight: 1.6
+            lineHeight: 1.7,
+            letterSpacing: '0.5px',
+            mb: 1,
           }}
         >
           © {new Date().getFullYear()} ALL RIGHTS RESERVED BY{' '}

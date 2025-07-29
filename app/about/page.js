@@ -4,7 +4,7 @@ import { Factory, Public, EmojiEvents, Security, TrendingUp, Group, Science } fr
 
 const AboutPage = () => {
   const companyStats = [
-    { icon: Factory, title: 'Years of Experience', value: '10+', description: 'In manufacturing excellence', color: '#8B4513' },
+    { icon: Factory, title: 'Years of Experience', value: '5+', description: 'In manufacturing excellence', color: '#8B4513' },
     { icon: Public, title: 'Global Reach', value: '25+', description: 'Countries served worldwide', color: '#D4AF37' },
     { icon: EmojiEvents, title: 'Quality Certifications', value: '5+', description: 'International standards', color: '#8B4513' },
     { icon: Security, title: 'Customer Satisfaction', value: '98%', description: 'Client retention rate', color: '#D4AF37' },
