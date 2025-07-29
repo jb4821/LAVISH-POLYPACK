@@ -26,7 +26,7 @@ import InquiryModal from './InquiryModal';
 const Header = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [modalOpen, setModalOpen] = useState(true); // Always open on load
+  const [modalOpen, setModalOpen] = useState(false); // Modal hidden initially
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
   const pathname = usePathname();
@@ -60,7 +60,11 @@ const Header = () => {
   }, [scrolled]);
 
   useEffect(() => {
-    setModalOpen(true); // Show modal every page load/refresh
+    const timer = setTimeout(() => {
+      setModalOpen(true); // Show modal after 2 seconds
+    }, 5000); // 5000ms = 5 seconds
+
+    return () => clearTimeout(timer); // Cleanup on unmount
   }, []);
 
   const handleDrawerToggle = () => {

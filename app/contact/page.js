@@ -48,65 +48,67 @@ const ContactPage = () => {
     severity: "success",
   });
   const [loading, setLoading] = useState(false);
-  const [lastInquiry, setLastInquiry] = useState(null);
+
+  // Add a ref for the inquiry section
+  const inquiryRef = useRef(null);
 
   const contactDetails = [
     {
       icon: Phone,
-      title: "General Inquiry",
-      text: "+91-9879260200",
+      title: "Customer Support",
+      text: "+91-8238420382",
       color: "#D4AF37",
       copyable: true,
-      action: () => window.open("tel:+919879260200"),
+      action: () => window.open("tel:+918238420382"),
     },
     {
       icon: Phone,
-      title: "Customer Support",
-      text: "+91-9979466066",
+      title: "Export Inquiry",
+      text: "+91-8000230060",
       color: "#D4AF37",
       copyable: true,
-      action: () => window.open("tel:+919979466066"),
+      action: () => window.open("tel:+918000230060"),
     },
     {
       icon: Business,
-      title: "Domestic Bag Inquiry",
-      text: "+91-9904972444",
+      title: "Domestic Inquiry",
+      text: "+91-8238420382",
       color: "#8B4513",
       copyable: true,
-      action: () => window.open("tel:+919904972444"),
+      action: () => window.open("tel:+918238420382"),
     },
-    {
-      icon: Public,
-      title: "Export Inquiry",
-      text: "+91-7567781212",
-      color: "#D4AF37",
-      copyable: true,
-      action: () => window.open("tel:+917567781212"),
-    },
+    // {
+    //   icon: Public,
+    //   title: "Export Inquiry",
+    //   text: "+91-7567781212",
+    //   color: "#D4AF37",
+    //   copyable: true,
+    //   action: () => window.open("tel:+917567781212"),
+    // },
     {
       icon: Email,
-      title: "General Email",
-      text: "info@lavishpolypack.com",
+      title: "Inquiry Email",
+      text: "lavishpolypack@gmail.com",
       color: "#8B4513",
       copyable: true,
-      action: () => window.open("mailto:info@lavishpolypack.com"),
+      action: () => window.open("mailto:lavishpolypack@gmail.com"),
     },
-    {
-      icon: Email,
-      title: "Export Email",
-      text: "exports@lavishpolypack.com",
-      color: "#D4AF37",
-      copyable: true,
-      action: () => window.open("mailto:exports@lavishpolypack.com"),
-    },
-    {
-      icon: Email,
-      title: "Alternative Email",
-      text: "kushpolyflex@gmail.com",
-      color: "#8B4513",
-      copyable: true,
-      action: () => window.open("mailto:kushpolyflex@gmail.com"),
-    },
+    // {
+    //   icon: Email,
+    //   title: "Export Email",
+    //   text: "exports@lavishpolypack.com",
+    //   color: "#D4AF37",
+    //   copyable: true,
+    //   action: () => window.open("mailto:exports@lavishpolypack.com"),
+    // },
+    // {
+    //   icon: Email,
+    //   title: "Alternative Email",
+    //   text: "kushpolyflex@gmail.com",
+    //   color: "#8B4513",
+    //   copyable: true,
+    //   action: () => window.open("mailto:kushpolyflex@gmail.com"),
+    // },
     {
       icon: LocationOn,
       title: "Our Location",
@@ -196,7 +198,6 @@ const ContactPage = () => {
       });
       if (!res.ok) throw new Error('Failed to send inquiry');
       const inquiryTime = new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
-      setLastInquiry({ ...payload, time: inquiryTime });
       setSnackbar({
         open: true,
         message:
@@ -299,6 +300,10 @@ const ContactPage = () => {
                 fontSize: "0.9rem",
                 backdropFilter: "blur(10px)",
                 fontFamily: '"Inter", sans-serif',
+                cursor: "pointer"
+              }}
+              onClick={() => {
+                inquiryRef.current?.scrollIntoView({ behavior: "smooth" });
               }}
             />
             <Typography
@@ -314,7 +319,7 @@ const ContactPage = () => {
                 letterSpacing: "2px",
               }}
             >
-              Contact LAVISH POLYPACK
+              Contact LAVISH POLYPACK LLP
             </Typography>
             <Typography
               variant="h5"
@@ -431,7 +436,7 @@ const ContactPage = () => {
         </Grid>
 
         {/* Form and Map Column */}
-        <Grid item xs={12} lg={7}>
+        <Grid item xs={12} lg={7}  ref={inquiryRef}>
           <Grid container spacing={4}>
             {/* Contact Form */}
             <Grid item xs={12} lg={7}>
@@ -736,7 +741,7 @@ const ContactPage = () => {
                 >
                   Business Hours
                 </Typography>
-                <Typography variant="body2" sx={{ opacity: 0.9 }}>
+                <Typography variant="body2" sx={{ opacity: 0.9, color: "white" }}>
                   Monday - Saturday: 9:00 AM - 6:00 PM
                   <br />
                   Sunday: Closed
@@ -761,7 +766,7 @@ const ContactPage = () => {
                 >
                   Email Response
                 </Typography>
-                <Typography variant="body2" sx={{ opacity: 0.9 }}>
+                <Typography variant="body2" sx={{ opacity: 0.9, color: "white" }}>
                   We respond to all emails
                   <br />
                   within 2-4 hours during business hours
@@ -786,7 +791,7 @@ const ContactPage = () => {
                 >
                   WhatsApp Support
                 </Typography>
-                <Typography variant="body2" sx={{ opacity: 0.9 }}>
+                <Typography variant="body2" sx={{ opacity: 0.9, color: "white" }}>
                   Get instant replies on WhatsApp
                   <br />
                   24/7 available for urgent queries

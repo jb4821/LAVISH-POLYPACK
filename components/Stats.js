@@ -4,8 +4,8 @@ import { useState, useEffect, useRef } from 'react';
 
 const statsData = [
   { label: 'Completed Tenders', value: 182, suffix: '+', icon: '📋' },
-  { label: 'Happy Clients', value: 2552, suffix: '+', icon: '😊' },
-  { label: 'Completed Years', value: 13, suffix: '+', icon: '🏆' },
+  { label: 'Happy Clients', value: 1000, suffix: '+', icon: '😊' },
+  { label: 'Completed Years', value: 5, suffix: '+', icon: '🏆' },
 ];
 
 const Stats = () => {

@@ -112,18 +112,6 @@ const InquiryModal = ({ open, onClose }) => {
           fontWeight: 400,
         }}
       >
-        <Chip
-          label="Quick Inquiry"
-          sx={{
-            bgcolor: "#D4AF37",
-            color: "#fff",
-            fontWeight: 600,
-            fontSize: "1rem",
-            mb: 2,
-            fontFamily: '"Inter", sans-serif',
-          }}
-        />
-        <br />
         Send Your Inquiry
       </DialogTitle>
       <DialogContent>

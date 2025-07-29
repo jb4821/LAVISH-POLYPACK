@@ -458,9 +458,9 @@ export default function Home() {
 
   const features = [
     {
-      icon: <LocalShipping />,
-      title: 'Free Shipping',
-      description: 'On orders over ₹5000',
+      icon: <PlayArrow />,
+      title: 'Custom Solutions',
+      description: 'Tailored packaging for your needs',
       color: '#8B4513'
     },
     {
@@ -513,7 +513,7 @@ export default function Home() {
             <Box sx={{ mb: 4 }}>
               <Chip
                 icon={<Verified sx={{ fontSize: '18px !important' }} />}
-                label="Trusted Since 2010"
+                label="Trusted Since 2020"
                 variant="outlined"
                 sx={{
                   background: 'rgba(139, 69, 19, 0.08)',

@@ -205,17 +205,6 @@ const Footer = () => {
                   alignSelf: { xs: 'center', sm: 'flex-start' },
                   mb: { xs: 2, sm: 0 }
                 }}>
-                  <Image
-                    src='https://via.placeholder.com/80'
-                    alt='Chairman'
-                    width={80}
-                    height={80}
-                    style={{ 
-                      borderRadius: '50%',
-                      border: '3px solid #f39c12',
-                      boxShadow: '0 4px 15px rgba(243, 156, 18, 0.3)'
-                    }}
-                  />
                 </Box>
                 <Box sx={{ flex: 1, textAlign: { xs: 'center', sm: 'left' } }}>
                   <Typography 

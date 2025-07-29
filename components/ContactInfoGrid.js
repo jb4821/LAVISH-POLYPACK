@@ -119,7 +119,7 @@ ContactCard.displayName = "ContactCard";
 const ContactInfoGrid = ({ contactDetails }) => (
   <Grid container spacing={2}>
     {contactDetails.map((detail) => (
-      <Grid item xs={12} sm={6} md={4} lg={4} key={detail.text}>
+      <Grid item xs={12} sm={6} md={4} lg={4} key={`${detail.text}-${detail.title}`}>
         <ContactCard detail={detail} />
       </Grid>
     ))}
