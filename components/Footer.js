@@ -48,13 +48,13 @@ const Footer = () => {
     <Box
       component='footer'
       sx={{
-        background: 'linear-gradient(135deg, #2c3e50 0%, #34495e 100%)',
-        color: 'white',
+        background: 'linear-gradient(135deg, #F7E7B3 0%, #D7BFAE 100%)', // pastel gold to brown
+        color: '#2D2D2D',
         mt: 'auto',
         position: 'relative',
         overflow: 'hidden',
-        pt: 6,
-        pb: 2,
+        pt: { xs: 4, md: 6 },
+        pb: { xs: 2, md: 3 },
         '&::before': {
           content: '""',
           position: 'absolute',
@@ -62,19 +62,27 @@ const Footer = () => {
           left: 0,
           right: 0,
           height: '4px',
-          background: 'linear-gradient(90deg, #e67e22 0%, #f39c12 50%, #e67e22 100%)',
+          background: 'linear-gradient(90deg, #8B4513 0%, #D4AF37 50%, #8B4513 100%)',
         }
       }}
     >
       <Container maxWidth='lg'>
-        <Grid container spacing={6} alignItems="flex-start">
+        <Grid
+          container
+          spacing={4}
+          alignItems="flex-start"
+          sx={{
+            flexWrap: 'wrap',
+            gap: { xs: 0, md: 0 },
+          }}
+        >
           {/* Quick Links & Social */}
-          <Grid item xs={12} sm={6} md={4}>
+          <Grid item xs={12} md={4} minWidth={0}>
             <Typography
               variant='h6'
               sx={{
                 fontWeight: 700,
-                color: '#f39c12',
+                color: '#8B4513',
                 mb: 2,
                 letterSpacing: '1px',
               }}
@@ -92,7 +100,8 @@ const Footer = () => {
                     fontSize: '1rem',
                     fontWeight: 500,
                     transition: 'color 0.3s',
-                    '&:hover': { color: '#f39c12' },
+                    color: '#8B4513',
+                    '&:hover': { color: '#D4AF37' },
                   }}
                 >
                   {link.label}
@@ -108,14 +117,14 @@ const Footer = () => {
                     href={social.href}
                     target='_blank'
                     sx={{
-                      color: '#f39c12',
-                      background: 'rgba(243,156,18,0.12)',
-                      border: '2px solid rgba(243,156,18,0.25)',
+                      color: '#8B4513',
+                      background: 'rgba(139,69,19,0.08)',
+                      border: '2px solid rgba(139,69,19,0.18)',
                       transition: 'all 0.3s',
                       '&:hover': {
-                        background: 'linear-gradient(135deg, #e67e22, #f39c12)',
+                        background: 'linear-gradient(135deg, #D4AF37, #8B4513)',
                         color: 'white',
-                        border: '2px solid #f39c12',
+                        border: '2px solid #D4AF37',
                         transform: 'scale(1.15)',
                       }
                     }}
@@ -128,12 +137,12 @@ const Footer = () => {
           </Grid>
 
           {/* Contact Info */}
-          <Grid item xs={12} sm={6} md={5}>
+          <Grid item xs={12} md={4} minWidth={0}>
             <Typography
               variant='h6'
               sx={{
                 fontWeight: 700,
-                color: '#f39c12',
+                color: '#8B4513',
                 mb: 2,
                 letterSpacing: '1px',
               }}
@@ -145,15 +154,15 @@ const Footer = () => {
                 <Box sx={{
                   p: 1,
                   borderRadius: 2,
-                  background: 'linear-gradient(135deg, #e67e22, #f39c12)',
+                  background: 'linear-gradient(135deg, #D4AF37, #F7E7B3)',
                   minWidth: 40,
                   display: 'flex',
                   justifyContent: 'center'
                 }}>
-                  <LocationOnIcon sx={{ fontSize: '1.4rem', color: 'white' }} />
+                  <LocationOnIcon sx={{ fontSize: '1.4rem', color: '#8B4513' }} />
                 </Box>
-                <Typography variant='body2' sx={{ color: '#ecf0f1', fontSize: '1rem', lineHeight: 1.7 }}>
-                  <strong style={{ color: '#f39c12' }}>LAVISH POLYPACK LLP</strong><br />
+                <Typography variant='body2' sx={{ color: '#2D2D2D', fontSize: '1rem', lineHeight: 1.7 }}>
+                  <strong style={{ color: '#8B4513' }}>LAVISH POLYPACK LLP</strong><br />
                   Survey No 199/P1/P3/P1<br />
                   Opp. Anjani Pipe<br />
                   At - Otala, Tankara - Latipar Road<br />
@@ -164,21 +173,21 @@ const Footer = () => {
                 <Box sx={{
                   p: 1,
                   borderRadius: 2,
-                  background: 'linear-gradient(135deg, #e67e22, #f39c12)',
+                  background: 'linear-gradient(135deg, #D4AF37, #F7E7B3)',
                   minWidth: 40,
                   display: 'flex',
                   justifyContent: 'center'
                 }}>
-                  <PhoneIcon sx={{ fontSize: '1.4rem', color: 'white' }} />
+                  <PhoneIcon sx={{ fontSize: '1.4rem', color: '#8B4513' }} />
                 </Box>
-                <Typography variant='body2' sx={{ color: '#ecf0f1', fontSize: '1rem' }}>
+                <Typography variant='body2' sx={{ color: '#2D2D2D', fontSize: '1rem' }}>
                   <Link
                     href="tel:8238420382"
                     sx={{
-                      color: '#f39c12',
+                      color: '#8B4513',
                       textDecoration: 'none',
                       fontWeight: 600,
-                      '&:hover': { color: '#e67e22' }
+                      '&:hover': { color: '#D4AF37' }
                     }}
                   >
                     +91 8238420382
@@ -189,21 +198,21 @@ const Footer = () => {
                 <Box sx={{
                   p: 1,
                   borderRadius: 2,
-                  background: 'linear-gradient(135deg, #e67e22, #f39c12)',
+                  background: 'linear-gradient(135deg, #D4AF37, #F7E7B3)',
                   minWidth: 40,
                   display: 'flex',
                   justifyContent: 'center'
                 }}>
-                  <EmailIcon sx={{ fontSize: '1.4rem', color: 'white' }} />
+                  <EmailIcon sx={{ fontSize: '1.4rem', color: '#8B4513' }} />
                 </Box>
-                <Typography variant='body2' sx={{ color: '#ecf0f1', fontSize: '1rem' }}>
+                <Typography variant='body2' sx={{ color: '#2D2D2D', fontSize: '1rem' }}>
                   <Link
                     href="mailto:lavishpolypack@gmail.com"
                     sx={{
-                      color: '#f39c12',
+                      color: '#8B4513',
                       textDecoration: 'none',
                       fontWeight: 600,
-                      '&:hover': { color: '#e67e22' }
+                      '&:hover': { color: '#D4AF37' }
                     }}
                   >
                     lavishpolypack@gmail.com
@@ -220,12 +229,12 @@ const Footer = () => {
           </Grid>
 
           {/* Certifications */}
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={4} minWidth={0}>
             <Typography
               variant='h6'
               sx={{
                 fontWeight: 700,
-                color: '#f39c12',
+                color: '#8B4513',
                 mb: 2,
                 letterSpacing: '1px',
                 textAlign: { xs: 'center', md: 'left' }
@@ -248,13 +257,13 @@ const Footer = () => {
                   sx={{
                     p: 1,
                     borderRadius: 2,
-                    background: 'rgba(255,255,255,0.07)',
-                    border: '1px solid rgba(243,156,18,0.18)',
+                    background: '#F3F3F3', // pastel gray
+                    border: '1px solid #D7BFAE',
                     transition: 'all 0.3s',
                     '&:hover': {
                       transform: 'scale(1.08)',
-                      boxShadow: '0 8px 25px rgba(243,156,18,0.18)',
-                      border: '1px solid #f39c12',
+                      boxShadow: '0 8px 25px #D7BFAE55',
+                      border: '1px solid #D4AF37',
                     }
                   }}
                 >
@@ -276,7 +285,7 @@ const Footer = () => {
 
         <Divider sx={{
           my: 4,
-          background: 'linear-gradient(90deg, transparent, rgba(243,156,18,0.5), transparent)'
+          background: 'linear-gradient(90deg, transparent, #D4AF37, transparent)'
         }} />
 
         <Typography
@@ -284,17 +293,17 @@ const Footer = () => {
           align='center'
           sx={{
             fontSize: { xs: '0.85rem', sm: '0.95rem' },
-            color: '#bdc3c7',
+            color: '#8B4513',
             lineHeight: 1.7,
             letterSpacing: '0.5px',
             mb: 1,
           }}
         >
           © {new Date().getFullYear()} ALL RIGHTS RESERVED BY{' '}
-          <span style={{ color: '#f39c12', fontWeight: 600 }}>LAVISH POLYPACK LLP</span>
+          <span style={{ color: '#D4AF37', fontWeight: 600 }}>LAVISH POLYPACK LLP</span>
           <br />
           DESIGNED AND DEVELOPED BY{' '}
-          <span style={{ color: '#e67e22', fontWeight: 600 }}>Swastik Tech Lab</span>
+          <span style={{ color: '#8B4513', fontWeight: 600 }}>Swastik Tech Lab</span>
         </Typography>
       </Container>
     </Box>

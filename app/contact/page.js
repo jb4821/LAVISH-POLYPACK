@@ -271,10 +271,11 @@ const ContactPage = () => {
             mb: 8,
             position: "relative",
             py: 6,
-            background: "linear-gradient(135deg, #8B4513 0%, #D4AF37 100%)",
+            background: "#F7E7B3", // pastel gold
             borderRadius: 3,
-            color: "white",
-            boxShadow: "0 15px 35px rgba(139, 69, 19, 0.3)",
+            color: "#2D2D2D", // dark text for contrast
+            border: "1px solid #D7BFAE", // pastel brown border
+            boxShadow: "0 2px 12px #D7BFAE33", // very soft shadow
             overflow: "hidden",
             "&::before": {
               content: '""',
@@ -283,8 +284,7 @@ const ContactPage = () => {
               left: 0,
               right: 0,
               bottom: 0,
-              background:
-                "radial-gradient(circle at 70% 30%, rgba(255,255,255,0.1) 0%, transparent 50%)",
+              background: "radial-gradient(circle at 70% 30%, #D7BFAE22 0%, transparent 60%)",
               pointerEvents: "none",
             },
           }}
@@ -294,12 +294,12 @@ const ContactPage = () => {
               label="Get In Touch"
               sx={{
                 mb: 3,
-                bgcolor: "rgba(255,255,255,0.2)",
-                color: "white",
+                bgcolor: "#D7BFAE", // pastel brown
+                color: "#8B4513", // brown text
                 fontWeight: 600,
                 fontSize: "0.9rem",
-                backdropFilter: "blur(10px)",
                 fontFamily: '"Inter", sans-serif',
+                boxShadow: "0 2px 8px #D7BFAE22",
                 cursor: "pointer"
               }}
               onClick={() => {
@@ -311,11 +311,11 @@ const ContactPage = () => {
               component="h1"
               gutterBottom
               sx={{
-                fontWeight: 300,
+                fontWeight: 700,
                 mb: 2,
-                textShadow: "0 2px 8px rgba(0,0,0,0.2)",
                 fontSize: { xs: "2.5rem", md: "3.5rem" },
                 fontFamily: '"Playfair Display", serif',
+                color: "#8B4513",
                 letterSpacing: "2px",
               }}
             >
@@ -327,9 +327,10 @@ const ContactPage = () => {
                 maxWidth: "800px",
                 mx: "auto",
                 opacity: 0.95,
-                fontWeight: 300,
+                fontWeight: 400,
                 lineHeight: 1.4,
                 fontFamily: '"Inter", sans-serif',
+                color: "#2D2D2D",
               }}
             >
               Partner with Gujarat&apos;s Premier Packaging Solutions Provider
@@ -728,20 +729,21 @@ const ContactPage = () => {
                 sx={{
                   p: 3,
                   textAlign: "center",
-                  background:
-                    "linear-gradient(135deg, #8B4513 0%, #D4AF37 100%)",
-                  color: "white",
+                  background: "#F7E7B3", // pastel gold
+                  color: "#2D2D2D", // dark text
                   borderRadius: 3,
+                  border: "1px solid #D7BFAE", // pastel brown border
+                  boxShadow: "0 2px 12px #D7BFAE33",
                 }}
               >
-                <Schedule sx={{ fontSize: 40, mb: 2 }} />
+                <Schedule sx={{ fontSize: 40, mb: 2, color: "#8B4513" }} />
                 <Typography
                   variant="h6"
-                  sx={{ mb: 2, fontFamily: '"Inter", sans-serif' }}
+                  sx={{ mb: 2, fontFamily: '"Inter", sans-serif', color: "#8B4513", fontWeight: 600 }}
                 >
                   Business Hours
                 </Typography>
-                <Typography variant="body2" sx={{ opacity: 0.9, color: "white" }}>
+                <Typography variant="body2" sx={{ opacity: 0.95 }}>
                   Monday - Saturday: 9:00 AM - 6:00 PM
                   <br />
                   Sunday: Closed
@@ -753,20 +755,21 @@ const ContactPage = () => {
                 sx={{
                   p: 3,
                   textAlign: "center",
-                  background:
-                    "linear-gradient(135deg, #D4AF37 0%, #8B4513 100%)",
-                  color: "white",
+                  background: "#F3F3F3", // pastel gray
+                  color: "#2D2D2D",
                   borderRadius: 3,
+                  border: "1px solid #D7BFAE",
+                  boxShadow: "0 2px 12px #D7BFAE33",
                 }}
               >
-                <Email sx={{ fontSize: 40, mb: 2 }} />
+                <Email sx={{ fontSize: 40, mb: 2, color: "#D4AF37" }} />
                 <Typography
                   variant="h6"
-                  sx={{ mb: 2, fontFamily: '"Inter", sans-serif' }}
+                  sx={{ mb: 2, fontFamily: '"Inter", sans-serif', color: "#D4AF37", fontWeight: 600 }}
                 >
                   Email Response
                 </Typography>
-                <Typography variant="body2" sx={{ opacity: 0.9, color: "white" }}>
+                <Typography variant="body2" sx={{ opacity: 0.95 }}>
                   We respond to all emails
                   <br />
                   within 2-4 hours during business hours
@@ -778,20 +781,21 @@ const ContactPage = () => {
                 sx={{
                   p: 3,
                   textAlign: "center",
-                  background:
-                    "linear-gradient(135deg, #25D366 0%, #128C7E 100%)",
-                  color: "white",
+                  background: "#D7BFAE", // pastel brown
+                  color: "#2D2D2D",
                   borderRadius: 3,
+                  border: "1px solid #F7E7B3", // pastel gold border
+                  boxShadow: "0 2px 12px #D7BFAE33",
                 }}
               >
-                <WhatsApp sx={{ fontSize: 40, mb: 2 }} />
+                <WhatsApp sx={{ fontSize: 40, mb: 2, color: "#25D366" }} />
                 <Typography
                   variant="h6"
-                  sx={{ mb: 2, fontFamily: '"Inter", sans-serif' }}
+                  sx={{ mb: 2, fontFamily: '"Inter", sans-serif', color: "#25D366", fontWeight: 600 }}
                 >
                   WhatsApp Support
                 </Typography>
-                <Typography variant="body2" sx={{ opacity: 0.9, color: "white" }}>
+                <Typography variant="body2" sx={{ opacity: 0.95 }}>
                   Get instant replies on WhatsApp
                   <br />
                   24/7 available for urgent queries

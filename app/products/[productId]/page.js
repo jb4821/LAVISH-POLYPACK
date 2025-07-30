@@ -223,7 +223,7 @@ const ProductDetailsPage = () => {
         mb: 6,
         position: 'relative',
         py: { xs: 4, md: 6 },
-        background: 'linear-gradient(135deg, #e67e22 0%, #f39c12 100%)',
+        background: 'linear-gradient(135deg, #8a5828b3 0%, #D4AF37 100%)',
         borderRadius: 4,
         color: 'white',
         boxShadow: '0 20px 60px rgba(230, 126, 34, 0.3)',
@@ -295,7 +295,7 @@ const ProductDetailsPage = () => {
               left: 0,
               width: '100%',
               height: '6px',
-              background: 'linear-gradient(90deg, #e67e22, #f39c12, #e67e22)',
+               background: 'linear-gradient(135deg, #8B4513 0%, #D4AF37 100%)',
             }
           }}>
             <Stack spacing={3} alignItems="center">
@@ -402,7 +402,7 @@ const ProductDetailsPage = () => {
               left: 0,
               width: '100%',
               height: '6px',
-              background: 'linear-gradient(90deg, #f39c12, #e67e22, #f39c12)',
+              background: 'linear-gradient(135deg, #8B4513 0%, #D4AF37 100%)',
             }
           }}>
             <Stack spacing={4}>

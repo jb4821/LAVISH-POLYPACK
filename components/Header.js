@@ -190,10 +190,10 @@ const Header = () => {
           CONTACT INFO
         </Typography>
         <Typography variant="body2" sx={{ color: '#666', mb: 1 }}>
-          +91 98765 43210
+          +91 8238420382
         </Typography>
         <Typography variant="body2" sx={{ color: '#666' }}>
-          info@lavishpolypack.com
+          lavishpolypack@gmail.com
         </Typography>
       </Box>
     </Drawer>
