@@ -715,25 +715,22 @@ const ContactPage = () => {
 
       {/* Business Hours Section */}
       <Fade in={true} timeout={1800}>
-        <Box
-          sx={{
-            mt: 8,
-            display: "flex",
-            justifyContent: "space-around",
-            alignContent: "center",
-          }}
-        >
-          <Grid container spacing={4}>
+        <Box sx={{ mt: 8 }}>
+          <Grid container spacing={4} justifyContent="center" alignItems="stretch">
             <Grid item xs={12} md={4}>
               <Card
                 sx={{
                   p: 3,
                   textAlign: "center",
-                  background: "#F7E7B3", // pastel gold
-                  color: "#2D2D2D", // dark text
+                  background: "#F7E7B3",
+                  color: "#2D2D2D",
                   borderRadius: 3,
-                  border: "1px solid #D7BFAE", // pastel brown border
+                  border: "1px solid #D7BFAE",
                   boxShadow: "0 2px 12px #D7BFAE33",
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
                 }}
               >
                 <Schedule sx={{ fontSize: 40, mb: 2, color: "#8B4513" }} />
@@ -755,11 +752,15 @@ const ContactPage = () => {
                 sx={{
                   p: 3,
                   textAlign: "center",
-                  background: "#F3F3F3", // pastel gray
+                  background: "#F3F3F3",
                   color: "#2D2D2D",
                   borderRadius: 3,
                   border: "1px solid #D7BFAE",
                   boxShadow: "0 2px 12px #D7BFAE33",
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
                 }}
               >
                 <Email sx={{ fontSize: 40, mb: 2, color: "#D4AF37" }} />
@@ -781,11 +782,15 @@ const ContactPage = () => {
                 sx={{
                   p: 3,
                   textAlign: "center",
-                  background: "#D7BFAE", // pastel brown
+                  background: "#D7BFAE",
                   color: "#2D2D2D",
                   borderRadius: 3,
-                  border: "1px solid #F7E7B3", // pastel gold border
+                  border: "1px solid #F7E7B3",
                   boxShadow: "0 2px 12px #D7BFAE33",
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
                 }}
               >
                 <WhatsApp sx={{ fontSize: 40, mb: 2, color: "#25D366" }} />

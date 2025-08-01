@@ -187,7 +187,7 @@ const ProductDetailsPage = () => {
               Products
             </Typography>
           </Link>
-          <Typography color="#e67e22" sx={{ fontWeight: 600 }}>
+          <Typography color="#8B4513" sx={{ fontWeight: 600 }}>
             {product.name}
           </Typography>
         </Breadcrumbs>
@@ -198,8 +198,8 @@ const ProductDetailsPage = () => {
             variant="outlined" 
             startIcon={<ArrowBack />}
             sx={{
-              borderColor: '#e67e22',
-              color: '#e67e22',
+              borderColor: '#D7BFAE',
+              color: '#8B4513',
               px: 3,
               py: 1,
               borderRadius: 3,
@@ -223,10 +223,11 @@ const ProductDetailsPage = () => {
         mb: 6,
         position: 'relative',
         py: { xs: 4, md: 6 },
-        background: 'linear-gradient(135deg, #8a5828b3 0%, #D4AF37 100%)',
+        background: '#F7E7B3', // pastel gold
         borderRadius: 4,
-        color: 'white',
-        boxShadow: '0 20px 60px rgba(230, 126, 34, 0.3)',
+        color: '#2D2D2D', // dark text for contrast
+        border: '1px solid #D7BFAE', // pastel brown border
+        boxShadow: '0 4px 24px #D7BFAE33', // soft shadow
         overflow: 'hidden',
         '&::before': {
           content: '""',
@@ -235,7 +236,7 @@ const ProductDetailsPage = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          background: 'radial-gradient(circle at 70% 20%, rgba(255,255,255,0.1) 0%, transparent 50%)',
+          background: 'radial-gradient(circle at 70% 20%, #D7BFAE22 0%, transparent 60%)',
           pointerEvents: 'none',
         }
       }}>
@@ -244,22 +245,24 @@ const ProductDetailsPage = () => {
             label={product.category} 
             sx={{
               mb: 3,
-              bgcolor: 'rgba(255,255,255,0.2)',
-              color: 'white',
+              bgcolor: '#D7BFAE', // pastel brown
+              color: '#8B4513', // brown text
               fontWeight: 600,
               fontSize: '1rem',
               px: 3,
               py: 1,
-              backdropFilter: 'blur(10px)',
               borderRadius: 6,
+              boxShadow: '0 2px 8px #D7BFAE22',
             }}
           />
           <Typography variant="h2" component="h1" gutterBottom sx={{
             fontWeight: 800,
             mb: 3,
-            textShadow: '0 4px 8px rgba(0,0,0,0.2)',
+            fontFamily: '"Playfair Display", serif',
+            color: '#8B4513',
             fontSize: { xs: '2.5rem', md: '3.5rem', lg: '4rem' },
             lineHeight: 1.2,
+            letterSpacing: '1px',
           }}>
             {product.name}
           </Typography>
@@ -267,7 +270,11 @@ const ProductDetailsPage = () => {
             opacity: 0.95,
             fontWeight: 400,
             lineHeight: 1.6,
-            fontSize: { xs: '1.1rem', md: '1.25rem' }
+            fontSize: { xs: '1.1rem', md: '1.25rem' },
+            color: '#2D2D2D',
+            fontFamily: '"Inter", sans-serif',
+            maxWidth: 600,
+            mx: 'auto'
           }}>
             Premium Quality Packaging Solutions for Your Business Needs
           </Typography>
@@ -882,8 +889,8 @@ const ProductDetailsPage = () => {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          background: 'linear-gradient(135deg, #e67e22 0%, #f39c12 100%)',
-          color: 'white',
+          bgcolor: '#D7BFAE', // pastel brown
+          color: '#8B4513', // brown text
           py: 3
         }}>
           <Typography variant="h6" sx={{ fontWeight: 600, fontSize: '1.25rem' }}>
