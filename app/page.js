@@ -116,7 +116,7 @@ export default function Home() {
       >
         <Container sx={{ px: { xs: 2, sm: 4, md: 6 }, position: 'relative', zIndex: 1 }}>
           <ImageSlider />
-          
+
           {/* Hero Content */}
           <Box sx={{ textAlign: 'center', py: { xs: 6, sm: 8, md: 10 } }}>
             {/* Brand Badge */}
@@ -236,18 +236,18 @@ export default function Home() {
                   },
                 }}
               >
-                <strong>LAVISH POLYPACK LLP</strong> has established itself as a leader in manufacturing 
-                excellent quality plastic products. Our <strong>futuristic vision</strong> and commitment 
-                to innovation have made us a recognized brand in today&apos;s competitive market. Through tremendous 
-                effort and excellent input, we consistently deliver quality and effective products with our 
+                <strong>LAVISH POLYPACK LLP</strong> has established itself as a leader in manufacturing
+                excellent quality plastic products. Our <strong>futuristic vision</strong> and commitment
+                to innovation have made us a recognized brand in today&apos;s competitive market. Through tremendous
+                effort and excellent input, we consistently deliver quality and effective products with our
                 <strong> fully integrated manufacturing facility</strong> featuring in-house designing and R&amp;D capabilities.
               </Typography>
             </Paper>
 
             {/* CTA Buttons with Brown/Gold Theme */}
-            <Stack 
-              direction={{ xs: 'column', sm: 'row' }} 
-              spacing={3} 
+            <Stack
+              direction={{ xs: 'column', sm: 'row' }}
+              spacing={3}
               display="flex"
               justifyContent="center"
               alignItems="center"
@@ -421,7 +421,7 @@ export default function Home() {
             >
               Our Premium Products
             </Typography>
-            
+
             <Typography
               variant="h5"
               sx={{
@@ -436,7 +436,7 @@ export default function Home() {
                 letterSpacing: '0.5px',
               }}
             >
-              Discover our carefully crafted collection of high-quality plastic products, 
+              Discover our carefully crafted collection of high-quality plastic products,
               designed with precision and built to last.
             </Typography>
           </Box>
@@ -466,6 +466,12 @@ export default function Home() {
                       display: 'flex',
                       flexDirection: 'column',
                       borderRadius: 2,
+                      border: product.bestSeller
+                        ? '2.5px solid #D4AF37'
+                        : '1px solid rgba(139, 69, 19, 0.1)',
+                      boxShadow: product.bestSeller
+                        ? '0 8px 32px rgba(212, 175, 55, 0.25)'
+                        : '0 2px 20px rgba(139, 69, 19, 0.08)',
                       border: '1px solid rgba(139, 69, 19, 0.1)',
                       boxShadow: '0 2px 20px rgba(139, 69, 19, 0.08)',
                       transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
@@ -518,6 +524,26 @@ export default function Home() {
                         overflow: 'hidden',
                       }}
                     >
+                      {/* Best Seller Badge */}
+                      {product.bestSeller && (
+                        <Chip
+                          label="Best Seller"
+                          size="small"
+                          sx={{
+                            position: 'absolute',
+                            top: 18,
+                            left: 18,
+                            background: 'linear-gradient(90deg, #D4AF37, #FFD700)',
+                            color: '#8B4513',
+                            fontWeight: 700,
+                            fontSize: '0.8rem',
+                            zIndex: 3,
+                            boxShadow: '0 2px 8px #D4AF3722',
+                            textTransform: 'uppercase',
+                            letterSpacing: '1px',
+                          }}
+                        />
+                      )}
                       {/* Quality Badge */}
                       <Chip
                         icon={<Star sx={{ fontSize: '16px !important' }} />}
@@ -533,8 +559,8 @@ export default function Home() {
                           fontWeight: 600,
                           fontSize: '0.75rem',
                           fontFamily: '"Inter", sans-serif',
-                          opacity: 0,
-                          transform: 'translateY(-10px)',
+                          opacity: product.bestSeller ? 1 : 0,
+                          transform: product.bestSeller ? 'translateY(0)' : 'translateY(-10px)',
                           transition: 'all 0.3s ease',
                           zIndex: 2,
                         }}
@@ -669,50 +695,50 @@ export default function Home() {
                       </Box>
 
                       {/* Enhanced CTA Button */}
-                        <Box sx={{ width: '100%', mt: 'auto' }}>
-                          <Link href={`/products/${product.id}`} passHref>
-                            <Button
-                              variant="contained"
-                              fullWidth
-                              endIcon={<ArrowForward />}
-                              sx={{
-                                fontWeight: 500,
-                                borderRadius: 1,
-                                fontSize: '0.9rem',
-                                py: 1.5,
-                                textTransform: 'uppercase',
-                                letterSpacing: '0.5px',
-                                background: '#8B4513',
-                                color: 'white',
-                                boxShadow: '0 4px 15px rgba(139, 69, 19, 0.3)',
-                                transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                                fontFamily: '"Inter", sans-serif',
-                                position: 'relative',
-                                overflow: 'hidden',
+                      <Box sx={{ width: '100%', mt: 'auto' }}>
+                        <Link href={`/products/${product.id}`} passHref>
+                          <Button
+                            variant="contained"
+                            fullWidth
+                            endIcon={<ArrowForward />}
+                            sx={{
+                              fontWeight: 500,
+                              borderRadius: 1,
+                              fontSize: '0.9rem',
+                              py: 1.5,
+                              textTransform: 'uppercase',
+                              letterSpacing: '0.5px',
+                              background: '#8B4513',
+                              color: 'white',
+                              boxShadow: '0 4px 15px rgba(139, 69, 19, 0.3)',
+                              transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                              fontFamily: '"Inter", sans-serif',
+                              position: 'relative',
+                              overflow: 'hidden',
+                              '&::before': {
+                                content: '""',
+                                position: 'absolute',
+                                top: 0,
+                                left: '-100%',
+                                width: '100%',
+                                height: '100%',
+                                background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
+                                transition: 'left 0.5s',
+                              },
+                              '&:hover': {
+                                background: '#6D3410',
+                                transform: 'translateY(-2px)',
+                                boxShadow: '0 8px 25px rgba(139, 69, 19, 0.4)',
                                 '&::before': {
-                                  content: '""',
-                                  position: 'absolute',
-                                  top: 0,
-                                  left: '-100%',
-                                  width: '100%',
-                                  height: '100%',
-                                  background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
-                                  transition: 'left 0.5s',
+                                  left: '100%',
                                 },
-                                '&:hover': {
-                                  background: '#6D3410',
-                                  transform: 'translateY(-2px)',
-                                  boxShadow: '0 8px 25px rgba(139, 69, 19, 0.4)',
-                                  '&::before': {
-                                    left: '100%',
-                                  },
-                                },
-                              }}
-                            >
-                              View Details
-                            </Button>
-                          </Link>
-                        </Box>
+                              },
+                            }}
+                          >
+                            View Details
+                          </Button>
+                        </Link>
+                      </Box>
                     </CardContent>
                   </Card>
                 )}

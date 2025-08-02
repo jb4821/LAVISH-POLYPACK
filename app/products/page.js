@@ -187,8 +187,8 @@ const ProductsPage = () => {
                     fontWeight: 600,
                     fontSize: '0.75rem',
                     fontFamily: '"Inter", sans-serif',
-                    opacity: 0,
-                    transform: 'translateY(-10px)',
+                    opacity: product.bestSeller ? 1 : 0,
+                    transform: product.bestSeller ? 'translateY(0)' : 'translateY(-10px)',
                     transition: 'all 0.3s ease',
                     zIndex: 2,
                   }}

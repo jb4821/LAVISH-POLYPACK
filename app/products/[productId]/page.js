@@ -523,7 +523,7 @@ const ProductDetailsPage = () => {
         <Box sx={{ textAlign: 'center', mb: 6 }}>
           <Typography variant="h3" gutterBottom sx={{
             fontWeight: 700,
-            color:"white",
+            color: "white",
             textShadow: '0 2px 4px rgba(0,0,0,0.3)',
             fontSize: { xs: '2.5rem', md: '3rem' }
           }}>
@@ -538,77 +538,89 @@ const ProductDetailsPage = () => {
             mt: 2
           }} />
         </Box>
-        
-        <Grid container spacing={4} sx={{ display: 'flex', justifyContent: 'space-around' ,alignItems:"center" }}>
-          <Grid item xs={12} lg={6}>
-            <FeatureCard
-              icon={Settings}
-              title="Product Specifications"
-              color="#3498db"
-            >
-              <Stack spacing={2.5}>
-                {Object.entries(product.specifications).map(([key, value]) => (
-                  key !== 'features' && (
-                    <Box key={key}>
-                      <Typography variant="subtitle1" sx={{
-                        fontWeight: 700,
-                        color: '#3498db',
-                        textTransform: 'capitalize',
-                        mb: 0.5,
-                        fontSize: '1.1rem'
-                      }}>
-                        {key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
-                      </Typography>
-                      <Typography variant="body1" sx={{
-                        color: 'white',
-                        fontWeight: 500,
-                        pl: 2,
-                        borderLeft: '3px solid #3498db',
-                        lineHeight: 1.6
-                      }}>
-                        {Array.isArray(value) ? value.join(', ') : value}
-                      </Typography>
-                    </Box>
-                  )
-                ))}
-              </Stack>
-            </FeatureCard>
-          </Grid>
-          
-          <Grid item xs={12} lg={6}>
-            <FeatureCard
-              icon={Info}
-              title="Technical Details"
-              color="#9b59b6"
-            >
-              <Stack spacing={2.5}>
-                {Object.entries(product.technicalDetails).map(([key, value]) => (
-                  <Box key={key}>
-                    <Typography variant="subtitle1" sx={{
-                      fontWeight: 700,
-                      color: '#9b59b6',
-                      textTransform: 'uppercase',
-                      mb: 0.5,
-                      fontSize: '1.1rem',
-                      letterSpacing: 0.5
-                    }}>
-                      {key}
-                    </Typography>
-                    <Typography variant="body1" sx={{
-                      color: 'white',
-                      fontWeight: 500,
-                      pl: 2,
-                      borderLeft: '3px solid #9b59b6',
-                      lineHeight: 1.6
-                    }}>
-                      {value}
-                    </Typography>
-                  </Box>
-                ))}
-              </Stack>
-            </FeatureCard>
-          </Grid>
-        </Grid>
+
+        <Box sx={{ overflowX: 'auto', background: 'rgba(255,255,255,0.03)', borderRadius: 3 }}>
+          <table style={{
+            width: '100%',
+            borderCollapse: 'collapse',
+            minWidth: 320,
+            fontFamily: '"Inter", sans-serif',
+            background: 'rgba(255,255,255,0.01)'
+          }}>
+            <thead>
+              <tr>
+                <th style={{
+                  background: '#D7BFAE',
+                  color: '#8B4513',
+                  fontWeight: 700,
+                  fontSize: '1.1rem',
+                  padding: '14px 12px',
+                  border: '1px solid #D7BFAE',
+                  textAlign: 'left'
+                }}>Specification</th>
+                <th style={{
+                  background: '#F7E7B3',
+                  color: '#2D2D2D',
+                  fontWeight: 700,
+                  fontSize: '1.1rem',
+                  padding: '14px 12px',
+                  border: '1px solid #D7BFAE',
+                  textAlign: 'left'
+                }}>Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.entries(product.specifications)
+                .filter(([key]) => key !== 'features')
+                .map(([key, value], idx) => (
+                <tr key={key} style={{
+                  background: idx % 2 === 0 ? '#fffbe9' : '#f3f3f3'
+                }}>
+                  <td style={{
+                    padding: '12px 12px',
+                    border: '1px solid #D7BFAE',
+                    color: '#8B4513',
+                    fontWeight: 600,
+                    minWidth: 160
+                  }}>
+                    {key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
+                  </td>
+                  <td style={{
+                    padding: '12px 12px',
+                    border: '1px solid #D7BFAE',
+                    color: '#2D2D2D',
+                    fontWeight: 500
+                  }}>
+                    {Array.isArray(value) ? value.join(', ') : value}
+                  </td>
+                </tr>
+              ))}
+              {Object.entries(product.technicalDetails).map(([key, value], idx) => (
+                <tr key={key} style={{
+                  background: (Object.keys(product.specifications).length + idx) % 2 === 0 ? '#fffbe9' : '#f3f3f3'
+                }}>
+                  <td style={{
+                    padding: '12px 12px',
+                    border: '1px solid #D7BFAE',
+                    color: '#8B4513',
+                    fontWeight: 600,
+                    minWidth: 160
+                  }}>
+                    {key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
+                  </td>
+                  <td style={{
+                    padding: '12px 12px',
+                    border: '1px solid #D7BFAE',
+                    color: '#2D2D2D',
+                    fontWeight: 500
+                  }}>
+                    {Array.isArray(value) ? value.join(', ') : value}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Box>
       </Paper>
 
       {/* Applications Section */}

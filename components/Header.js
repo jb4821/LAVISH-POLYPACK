@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import LOGO from '../public/pollypack.jpeg';
 import { 
   AppBar, 
   Toolbar, 
@@ -22,6 +23,7 @@ import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { usePathname } from 'next/navigation';
 import InquiryModal from './InquiryModal';
+import Image from 'next/image';
 
 const Header = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -250,7 +252,7 @@ const Header = () => {
             {/* Logo */}
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <Link href='/' passHref style={{ textDecoration: 'none' }}>
-                <Box sx={{ 
+                {/* <Box sx={{ 
                   display: 'flex', 
                   alignItems: 'center', 
                   cursor: 'pointer',
@@ -292,7 +294,24 @@ const Header = () => {
                   >
                     POLYPACK
                   </Typography>
-                </Box>
+                </Box> */}
+                 <Image 
+                                  src={LOGO} 
+                                  alt= "Lavish Polypack"
+                                  width={100} 
+                                  height={100} 
+                                  style={{ 
+                                    width: '100%', 
+                                    maxWidth: '100%',
+                                    height: 'auto', 
+                                    display: 'block',
+                                    objectFit: 'contain',
+                                  }} 
+                                  // onError={e => { 
+                                  //   e.target.onerror = null; 
+                                  //   e.target.src = '/products/pp-bag.jpg'; 
+                                  // }} 
+                                />
               </Link>
             </Box>
             
