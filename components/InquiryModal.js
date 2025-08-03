@@ -108,11 +108,42 @@ const InquiryModal = ({ open, onClose }) => {
           color: "#8B4513",
           fontFamily: '"Playfair Display", serif',
           letterSpacing: "2px",
-          textAlign: "center",
           fontWeight: 400,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          px: { xs: 1, sm: 3 },
+          py: { xs: 1.5, sm: 2 },
+          minHeight: { xs: 48, sm: 64 },
         }}
       >
-        Send Your Inquiry
+        <Box
+          sx={{
+            flex: 1,
+            textAlign: "center",
+            fontSize: { xs: "1.1rem", sm: "1.4rem" },
+            fontWeight: 500,
+            pl: { xs: 0, sm: 2 },
+          }}
+        >
+          Send Your Inquiry
+        </Box>
+        <Button
+          onClick={onClose}
+          sx={{
+            minWidth: 0,
+            color: "#8B4513",
+            fontWeight: 600,
+            ml: 2,
+            fontSize: { xs: "1.3rem", sm: "1.5rem" },
+            textTransform: "none",
+            lineHeight: 1,
+            p: 0,
+          }}
+          aria-label="Close"
+        >
+          ✕
+        </Button>
       </DialogTitle>
       <DialogContent>
         {submitted ? (

@@ -509,11 +509,11 @@ const ProductDetailsPage = () => {
 
       {/* Specifications Section */}
       <Paper elevation={0} sx={{
-        p: 6,
+        p: { xs:0, sm: 3, md: 6 } ,
         mb: 6,
         background: 'linear-gradient(135deg, #2c3e50 0%, #34495e 100%)',
         color: 'white',
-        borderRadius: 4,
+        borderRadius: { xs:0, sm: 2, md: 4 },
         position: 'relative',
         overflow: 'hidden',
         boxShadow: '0 20px 60px rgba(44, 62, 80, 0.3)',
@@ -539,7 +539,13 @@ const ProductDetailsPage = () => {
           }} />
         </Box>
 
-        <Box sx={{ overflowX: 'auto', background: 'rgba(255,255,255,0.03)', borderRadius: 3 }}>
+        {/* Add responsive px here */}
+        <Box sx={{ 
+          overflowX: 'auto', 
+          background: 'rgba(255,255,255,0.03)', 
+          borderRadius: { xs:0, sm: 3, md: 3 }, 
+          px: { xs:0, sm: 3, md: 6 } // <-- Responsive horizontal padding
+        }}>
           <table style={{
             width: '100%',
             borderCollapse: 'collapse',
