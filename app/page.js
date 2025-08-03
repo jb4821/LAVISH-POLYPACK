@@ -198,29 +198,11 @@ export default function Home() {
 
             {/* Enhanced Description Card */}
             <Paper
-              elevation={0}
-              sx={{
-                background: 'rgba(255, 255, 255, 0.9)',
-                backdropFilter: 'blur(20px)',
-                border: '1px solid rgba(139, 69, 19, 0.1)',
-                borderRadius: 2,
-                p: { xs: 3, md: 4 },
-                mb: 6,
-                maxWidth: '900px',
-                mx: 'auto',
-                position: 'relative',
-                overflow: 'hidden',
-                boxShadow: '0 2px 40px rgba(139, 69, 19, 0.08)',
-                '&::before': {
-                  content: '""',
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  height: '2px',
-                  background: 'linear-gradient(90deg, #8B4513, #D4AF37, #8B4513)',
-                },
-              }}
+              sx={
+                {
+                  mb: 4,
+                }
+              }
             >
               <Typography
                 variant="body1"

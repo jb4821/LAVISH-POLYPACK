@@ -1,4 +1,5 @@
 'use client';
+import logo from '../../public/bgg-image.jpeg';
 import { Container, Typography, Paper, Grid, Box, Card, CardContent, Avatar, Chip } from '@mui/material';
 import { Factory, Public, EmojiEvents, Security, TrendingUp, Group, Science } from '@mui/icons-material';
 
@@ -212,6 +213,49 @@ const AboutPage = () => {
           </Grid>
         ))}
       </Grid>
+
+      <Box
+        sx={{
+          width: '100%',
+          mb: 6,
+          height: { xs: '200px', md: '300px' },
+           backgroundImage: `url(${logo.src})`, // Fixed the typo in extension
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          // position: 'relative',
+          // display: 'flex',
+          // alignItems: 'center',
+          // justifyContent: 'center',
+          // '&::before': {
+          //   content: '""',
+          //   position: 'absolute',
+          //   top: 0,
+          //   left: 0,
+          //   width: '100%',
+          //   height: '100%',
+          //   background: 'rgba(0, 0, 0, 0.3)', // Dark overlay for better text readability
+          //   borderRadius: 'inherit',
+          // },
+        }}
+      >
+        {/* Optional: You can add text overlay on the image */}
+        {/* <Typography
+          variant="h2"
+          sx={{
+            position: 'relative',
+            zIndex: 1,
+            color: 'white',
+            fontWeight: 700,
+            textAlign: 'center',
+            textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
+            fontSize: { xs: '2rem', md: '3rem' },
+            fontFamily: '"Playfair Display", serif',
+          }}
+        >
+          Welcome to Our Company
+        </Typography> */}
+      </Box>
 
       <Paper elevation={0} sx={{
         p: { xs: 4, md: 6 },

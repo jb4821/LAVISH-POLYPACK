@@ -1,15 +1,15 @@
 'use client';
 import React, { useState } from 'react';
 import { useParams } from 'next/navigation';
-import { 
-  Container, 
-  Typography, 
-  Grid, 
-  Box, 
-  Card, 
-  CardContent, 
-  Paper, 
-  Chip, 
+import {
+  Container,
+  Typography,
+  Grid,
+  Box,
+  Card,
+  CardContent,
+  Paper,
+  Chip,
   Button,
   Avatar,
   Divider,
@@ -21,12 +21,12 @@ import {
   Breadcrumbs,
   Stack
 } from '@mui/material';
-import { 
-  ArrowBack, 
-  CheckCircle, 
-  Info, 
-  Settings, 
-  Star, 
+import {
+  ArrowBack,
+  CheckCircle,
+  Info,
+  Settings,
+  Star,
   ZoomIn,
   Close,
   Business,
@@ -65,7 +65,7 @@ const ProductDetailsPage = () => {
             maxWidth: 600,
             width: '100%',
           }}>
-            <Typography variant="h3" gutterBottom sx={{ 
+            <Typography variant="h3" gutterBottom sx={{
               fontWeight: 700,
               fontSize: { xs: '2rem', md: '3rem' }
             }}>
@@ -75,8 +75,8 @@ const ProductDetailsPage = () => {
               The product you&apos;re looking for doesn&apos;t exist or may have been moved.
             </Typography>
             <Link href="/products" passHref>
-              <Button 
-                variant="contained" 
+              <Button
+                variant="contained"
                 size="large"
                 startIcon={<ArrowBack />}
                 sx={{
@@ -87,7 +87,7 @@ const ProductDetailsPage = () => {
                   fontSize: '1.1rem',
                   fontWeight: 600,
                   borderRadius: 3,
-                  '&:hover': { 
+                  '&:hover': {
                     bgcolor: 'rgba(255,255,255,0.3)',
                     transform: 'translateY(-2px)',
                   },
@@ -144,8 +144,8 @@ const ProductDetailsPage = () => {
             }}>
               <IconComponent sx={{ fontSize: 28 }} />
             </Avatar>
-            <Typography variant="h6" sx={{ 
-              fontWeight: 600, 
+            <Typography variant="h6" sx={{
+              fontWeight: 600,
               color,
               fontSize: '1.25rem'
             }}>
@@ -164,13 +164,13 @@ const ProductDetailsPage = () => {
     <Container maxWidth="xl" sx={{ py: 4, overflowX: 'hidden', width: '100%', maxWidth: '100vw' }}>
       {/* Breadcrumbs */}
       <Box sx={{ mb: 4 }}>
-        <Breadcrumbs 
-          separator={<NavigateNext fontSize="small" />} 
+        <Breadcrumbs
+          separator={<NavigateNext fontSize="small" />}
           sx={{ mb: 3 }}
           aria-label="breadcrumb"
         >
           <Link href="/" style={{ textDecoration: 'none' }}>
-            <Typography color="text.primary" sx={{ 
+            <Typography color="text.primary" sx={{
               '&:hover': { color: '#e67e22' },
               transition: 'color 0.3s ease',
               cursor: 'pointer'
@@ -179,7 +179,7 @@ const ProductDetailsPage = () => {
             </Typography>
           </Link>
           <Link href="/products" style={{ textDecoration: 'none' }}>
-            <Typography color="text.primary" sx={{ 
+            <Typography color="text.primary" sx={{
               '&:hover': { color: '#e67e22' },
               transition: 'color 0.3s ease',
               cursor: 'pointer'
@@ -194,8 +194,8 @@ const ProductDetailsPage = () => {
 
         {/* Back Button */}
         <Link href="/products" passHref>
-          <Button 
-            variant="outlined" 
+          <Button
+            variant="outlined"
             startIcon={<ArrowBack />}
             sx={{
               borderColor: '#D7BFAE',
@@ -241,8 +241,8 @@ const ProductDetailsPage = () => {
         }
       }}>
         <Box sx={{ position: 'relative', zIndex: 1, maxWidth: 800, mx: 'auto', px: 2 }}>
-          <Chip 
-            label={product.category} 
+          <Chip
+            label={product.category}
             sx={{
               mb: 3,
               bgcolor: '#D7BFAE', // pastel brown
@@ -282,238 +282,138 @@ const ProductDetailsPage = () => {
       </Box>
 
       {/* Main Content Grid */}
-      <Grid container spacing={6} sx={{ mb: 6, display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', maxWidth: '100%', overflowX: 'hidden' }}>
-        {/* Product Image Section */}
-        <Grid item xs={12} lg={6} sx={{ width: '100%', maxWidth: '100%' }}>
-          <Paper elevation={0} sx={{
-            p: 4,
-            background: 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
-            border: '2px solid #e67e2220',
-            borderRadius: 4,
-            position: 'relative',
-            overflow: 'hidden',
-            height: 'fit-content',
-            maxWidth: '100%',
-            width: '100%',
-            '&::before': {
-              content: '""',
-              position: 'absolute',
-              top: 0,
-              left: 0,
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 6, py: { xs: 4, md: 6 }, alignItems: 'flex-start', '@media (max-width: 960px)': { flexDirection: 'column' } }}>
+        {/* Gallery Section */}
+        <Box sx={{ flex: 1, minWidth: 0 }}>
+          <Box
+            sx={{
+              position: 'relative',
+              cursor: 'pointer',
+              borderRadius: 2,
+              overflow: 'hidden',
               width: '100%',
-              height: '6px',
-               background: 'linear-gradient(135deg, #8B4513 0%, #D4AF37 100%)',
-            }
-          }}>
-            <Stack spacing={3} alignItems="center">
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <PhotoLibrary sx={{ color: '#e67e22', fontSize: 28 }} />
-                <Typography variant="h5" sx={{
-                  fontWeight: 600,
-                  color: '#2c3e50',
-                }}>
-                  Product Gallery
-                </Typography>
-              </Box>
-              
-              <Box
-                sx={{
-                  position: 'relative',
-                  cursor: 'pointer',
-                  borderRadius: 4,
-                  overflow: 'hidden',
-                  border: '3px solid #e67e2230',
-                  transition: 'all 0.4s ease-in-out',
-                  maxWidth: '100%',
-                  '&:hover': {
-                    transform: 'scale(1.03)',
-                    border: '3px solid #e67e2260',
-                    boxShadow: '0 20px 50px rgba(230, 126, 34, 0.25)',
-                  }
-                }}
-                onClick={() => setImageDialog(true)}
-              >
-                <Image 
-                  src={product.image} 
-                  alt={product.name} 
-                  width={500} 
-                  height={400} 
-                  style={{ 
-                    width: '100%', 
-                    maxWidth: '100%',
-                    height: 'auto', 
-                    display: 'block',
-                    objectFit: 'contain',
-                  }} 
-                  onError={e => { 
-                    e.target.onerror = null; 
-                    e.target.src = '/products/pp-bag.jpg'; 
-                  }} 
-                />
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    top: 16,
-                    right: 16,
-                    bgcolor: 'rgba(230, 126, 34, 0.9)',
-                    color: 'white',
-                    borderRadius: '50%',
-                    p: 1.5,
-                    backdropFilter: 'blur(10px)',
-                    transition: 'all 0.3s ease',
-                    '&:hover': {
-                      bgcolor: 'rgba(230, 126, 34, 1)',
-                      transform: 'scale(1.1)',
-                    }
-                  }}
-                >
-                  <ZoomIn />
-                </Box>
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    background: 'linear-gradient(transparent, rgba(0,0,0,0.8))',
-                    color: 'white',
-                    p: 3,
-                    textAlign: 'center',
-                  }}
-                >
-                  <Typography variant="body2" sx={{ fontWeight: 500 }}>
-                    Click to enlarge image
-                  </Typography>
-                </Box>
-              </Box>
-            </Stack>
-          </Paper>
-        </Grid>
-
-        {/* Product Details Section */}
-        <Grid item xs={12} lg={6} sx={{ width: '100%', maxWidth: '100%' }}>
-          <Paper elevation={0} sx={{
-            p: 4,
-            background: 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
-            border: '2px solid #f39c1220',
-            borderRadius: 4,
-            position: 'relative',
-            overflow: 'hidden',
-            height: 'fit-content',
-            maxWidth: '100%',
-            width: '100%',
-            '&::before': {
-              content: '""',
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '6px',
-              background: 'linear-gradient(135deg, #8B4513 0%, #D4AF37 100%)',
-            }
-          }}>
-            <Stack spacing={4}>
-              <Box>
-                <Typography variant="h4" gutterBottom sx={{
-                  fontWeight: 700,
-                  color: '#2c3e50',
-                  position: 'relative',
-                  display: 'inline-block',
-                  '&::after': {
-                    content: '""',
-                    position: 'absolute',
-                    bottom: -8,
-                    left: 0,
-                    width: '80px',
-                    height: '4px',
-                    background: 'linear-gradient(90deg, #f39c12, #e67e22)',
-                    borderRadius: 2,
-                  }
-                }}>
-                  Product Overview
-                </Typography>
-              </Box>
-              
-              <Typography variant="body1" sx={{
-                lineHeight: 1.8,
-                fontSize: '1.1rem',
-                color: 'text.primary',
-                textAlign: 'justify'
-              }}>
-                {product.description}
+              backgroundColor: '#fafafa',
+              '&:hover': {
+                transform: 'scale(1.02)',
+                transition: 'transform 0.3s ease-in-out',
+              },
+            }}
+            onClick={() => setImageDialog(true)}
+          >
+            {/* <Image
+              src={product.image}
+              alt={product.name}
+              width={450}
+              height={350}
+              style={{
+                width: '100%',
+                height: '30rem',
+                objectFit: 'cover',
+                display: 'block',
+              }}
+            /> */}
+            <Image
+              src={product.image}
+              alt={product.name}
+              width={450}
+              height={350}
+              style={{
+                width: '100%',
+                height: '30rem', 
+                objectFit: 'cover', 
+              }}
+            />
+            <Box
+              sx={{
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                background: 'linear-gradient(transparent, rgba(0,0,0,0.7))',
+                color: 'white',
+                p: 1.5,
+                textAlign: 'center',
+              }}
+            >
+              <Typography variant="body2" sx={{ fontWeight: 500 }}>
+                Click to enlarge
               </Typography>
-              
-              {product.longDescription && (
-                <Typography variant="body1" sx={{
-                  lineHeight: 1.8,
-                  fontSize: '1.1rem',
-                  color: 'text.primary',
-                  textAlign: 'justify'
-                }}>
-                  {product.longDescription}
-                </Typography>
-              )}
-              
-              <Divider sx={{ borderColor: '#e67e2230' }} />
-              
-              {/* Quick Features */}
-              {product.specifications.features && (
-                <Box>
-                  <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
-                    <Star sx={{ mr: 1, color: '#e67e22' }} />
-                    <Typography variant="h6" sx={{
-                      fontWeight: 600,
-                      color: '#e67e22'
-                    }}>
-                      Key Features
+            </Box>
+          </Box>
+        </Box>
+
+        {/* Product Overview Section */}
+        <Box sx={{ flex: 1, minWidth: 0 }}>
+          <Typography
+            variant="h5"
+            gutterBottom
+            sx={{ fontWeight: 700, color: '#2c3e50', position: 'relative', mb: 3 }}
+          >
+            Product Overview
+            <Box
+              sx={{
+                position: 'absolute',
+                bottom: -6,
+                left: 0,
+                width: 80,
+                height: 3,
+                background: '#e67e22',
+                borderRadius: 2,
+              }}
+            />
+          </Typography>
+
+          <Typography variant="body1" sx={{ lineHeight: 1.7, textAlign: 'justify', mb: 2 }}>
+            {product.description}
+          </Typography>
+
+          {product.longDescription && (
+            <Typography variant="body1" sx={{ lineHeight: 1.7, textAlign: 'justify', mb: 2 }}>
+              {product.longDescription}
+            </Typography>
+          )}
+
+          {product.specifications.features && (
+            <>
+              <Typography variant="h6" sx={{ fontWeight: 600, color: '#e67e22', mb: 2 }}>
+                Key Features
+              </Typography>
+              <Stack spacing={1}>
+                {product.specifications.features.slice(0, 4).map((feature, index) => (
+                  <Box
+                    key={index}
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      p: 1.5,
+                      background: 'linear-gradient(135deg, #f8f9fa 0%, #e8f5e8 100%)',
+                      borderRadius: 2,
+                      transition: 'all 0.3s ease-in-out',
+                      '&:hover': {
+                        transform: 'translateX(4px)',
+                        boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+                      },
+                    }}
+                  >
+                    <CheckCircle sx={{ mr: 1.5, color: '#27ae60', flexShrink: 0 }} />
+                    <Typography variant="body2" sx={{ fontWeight: 500 }}>
+                      {feature}
                     </Typography>
                   </Box>
-                  <Stack spacing={2}>
-                    {product.specifications.features.map((feature, index) => (
-                      <Box key={index} sx={{
-                        display: 'flex',
-                        alignItems: 'flex-start',
-                        p: 2.5,
-                        background: 'linear-gradient(135deg, #27ae6008 0%, #27ae6015 100%)',
-                        borderRadius: 3,
-                        border: '1px solid #27ae6020',
-                        transition: 'all 0.3s ease',
-                        '&:hover': {
-                          transform: 'translateX(8px)',
-                          border: '1px solid #27ae6040',
-                          boxShadow: '0 4px 12px rgba(39, 174, 96, 0.15)',
-                        }
-                      }}>
-                        <CheckCircle sx={{ 
-                          mr: 2, 
-                          color: '#27ae60', 
-                          fontSize: '1.3rem',
-                          mt: 0.2,
-                          flexShrink: 0
-                        }} />
-                        <Typography variant="body1" sx={{ 
-                          fontWeight: 500,
-                          lineHeight: 1.6
-                        }}>
-                          {feature}
-                        </Typography>
-                      </Box>
-                    ))}
-                  </Stack>
-                </Box>
-              )}
-            </Stack>
-          </Paper>
-        </Grid>
-      </Grid>
+                ))}
+              </Stack>
+            </>
+          )}
+        </Box>
+      </Box>
 
       {/* Specifications Section */}
       <Paper elevation={0} sx={{
-        p: { xs:0, sm: 3, md: 6 } ,
+        p: { xs: 0, sm: 3, md: 6 },
         mb: 6,
         background: 'linear-gradient(135deg, #2c3e50 0%, #34495e 100%)',
         color: 'white',
-        borderRadius: { xs:0, sm: 2, md: 4 },
+        borderRadius: { xs: 0, sm: 2, md: 4 },
         position: 'relative',
         overflow: 'hidden',
         boxShadow: '0 20px 60px rgba(44, 62, 80, 0.3)',
@@ -540,11 +440,10 @@ const ProductDetailsPage = () => {
         </Box>
 
         {/* Add responsive px here */}
-        <Box sx={{ 
-          overflowX: 'auto', 
-          background: 'rgba(255,255,255,0.03)', 
-          borderRadius: { xs:0, sm: 3, md: 3 }, 
-          px: { xs:0, sm: 3, md: 6 } // <-- Responsive horizontal padding
+        <Box sx={{
+          overflowX: 'auto',
+          background: 'rgba(255,255,255,0.03)',
+          borderRadius: { xs: 0, sm: 3, md: 3 },
         }}>
           <table style={{
             width: '100%',
@@ -579,28 +478,28 @@ const ProductDetailsPage = () => {
               {Object.entries(product.specifications)
                 .filter(([key]) => key !== 'features')
                 .map(([key, value], idx) => (
-                <tr key={key} style={{
-                  background: idx % 2 === 0 ? '#fffbe9' : '#f3f3f3'
-                }}>
-                  <td style={{
-                    padding: '12px 12px',
-                    border: '1px solid #D7BFAE',
-                    color: '#8B4513',
-                    fontWeight: 600,
-                    minWidth: 160
+                  <tr key={key} style={{
+                    background: idx % 2 === 0 ? '#fffbe9' : '#f3f3f3'
                   }}>
-                    {key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
-                  </td>
-                  <td style={{
-                    padding: '12px 12px',
-                    border: '1px solid #D7BFAE',
-                    color: '#2D2D2D',
-                    fontWeight: 500
-                  }}>
-                    {Array.isArray(value) ? value.join(', ') : value}
-                  </td>
-                </tr>
-              ))}
+                    <td style={{
+                      padding: '12px 12px',
+                      border: '1px solid #D7BFAE',
+                      color: '#8B4513',
+                      fontWeight: 600,
+                      minWidth: 160
+                    }}>
+                      {key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
+                    </td>
+                    <td style={{
+                      padding: '12px 12px',
+                      border: '1px solid #D7BFAE',
+                      color: '#2D2D2D',
+                      fontWeight: 500
+                    }}>
+                      {Array.isArray(value) ? value.join(', ') : value}
+                    </td>
+                  </tr>
+                ))}
               {Object.entries(product.technicalDetails).map(([key, value], idx) => (
                 <tr key={key} style={{
                   background: (Object.keys(product.specifications).length + idx) % 2 === 0 ? '#fffbe9' : '#f3f3f3'
@@ -667,7 +566,7 @@ const ProductDetailsPage = () => {
             mt: 2
           }} />
         </Box>
-        
+
         <Grid container spacing={3} sx={{ justifyContent: 'center' }}>
           {product.applications.map((application, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
@@ -747,7 +646,7 @@ const ProductDetailsPage = () => {
             mx: 'auto'
           }} />
         </Box>
-        
+
         <Grid container spacing={3}>
           {product.advantages.map((advantage, index) => (
             <Grid item xs={12} md={6} key={index}>
@@ -817,7 +716,7 @@ const ProductDetailsPage = () => {
           }}>
             <ContactMail sx={{ fontSize: 45 }} />
           </Avatar>
-          
+
           <Box>
             <Typography variant="h4" gutterBottom sx={{
               fontWeight: 700,
@@ -835,7 +734,7 @@ const ProductDetailsPage = () => {
               Contact us for pricing, customization options, bulk orders, and technical specifications.
             </Typography>
           </Box>
-          
+
           <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3} sx={{ pt: 2 }}>
             <Link href="/contact" passHref>
               <Button
@@ -907,7 +806,7 @@ const ProductDetailsPage = () => {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          bgcolor: '#D7BFAE', // pastel brown
+          bgcolor: '#F7E7B3', // pastel brown
           color: '#8B4513', // brown text
           py: 3
         }}>
@@ -916,7 +815,7 @@ const ProductDetailsPage = () => {
           </Typography>
           <IconButton
             onClick={() => setImageDialog(false)}
-            sx={{ 
+            sx={{
               color: 'white',
               '&:hover': {
                 backgroundColor: 'rgba(255,255,255,0.1)',
@@ -929,9 +828,9 @@ const ProductDetailsPage = () => {
           </IconButton>
         </DialogTitle>
         <DialogContent sx={{ p: 0, backgroundColor: '#f8f9fa', overflowX: 'hidden' }}>
-          <Box sx={{ 
-            display: 'flex', 
-            justifyContent: 'center', 
+          <Box sx={{
+            display: 'flex',
+            justifyContent: 'center',
             alignItems: 'center',
             p: 2,
             backgroundColor: '#ffffff',

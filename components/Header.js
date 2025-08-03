@@ -298,11 +298,8 @@ const Header = () => {
                  <Image 
                                   src={LOGO} 
                                   alt= "Lavish Polypack"
-                                  width={100} 
-                                  height={100} 
-                                  style={{ 
-                                    width: '100%', 
-                                    maxWidth: '100%',
+                                  width={140} height={40}
+                                  style={{
                                     height: 'auto', 
                                     display: 'block',
                                     objectFit: 'contain',
