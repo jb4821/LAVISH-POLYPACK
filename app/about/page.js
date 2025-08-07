@@ -352,25 +352,25 @@ const AboutPage = () => {
         </Typography> */}
       </Box>
 
-      <Paper
-        elevation={0}
+      <Box
+        // elevation={0}
         sx={{
           p: { xs: 4, md: 6 },
           mb: 6,
-          background: 'linear-gradient(135deg, #fffaf3 0%, #f8f6f3 100%)',
-          border: '1px solid #f0f0f0',
-          borderRadius: 3,
-          position: 'relative',
-          overflow: 'hidden',
-          '&::before': {
-            content: '""',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '4px',
-            background: 'linear-gradient(90deg, #111111, #bdbdbd)',
-          },
+          // background: 'linear-gradient(135deg, #fffaf3 0%, #f8f6f3 100%)',
+          // border: '1px solid #f0f0f0',
+          // borderRadius: 3,
+          // position: 'relative',
+          // overflow: 'hidden',
+          // '&::before': {
+          //   content: '""',
+          //   position: 'absolute',
+          //   top: 0,
+          //   left: 0,
+          //   width: '100%',
+          //   height: '4px',
+          //   background: 'linear-gradient(90deg, #111111, #bdbdbd)',
+          // },
         }}
       >
         <Typography
@@ -380,19 +380,19 @@ const AboutPage = () => {
           sx={{
             fontWeight: 700,
             mb: 4,
-            color: '#111111',
+            // color: '#111111',
             fontFamily: '"Playfair Display", serif',
             fontSize: { xs: '1.8rem', md: '2.2rem' },
-            '&::after': {
-              content: '""',
-              position: 'absolute',
-              bottom: -8,
-              left: 0,
-              width: '80px',
-              height: '3px',
-              background: 'linear-gradient(90deg, #111111, #bdbdbd)',
-              borderRadius: 2,
-            },
+            // '&::after': {
+            //   content: '""',
+            //   position: 'absolute',
+            //   bottom: -8,
+            //   left: 0,
+            //   width: '80px',
+            //   height: '3px',
+            //   background: 'linear-gradient(90deg, #111111, #bdbdbd)',
+            //   borderRadius: 2,
+            // },
           }}
         >
           Company Overview
@@ -410,12 +410,16 @@ const AboutPage = () => {
                 fontFamily: '"Inter", sans-serif',
               }}
             >
-              At Lavish Polypack LLP, we are a leading manufacturer of
-              high-quality PP Woven Fabrics and PP Woven Bags, proudly serving a
-              wide range of industries across India and abroad. With a strong
-              commitment to innovation, durability, and eco-friendly practices,
-              we deliver packaging solutions that are tailored to meet the
-              evolving needs of our clients.
+              At Lavish Polypack LLP, we are a leading manufacturer of high-quality PP Woven
+Fabrics and PP Woven Bags, proudly serving a wide range of industries across
+India and abroad. With a strong commitment to innovation, durability, and eco-
+friendly practices, we deliver packaging solutions that are tailored to meet the
+evolving needs of our clients. Equipped with modern machinery and a skilled
+workforce, our facility ensures consistent quality, timely delivery, and custom
+production capabilities. From agriculture to industrial packaging, we’re trusted
+for strength, reliability, and service excellence. Our mission is to build long-term
+partnerships by offering competitive prices, unmatched product quality, and a
+customer-first approach.
             </Typography>
           </Grid>
           <Grid item xs={12} md={6}>
@@ -430,24 +434,26 @@ const AboutPage = () => {
                 fontFamily: '"Inter", sans-serif',
               }}
             >
-              Equipped with modern machinery and a skilled workforce, our
-              facility ensures consistent quality, timely delivery, and custom
-              production capabilities. From agriculture to industrial packaging,
-              we&apos;re trusted for strength, reliability, and service
-              excellence worldwide.
+              We proudly export our products to several countries across Asia, Africa, the
+Middle East, and Europe, building long-term partnerships with global clients
+who value our precision, professionalism, and customer-centric approach.
+Whether for agriculture, industrial use, or commercial packaging, our products
+are trusted worldwide for their strength, durability, and performance. Backed by
+competitive pricing, strict quality control, and transparent service, we aim to be
+your dependable global packaging partner.​
             </Typography>
           </Grid>
         </Grid>
-      </Paper>
+      </Box>
 
       <Grid container spacing={{ xs: 2, md: 4 }} sx={{ mb: 8 }}>
         <Grid item xs={12} md={6}>
           <Box
             sx={{
               p: { xs: 4, md: 5 },
-              background: '#fffaf3', // cream
-              borderRadius: 3,
-              border: '1px solid #e0e0e0', // light gray border
+              // background: '#fffaf3', // cream
+              // borderRadius: 3,
+              // border: '1px solid #e0e0e0', // light gray border
               minHeight: '100%',
               display: 'flex',
               flexDirection: 'column',
@@ -478,10 +484,15 @@ const AboutPage = () => {
                 fontFamily: '"Inter", sans-serif',
               }}
             >
-              To be the most trusted and preferred packaging solutions provider
-              globally, delivering innovative, sustainable, and high-quality
-              products that exceed customer expectations while contributing
-              positively to the environment and society.
+              Our mission is to deliver innovative, durable, and eco-conscious PP woven
+              packaging solutions that empower businesses across industries and borders.
+              We are dedicated to engineering excellence, timely service, and customer
+              satisfaction by continuously evolving with the latest technology and industry
+              trends. With a strong focus on sustainable manufacturing, we aim to minimize
+              our environmental impact while maximizing value for our clients. Whether it's
+              a small enterprise or a multinational corporation, we believe in building
+              relationships that are rooted in trust, transparency, and long-term
+              collaboration.
             </Typography>
           </Box>
         </Grid>
@@ -489,9 +500,9 @@ const AboutPage = () => {
           <Box
             sx={{
               p: { xs: 4, md: 5 },
-              background: '#f3f3f3', // pastel gray
-              borderRadius: 3,
-              border: '1px solid #e0e0e0', // light gray border
+              // background: '#f3f3f3', // pastel gray
+              // borderRadius: 3,
+              // border: '1px solid #e0e0e0', // light gray border
               minHeight: '100%',
               display: 'flex',
               flexDirection: 'column',
@@ -522,10 +533,13 @@ const AboutPage = () => {
                 fontFamily: '"Inter", sans-serif',
               }}
             >
-              To lead the packaging industry through technological innovation,
-              sustainable practices, and unwavering commitment to quality,
-              becoming the global benchmark for excellence in PP woven packaging
-              solutions.
+              Our vision is to become a globally respected leader in the PP woven industry,
+              known for uncompromising quality, ethical manufacturing, and innovation-
+              driven growth. We aspire to expand our global footprint by entering new
+              markets, strengthening our international supply chain, and adapting to diverse
+              customer requirements. By investing in people, process, and planet, we
+              envision a future where our packaging solutions not only support businesses
+              but also contribute to a cleaner and more efficient world.
             </Typography>
           </Box>
         </Grid>
@@ -749,24 +763,24 @@ const AboutPage = () => {
         </Grid>
       </Paper>
 
-      <Paper
+      <Box
         elevation={0}
         sx={{
           p: { xs: 4, md: 6 },
-          background: 'linear-gradient(135deg, #fffaf3 0%, #f8f6f3 100%)',
-          border: '1px solid #f0f0f0',
-          borderRadius: 3,
-          position: 'relative',
-          overflow: 'hidden',
-          '&::before': {
-            content: '""',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '4px',
-            background: 'linear-gradient(90deg, #111111, #bdbdbd)',
-          },
+          // background: 'linear-gradient(135deg, #fffaf3 0%, #f8f6f3 100%)',
+          // border: '1px solid #f0f0f0',
+          // borderRadius: 3,
+          // position: 'relative',
+          // overflow: 'hidden',
+          // '&::before': {
+          //   content: '""',
+          //   position: 'absolute',
+          //   top: 0,
+          //   left: 0,
+          //   width: '100%',
+          //   height: '4px',
+          //   background: 'linear-gradient(90deg, #111111, #bdbdbd)',
+          // },
         }}
       >
         <Typography
@@ -806,11 +820,13 @@ const AboutPage = () => {
                 fontFamily: '"Inter", sans-serif',
               }}
             >
-              We have successfully established a strong global presence,
-              exporting our products to over 25 countries across Asia, Africa,
-              the Middle East, and Europe. Our international clientele trusts us
-              for our consistent quality, timely delivery, and excellent
-              customer service.
+              With a focus on international standards, competitive pricing, and
+on-time delivery, we are proud to contribute to India’s growing
+reputation as a trusted exporter of durable and eco-friendly
+packaging solutions. Our operations are fully compliant with global
+quality certifications including ISO, SGS, and BIS, and are supported
+by a dedicated export team that ensures smooth documentation,
+custom packaging, and worldwide logistics.​
             </Typography>
           </Grid>
           <Grid item xs={12} md={6}>
@@ -825,14 +841,13 @@ const AboutPage = () => {
                 fontFamily: '"Inter", sans-serif',
               }}
             >
-              Our export operations are backed by a dedicated team that handles
-              international logistics, documentation, and compliance
-              requirements, ensuring smooth and hassle-free delivery to our
-              global customers.
+              As we continue to scale our reach, our goal is to strengthen India’s
+position in the global supply chain and become a preferred export
+partner for businesses worldwide.​
             </Typography>
           </Grid>
         </Grid>
-      </Paper>
+      </Box>
     </Container>
   );
 };

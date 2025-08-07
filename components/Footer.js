@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
+import LOGO from '../public/pollypack.png';
 import GoogleTranslate from './GoogleTranslate';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -74,12 +75,15 @@ const Footer = () => {
           <Grid item xs={12} sm={6} md={3}>
             <Box sx={{ mb: 2 }}>
               <Image
-                src='/pollypack.jpeg'
-                alt='Lavish Polypack LLP'
-                width={140}
-                height={40}
-                style={{ marginBottom: 8 }}
-              />
+                                src={LOGO}
+                                alt='Lavish Polypack'
+                                width={140}
+                                height={50}
+                                style={{
+                                  height: 'auto',
+                                  display: 'block',
+                                  objectFit: 'contain',
+                                }}/>
               <Typography
                 variant='body2'
                 sx={{ color: '#111111', fontWeight: 600, mb: 1 }}

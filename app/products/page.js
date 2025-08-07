@@ -95,7 +95,7 @@ const ProductsPage = () => {
       <Grid container spacing={3} sx={{ justifyContent: 'center' }}>
         {products.map((product) => (
           <Grid item key={product.id} xs={12} sm={6} lg={4} xl={3}>
-            <Card
+            <Box
               onMouseEnter={() => setHoveredCard(product.id)}
               onMouseLeave={() => setHoveredCard(null)}
               sx={{
@@ -104,7 +104,7 @@ const ProductsPage = () => {
                 mx: 'auto',
                 display: 'flex',
                 flexDirection: 'column',
-                borderRadius: 2,
+                // borderRadius: 2,
                 border: product.bestSeller
                   ? '2.5px solid #bdbdbd'
                   : '1px solid rgba(17, 17, 17, 0.1)',
@@ -212,8 +212,8 @@ const ProductsPage = () => {
                   component='img'
                   className='product-image'
                   sx={{
-                    maxHeight: '80%',
-                    maxWidth: '80%',
+                    maxHeight: '100%',
+                    maxWidth: '100%',
                     objectFit: 'contain',
                     transition:
                       'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
@@ -391,7 +391,7 @@ const ProductsPage = () => {
                   </Link>
                 </Box>
               </CardContent>
-            </Card>
+            </Box>
           </Grid>
         ))}
       </Grid>

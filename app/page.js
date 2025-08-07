@@ -114,10 +114,10 @@ export default function Home() {
           },
         }}
       >
+        <ImageSlider />
         <Container
           sx={{ px: { xs: 2, sm: 4, md: 6 }, position: 'relative', zIndex: 1 }}
         >
-          <ImageSlider />
 
           {/* Hero Content */}
           <Box sx={{ textAlign: 'center', py: { xs: 6, sm: 8, md: 10 } }}>
