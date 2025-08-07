@@ -86,8 +86,7 @@ const EmblaCarousel = ({ slides, options }) => {
           <IconButton key={index} onClick={() => scrollTo(index)} size='small'>
             <CircleIcon
               sx={{
-                color:
-                  index === selectedIndex ? '#8B4513' : 'common.white',
+                color: index === selectedIndex ? '#111111' : '#fffaf3',
                 fontSize: '12px',
                 transition: 'color 0.2s',
               }}

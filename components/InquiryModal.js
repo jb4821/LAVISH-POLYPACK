@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Dialog,
   DialogTitle,
@@ -11,18 +11,18 @@ import {
   Typography,
   CircularProgress,
   Chip,
-} from "@mui/material";
-import { Send } from "@mui/icons-material";
+} from '@mui/material';
+import { Send } from '@mui/icons-material';
 
 const InquiryModal = ({ open, onClose }) => {
   const [formData, setFormData] = useState({
-    productName: "",
-    message: "",
-    name: "",
-    email: "",
-    mobile: "",
-    location: "",
-    inquiryType: "general",
+    productName: '',
+    message: '',
+    name: '',
+    email: '',
+    mobile: '',
+    location: '',
+    inquiryType: 'general',
   });
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -51,7 +51,7 @@ const InquiryModal = ({ open, onClose }) => {
       return;
     }
     const mobileRegex = /^[6-9]\d{9}$/;
-    const cleanMobile = formData.mobile.replace(/[^\d]/g, "");
+    const cleanMobile = formData.mobile.replace(/[^\d]/g, '');
     if (!mobileRegex.test(cleanMobile)) {
       setLoading(false);
       return;
@@ -62,16 +62,16 @@ const InquiryModal = ({ open, onClose }) => {
       name: formData.name,
       email: formData.email,
       mobile: cleanMobile,
-      location: formData.location || "Not specified",
-      product: formData.productName || "General Inquiry",
-      inquiry_type: formData.inquiryType || "general",
+      location: formData.location || 'Not specified',
+      product: formData.productName || 'General Inquiry',
+      inquiry_type: formData.inquiryType || 'general',
       message: formData.message,
     };
 
     try {
-      await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
       setSubmitted(true);
@@ -88,30 +88,30 @@ const InquiryModal = ({ open, onClose }) => {
 
   const commonTextFieldStyles = {
     sx: {
-      "& .MuiOutlinedInput-root": {
+      '& .MuiOutlinedInput-root': {
         fontFamily: '"Inter", sans-serif',
-        "&:hover fieldset": { borderColor: "#8B4513" },
-        "&.Mui-focused fieldset": {
-          borderColor: "#D4AF37",
+        '&:hover fieldset': { borderColor: '#757575' },
+        '&.Mui-focused fieldset': {
+          borderColor: '#bdbdbd',
         },
       },
-      "& .MuiInputLabel-root.Mui-focused": {
-        color: "#8B4513",
+      '& .MuiInputLabel-root.Mui-focused': {
+        color: '#757575',
       },
     },
   };
 
   return (
-    <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
+    <Dialog open={open} onClose={onClose} maxWidth='sm' fullWidth>
       <DialogTitle
         sx={{
-          color: "#8B4513",
+          color: '#111111',
           fontFamily: '"Playfair Display", serif',
-          letterSpacing: "2px",
+          letterSpacing: '2px',
           fontWeight: 400,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
           px: { xs: 1, sm: 3 },
           py: { xs: 1.5, sm: 2 },
           minHeight: { xs: 48, sm: 64 },
@@ -120,8 +120,8 @@ const InquiryModal = ({ open, onClose }) => {
         <Box
           sx={{
             flex: 1,
-            textAlign: "center",
-            fontSize: { xs: "1.1rem", sm: "1.4rem" },
+            textAlign: 'center',
+            fontSize: { xs: '1.1rem', sm: '1.4rem' },
             fontWeight: 500,
             pl: { xs: 0, sm: 2 },
           }}
@@ -132,106 +132,106 @@ const InquiryModal = ({ open, onClose }) => {
           onClick={onClose}
           sx={{
             minWidth: 0,
-            color: "#8B4513",
+            color: '#111111',
             fontWeight: 600,
             ml: 2,
-            fontSize: { xs: "1.3rem", sm: "1.5rem" },
-            textTransform: "none",
+            fontSize: { xs: '1.3rem', sm: '1.5rem' },
+            textTransform: 'none',
             lineHeight: 1,
             p: 0,
           }}
-          aria-label="Close"
+          aria-label='Close'
         >
           ✕
         </Button>
       </DialogTitle>
       <DialogContent>
         {submitted ? (
-          <Box sx={{ py: 6, textAlign: "center" }}>
-            <Typography variant="h6" sx={{ color: "#8B4513", mb: 2 }}>
+          <Box sx={{ py: 6, textAlign: 'center' }}>
+            <Typography variant='h6' sx={{ color: '#111111', mb: 2 }}>
               ✅ Inquiry Sent Successfully!
             </Typography>
-            <Typography sx={{ color: "#666" }}>
+            <Typography sx={{ color: '#757575' }}>
               Our team will contact you within 24 hours.
             </Typography>
           </Box>
         ) : (
-          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
+          <Box component='form' onSubmit={handleSubmit} sx={{ mt: 2 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  label="Full Name *"
+                  label='Full Name *'
                   fullWidth
                   required
                   value={formData.name}
-                  onChange={handleInputChange("name")}
-                  placeholder="Enter your full name"
+                  onChange={handleInputChange('name')}
+                  placeholder='Enter your full name'
                   {...commonTextFieldStyles}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  label="Email Address *"
+                  label='Email Address *'
                   fullWidth
                   required
-                  type="email"
+                  type='email'
                   value={formData.email}
-                  onChange={handleInputChange("email")}
-                  placeholder="example@domain.com"
+                  onChange={handleInputChange('email')}
+                  placeholder='example@domain.com'
                   {...commonTextFieldStyles}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  label="Mobile Number *"
+                  label='Mobile Number *'
                   fullWidth
                   required
                   value={formData.mobile}
-                  onChange={handleInputChange("mobile")}
-                  placeholder="10-digit mobile number"
+                  onChange={handleInputChange('mobile')}
+                  placeholder='10-digit mobile number'
                   inputProps={{ maxLength: 10 }}
                   {...commonTextFieldStyles}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  label="Your Location"
+                  label='Your Location'
                   fullWidth
                   value={formData.location}
-                  onChange={handleInputChange("location")}
-                  placeholder="City / State"
+                  onChange={handleInputChange('location')}
+                  placeholder='City / State'
                   {...commonTextFieldStyles}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  label="Product Name / Interest"
+                  label='Product Name / Interest'
                   fullWidth
                   value={formData.productName}
-                  onChange={handleInputChange("productName")}
-                  placeholder="e.g., FIBC Bags, PP Woven Bags, etc."
+                  onChange={handleInputChange('productName')}
+                  placeholder='e.g., FIBC Bags, PP Woven Bags, etc.'
                   {...commonTextFieldStyles}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  label="Your Message *"
+                  label='Your Message *'
                   fullWidth
                   required
                   multiline
                   rows={3}
                   value={formData.message}
-                  onChange={handleInputChange("message")}
-                  placeholder="Describe your requirements, timeline, or any specific questions..."
+                  onChange={handleInputChange('message')}
+                  placeholder='Describe your requirements, timeline, or any specific questions...'
                   {...commonTextFieldStyles}
                 />
               </Grid>
             </Grid>
-            <DialogActions sx={{ mt: 3, justifyContent: "center" }}>
+            <DialogActions sx={{ mt: 3, justifyContent: 'center' }}>
               <Button
                 onClick={onClose}
                 sx={{
-                  color: "#666",
+                  color: '#757575',
                   fontWeight: 500,
                   fontFamily: '"Inter", sans-serif',
                 }}
@@ -239,30 +239,32 @@ const InquiryModal = ({ open, onClose }) => {
                 Cancel
               </Button>
               <Button
-                type="submit"
+                type='submit'
                 disabled={loading}
                 startIcon={
                   loading ? (
-                    <CircularProgress size={18} color="inherit" />
+                    <CircularProgress size={18} color='inherit' />
                   ) : (
                     <Send />
                   )
                 }
                 sx={{
-                  background: "linear-gradient(135deg, #8B4513 0%, #D4AF37 100%)",
-                  color: "#fff",
+                  background:
+                    'linear-gradient(135deg, #111111 0%, #bdbdbd 100%)',
+                  color: '#fff',
                   px: 4,
                   py: 1.2,
                   fontWeight: 500,
                   fontFamily: '"Inter", sans-serif',
                   borderRadius: 2,
-                  boxShadow: "0 8px 25px rgba(139, 69, 19, 0.2)",
-                  "&:hover": {
-                    background: "linear-gradient(135deg, #7A3F0F 0%, #B8941F 100%)",
+                  boxShadow: '0 8px 25px rgba(139, 69, 19, 0.2)',
+                  '&:hover': {
+                    background:
+                      'linear-gradient(135deg, #7A3F0F 0%, #B8941F 100%)',
                   },
                 }}
               >
-                {loading ? "Sending..." : "Send Inquiry"}
+                {loading ? 'Sending...' : 'Send Inquiry'}
               </Button>
             </DialogActions>
           </Box>

@@ -41,28 +41,31 @@ const Footer = () => {
     { src: '/iso.png', alt: 'ISO Certification' },
     { src: '/madeinindia.png', alt: 'Made in India' },
     { src: '/BIS.png', alt: 'BIS Certification' },
-    { src: '/9eadae44-9f1f-44ac-a846-bb78a605e3fe.jpg', alt: 'Additional Certification' },
+    {
+      src: '/9eadae44-9f1f-44ac-a846-bb78a605e3fe.jpg',
+      alt: 'Additional Certification',
+    },
   ];
 
   return (
     <Box
-      component="footer"
+      component='footer'
       sx={{
-        background: "#fff",
-        color: "#2D2D2D",
+        background: '#fffaf3',
+        color: '#111111',
         mt: 'auto',
-        borderTop: '4px solid #D4AF37',
+        borderTop: '4px solid #bdbdbd',
         py: { xs: 4, md: 6 },
         px: { xs: 0, md: 0 },
-        boxShadow: '0 -2px 24px #D7BFAE33',
+        boxShadow: '0 -2px 24px rgba(17, 17, 17, 0.1)',
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth='lg'>
         <Grid
           container
           spacing={4}
-          justifyContent="space-between"
-          alignItems="flex-start"
+          justifyContent='space-between'
+          alignItems='flex-start'
           sx={{
             flexWrap: { xs: 'wrap', md: 'nowrap' },
           }}
@@ -70,12 +73,25 @@ const Footer = () => {
           {/* Company Info */}
           <Grid item xs={12} sm={6} md={3}>
             <Box sx={{ mb: 2 }}>
-              <Image src="/pollypack.jpeg" alt="Lavish Polypack LLP" width={140} height={40} style={{ marginBottom: 8 }} />
-              <Typography variant="body2" sx={{ color: "#8B4513", fontWeight: 600, mb: 1 }}>
+              <Image
+                src='/pollypack.jpeg'
+                alt='Lavish Polypack LLP'
+                width={140}
+                height={40}
+                style={{ marginBottom: 8 }}
+              />
+              <Typography
+                variant='body2'
+                sx={{ color: '#111111', fontWeight: 600, mb: 1 }}
+              >
                 LAVISH POLYPACK LLP
               </Typography>
-              <Typography variant="body2" sx={{ color: "#666", fontSize: "0.97rem" }}>
-                Best Manufacturer of Packaging Solutions.<br />
+              <Typography
+                variant='body2'
+                sx={{ color: '#757575', fontSize: '0.97rem' }}
+              >
+                Best Manufacturer of Packaging Solutions.
+                <br />
                 With More Than 10 Years Of Experience.
               </Typography>
             </Box>
@@ -83,44 +99,94 @@ const Footer = () => {
 
           {/* Contacts */}
           <Grid item xs={12} sm={6} md={3}>
-            <Typography variant="h6" sx={{ color: "#8B4513", fontWeight: 700, mb: 2, fontSize: "1.1rem" }}>
+            <Typography
+              variant='h6'
+              sx={{
+                color: '#111111',
+                fontWeight: 700,
+                mb: 2,
+                fontSize: '1.1rem',
+              }}
+            >
               Contacts
             </Typography>
-            <Typography variant="subtitle2" sx={{ color: "#D4AF37", fontWeight: 600, mb: 1 }}>
+            <Typography
+              variant='subtitle2'
+              sx={{ color: '#bdbdbd', fontWeight: 600, mb: 1 }}
+            >
               Domestic
             </Typography>
-            <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 0.5 }}>
-              <EmailIcon sx={{ fontSize: 18, color: "#8B4513" }} />
-              <Typography variant="body2" sx={{ color: "#2D2D2D" }}>lavishpolypack@gmail.com</Typography>
+            <Stack
+              direction='row'
+              alignItems='center'
+              spacing={1}
+              sx={{ mb: 0.5 }}
+            >
+              <EmailIcon sx={{ fontSize: 18, color: '#111111' }} />
+              <Typography variant='body2' sx={{ color: '#111111' }}>
+                lavishpolypack@gmail.com
+              </Typography>
             </Stack>
-            <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 0.5 }}>
-              <PhoneIcon sx={{ fontSize: 18, color: "#8B4513" }} />
-              <Typography variant="body2" sx={{ color: "#2D2D2D" }}>+91 82384 20382</Typography>
+            <Stack
+              direction='row'
+              alignItems='center'
+              spacing={1}
+              sx={{ mb: 0.5 }}
+            >
+              <PhoneIcon sx={{ fontSize: 18, color: '#111111' }} />
+              <Typography variant='body2' sx={{ color: '#111111' }}>
+                +91 82384 20382
+              </Typography>
             </Stack>
-            <Typography variant="subtitle2" sx={{ color: "#D4AF37", fontWeight: 600, mt: 2, mb: 1 }}>
+            <Typography
+              variant='subtitle2'
+              sx={{ color: '#bdbdbd', fontWeight: 600, mt: 2, mb: 1 }}
+            >
               Export
             </Typography>
-            <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 0.5 }}>
-              <EmailIcon sx={{ fontSize: 18, color: "#8B4513" }} />
-              <Typography variant="body2" sx={{ color: "#2D2D2D" }}>export@lavishpolypack.com</Typography>
+            <Stack
+              direction='row'
+              alignItems='center'
+              spacing={1}
+              sx={{ mb: 0.5 }}
+            >
+              <EmailIcon sx={{ fontSize: 18, color: '#111111' }} />
+              <Typography variant='body2' sx={{ color: '#111111' }}>
+                export@lavishpolypack.com
+              </Typography>
             </Stack>
-            <Stack direction="row" alignItems="center" spacing={1}>
-              <PhoneIcon sx={{ fontSize: 18, color: "#8B4513" }} />
-              <Typography variant="body2" sx={{ color: "#2D2D2D" }}>+91 82384 20382</Typography>
+            <Stack direction='row' alignItems='center' spacing={1}>
+              <PhoneIcon sx={{ fontSize: 18, color: '#111111' }} />
+              <Typography variant='body2' sx={{ color: '#111111' }}>
+                +91 82384 20382
+              </Typography>
             </Stack>
           </Grid>
 
           {/* Address */}
           <Grid item xs={12} sm={6} md={3}>
-            <Typography variant="h6" sx={{ color: "#8B4513", fontWeight: 700, mb: 2, fontSize: "1.1rem" }}>
+            <Typography
+              variant='h6'
+              sx={{
+                color: '#111111',
+                fontWeight: 700,
+                mb: 2,
+                fontSize: '1.1rem',
+              }}
+            >
               Address
             </Typography>
-            <Stack direction="row" alignItems="flex-start" spacing={1}>
-              <LocationOnIcon sx={{ fontSize: 20, color: "#8B4513", mt: 0.5 }} />
-              <Typography variant="body2" sx={{ color: "#2D2D2D" }}>
-                Survey No 199/P1/P3/P1<br />
-                Opp. Anjani Pipe<br />
-                At - Otala, Tankara - Latipar Road<br />
+            <Stack direction='row' alignItems='flex-start' spacing={1}>
+              <LocationOnIcon
+                sx={{ fontSize: 20, color: '#111111', mt: 0.5 }}
+              />
+              <Typography variant='body2' sx={{ color: '#111111' }}>
+                Survey No 199/P1/P3/P1
+                <br />
+                Opp. Anjani Pipe
+                <br />
+                At - Otala, Tankara - Latipar Road
+                <br />
                 Tankara, Morbi - 363650
               </Typography>
             </Stack>
@@ -147,9 +213,18 @@ const Footer = () => {
               <Typography variant="body2" sx={{ color: "#2D2D2D" }}>Instagram</Typography>
               <Typography variant="body2" sx={{ color: "#2D2D2D" }}>LinkedIn</Typography>
             </Stack>
-          </Grid> */}{/* Certifications */}
+          </Grid> */}
+          {/* Certifications */}
           <Grid item xs={12} sm={6} md={3}>
-            <Typography variant="h6" sx={{ color: "#8B4513", fontWeight: 700, mb: 2, fontSize: "1.1rem" }}>
+            <Typography
+              variant='h6'
+              sx={{
+                color: '#111111',
+                fontWeight: 700,
+                mb: 2,
+                fontSize: '1.1rem',
+              }}
+            >
               Certifications
             </Typography>
             <Box
@@ -192,21 +267,29 @@ const Footer = () => {
           </Grid>
         </Grid>
 
-        <Divider sx={{ my: 4, background: 'linear-gradient(90deg, transparent, #D4AF37, transparent)' }} />
+        <Divider
+          sx={{
+            my: 4,
+            background:
+              'linear-gradient(90deg, transparent, #D4AF37, transparent)',
+          }}
+        />
 
         <Typography
-          variant="body2"
-          align="center"
+          variant='body2'
+          align='center'
           sx={{
-            fontSize: { xs: "0.85rem", sm: "0.95rem" },
-            color: "#8B4513",
+            fontSize: { xs: '0.85rem', sm: '0.95rem' },
+            color: '#8B4513',
             lineHeight: 1.7,
-            letterSpacing: "0.5px",
+            letterSpacing: '0.5px',
             mb: 1,
           }}
         >
-          © {new Date().getFullYear()} ALL RIGHTS RESERVED BY{" "}
-          <span style={{ color: "#D4AF37", fontWeight: 600 }}>LAVISH POLYPACK LLP</span>
+          © {new Date().getFullYear()} ALL RIGHTS RESERVED BY{' '}
+          <span style={{ color: '#D4AF37', fontWeight: 600 }}>
+            LAVISH POLYPACK LLP
+          </span>
         </Typography>
       </Container>
     </Box>

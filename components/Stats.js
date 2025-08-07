@@ -48,8 +48,8 @@ const Stats = () => {
       const timer = setInterval(() => {
         currentStep++;
         const currentValue = Math.min(increment * currentStep, stat.value);
-        
-        setAnimatedValues(prev => {
+
+        setAnimatedValues((prev) => {
           const newValues = [...prev];
           newValues[index] = Math.floor(currentValue);
           return newValues;
@@ -63,12 +63,12 @@ const Stats = () => {
   }, [isVisible]);
 
   return (
-    <Box 
+    <Box
       ref={statsRef}
-      sx={{ 
+      sx={{
         py: { xs: 4, sm: 6 },
         px: { xs: 2, sm: 4 },
-        background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)',
+        background: 'linear-gradient(135deg, #fffaf3 0%, #e0e0e0 100%)',
         borderRadius: 4,
         position: 'relative',
         overflow: 'hidden',
@@ -79,8 +79,9 @@ const Stats = () => {
           left: 0,
           right: 0,
           height: '4px',
-          background: 'linear-gradient(90deg, #e67e22 0%, #f39c12 50%, #e67e22 100%)',
-        }
+          background:
+            'linear-gradient(90deg, #bdbdbd 0%, #e0e0e0 50%, #bdbdbd 100%)',
+        },
       }}
     >
       {/* Background Pattern */}
@@ -92,7 +93,8 @@ const Stats = () => {
           right: 0,
           bottom: 0,
           opacity: 0.03,
-          backgroundImage: 'radial-gradient(circle at 25% 25%, #e67e22 2px, transparent 2px)',
+          backgroundImage:
+            'radial-gradient(circle at 25% 25%, #e67e22 2px, transparent 2px)',
           backgroundSize: '40px 40px',
         }}
       />
@@ -106,7 +108,7 @@ const Stats = () => {
           fontWeight: 700,
           mb: 5,
           position: 'relative',
-          color: '#2c3e50',
+          color: '#111111',
           letterSpacing: '-0.02em',
           transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
           opacity: isVisible ? 1 : 0,
@@ -119,9 +121,9 @@ const Stats = () => {
             transform: 'translateX(-50%)',
             width: 80,
             height: 4,
-            background: 'linear-gradient(90deg, #e67e22, #f39c12)',
+            background: 'linear-gradient(90deg, #bdbdbd, #e0e0e0)',
             borderRadius: 2,
-          }
+          },
         }}
       >
         NUMBERS SPEAK FOR THEMSELVES
@@ -140,33 +142,36 @@ const Stats = () => {
                 flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'center',
-                background: 'linear-gradient(135deg, #fff 0%, #f8f9fa 100%)',
-                border: '2px solid #ecf0f1',
+                background: 'linear-gradient(135deg, #ffffff 0%, #fffaf3 100%)',
+                border: '2px solid #f5f5f5',
                 borderRadius: 4,
                 position: 'relative',
                 overflow: 'hidden',
                 cursor: 'pointer',
-                transform: isVisible 
-                  ? 'translateY(0) scale(1)' 
+                transform: isVisible
+                  ? 'translateY(0) scale(1)'
                   : 'translateY(50px) scale(0.9)',
                 opacity: isVisible ? 1 : 0,
-                transition: `all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * 200}ms`,
+                transition: `all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${
+                  index * 200
+                }ms`,
                 '&:hover': {
                   transform: 'translateY(-8px) scale(1.02)',
-                  boxShadow: '0 20px 40px rgba(230, 126, 34, 0.15)',
-                  border: '2px solid #f39c12',
+                  boxShadow: '0 20px 40px rgba(17, 17, 17, 0.08)',
+                  border: '2px solid #bdbdbd',
                   '& .stat-icon': {
                     transform: 'scale(1.2) rotate(10deg)',
                   },
                   '& .stat-value': {
-                    background: 'linear-gradient(135deg, #e67e22 0%, #f39c12 100%)',
+                    background:
+                      'linear-gradient(135deg, #bdbdbd 0%, #e0e0e0 100%)',
                     backgroundClip: 'text',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                   },
                   '& .stat-overlay': {
                     opacity: 1,
-                  }
+                  },
                 },
                 '&::before': {
                   content: '""',
@@ -175,26 +180,27 @@ const Stats = () => {
                   left: 0,
                   right: 0,
                   height: '3px',
-                  background: 'linear-gradient(90deg, #e67e22, #f39c12)',
+                  background: 'linear-gradient(90deg, #bdbdbd, #e0e0e0)',
                   transform: 'scaleX(0)',
                   transformOrigin: 'left',
                   transition: 'transform 0.3s ease',
                 },
                 '&:hover::before': {
                   transform: 'scaleX(1)',
-                }
+                },
               }}
             >
               {/* Background Overlay */}
               <Box
-                className="stat-overlay"
+                className='stat-overlay'
                 sx={{
                   position: 'absolute',
                   top: 0,
                   left: 0,
                   right: 0,
                   bottom: 0,
-                  background: 'linear-gradient(135deg, rgba(230, 126, 34, 0.05) 0%, rgba(243, 156, 18, 0.05) 100%)',
+                  background:
+                    'linear-gradient(135deg, rgba(189, 189, 189, 0.05) 0%, rgba(224, 224, 224, 0.05) 100%)',
                   opacity: 0,
                   transition: 'opacity 0.3s ease',
                 }}
@@ -202,7 +208,7 @@ const Stats = () => {
 
               {/* Icon */}
               <Typography
-                className="stat-icon"
+                className='stat-icon'
                 sx={{
                   fontSize: '2.5rem',
                   mb: 1,
@@ -214,24 +220,25 @@ const Stats = () => {
 
               {/* Value */}
               <Typography
-                className="stat-value"
+                className='stat-value'
                 variant='h3'
                 component='p'
                 sx={{
                   fontWeight: 800,
                   fontSize: { xs: '2.2rem', sm: '2.8rem' },
-                  color: '#2c3e50',
+                  color: '#111111',
                   mb: 1,
                   lineHeight: 1,
                   letterSpacing: '-0.02em',
                   transition: 'all 0.3s ease',
                 }}
               >
-                {animatedValues[index]}{stat.suffix}
+                {animatedValues[index]}
+                {stat.suffix}
               </Typography>
 
               {/* Label */}
-              <Typography 
+              <Typography
                 variant='body1'
                 sx={{
                   color: '#7f8c8d',
@@ -254,13 +261,13 @@ const Stats = () => {
                   width: 20,
                   height: 20,
                   borderRadius: '50%',
-                  background: 'linear-gradient(135deg, #e67e22, #f39c12)',
+                  background: 'linear-gradient(135deg, #bdbdbd, #e0e0e0)',
                   opacity: 0.7,
                   transform: 'scale(0)',
                   transition: 'transform 0.3s ease 0.2s',
                   ...(isVisible && {
                     transform: 'scale(1)',
-                  })
+                  }),
                 }}
               />
               <Box
@@ -271,13 +278,13 @@ const Stats = () => {
                   width: 15,
                   height: 15,
                   borderRadius: '50%',
-                  background: 'linear-gradient(135deg, #f39c12, #e67e22)',
+                  background: 'linear-gradient(135deg, #bdbdbd, #e0e0e0)',
                   opacity: 0.5,
                   transform: 'scale(0)',
                   transition: 'transform 0.3s ease 0.4s',
                   ...(isVisible && {
                     transform: 'scale(1)',
-                  })
+                  }),
                 }}
               />
             </Paper>
