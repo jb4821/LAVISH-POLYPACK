@@ -57,11 +57,11 @@ const ProductDetailsPage = () => {
           minHeight: '60vh',
         }}>
           <Box sx={{
-            background: 'linear-gradient(135deg, #bdbdbd 0%, #e0e0e0 100%)',
-            color: '#fffaf3',
+            background: 'linear-gradient(135deg, #e67e22 0%, #f39c12 100%)',
+            color: 'white',
             p: 6,
             borderRadius: 4,
-            boxShadow: '0 20px 60px rgba(17, 17, 17, 0.3)',
+            boxShadow: '0 20px 60px rgba(230, 126, 34, 0.3)',
             maxWidth: 600,
             width: '100%',
           }}>
@@ -103,7 +103,7 @@ const ProductDetailsPage = () => {
     );
   }
 
-  const FeatureCard = ({ icon: IconComponent, title, children, color = '#757575' }) => (
+  const FeatureCard = ({ icon: IconComponent, title, children, color = '#e67e22' }) => (
     <Card sx={{
       height: '100%',
       position: 'relative',
@@ -139,7 +139,7 @@ const ProductDetailsPage = () => {
               height: 56,
               mr: 2,
               background: `linear-gradient(135deg, ${color} 0%, ${color}cc 100%)`,
-              color: '#fffaf3',
+              color: 'white',
               boxShadow: `0 8px 25px ${color}30`,
             }}>
               <IconComponent sx={{ fontSize: 28 }} />
@@ -171,7 +171,7 @@ const ProductDetailsPage = () => {
         >
           <Link href="/" style={{ textDecoration: 'none' }}>
             <Typography color="text.primary" sx={{
-              '&:hover': { color: '#bdbdbd' },
+              '&:hover': { color: '#e67e22' },
               transition: 'color 0.3s ease',
               cursor: 'pointer'
             }}>
@@ -180,14 +180,14 @@ const ProductDetailsPage = () => {
           </Link>
           <Link href="/products" style={{ textDecoration: 'none' }}>
             <Typography color="text.primary" sx={{
-              '&:hover': { color: '#bdbdbd' },
+              '&:hover': { color: '#e67e22' },
               transition: 'color 0.3s ease',
               cursor: 'pointer'
             }}>
               Products
             </Typography>
           </Link>
-          <Typography color="#111111" sx={{ fontWeight: 600 }}>
+          <Typography color="#8B4513" sx={{ fontWeight: 600 }}>
             {product.name}
           </Typography>
         </Breadcrumbs>
@@ -198,15 +198,15 @@ const ProductDetailsPage = () => {
             variant="outlined"
             startIcon={<ArrowBack />}
             sx={{
-              borderColor: '#e0e0e0',
-              color: '#111111',
+              borderColor: '#D7BFAE',
+              color: '#8B4513',
               px: 3,
               py: 1,
               borderRadius: 3,
               fontWeight: 600,
               '&:hover': {
-                borderColor: '#444444',
-                backgroundColor: '#bdbdbd10',
+                borderColor: '#d35400',
+                backgroundColor: '#e67e2210',
                 transform: 'translateX(-4px)',
               },
               transition: 'all 0.3s ease',
@@ -223,11 +223,11 @@ const ProductDetailsPage = () => {
         mb: 6,
         position: 'relative',
         py: { xs: 4, md: 6 },
-        background: '#fffaf3', // cream
+        background: '#F7E7B3', // pastel gold
         borderRadius: 4,
-        color: '#111111', // black text for contrast
-        border: '1px solid #e0e0e0', // light gray border
-        boxShadow: '0 4px 24px rgba(17, 17, 17, 0.1)', // soft shadow
+        color: '#2D2D2D', // dark text for contrast
+        border: '1px solid #D7BFAE', // pastel brown border
+        boxShadow: '0 4px 24px #D7BFAE33', // soft shadow
         overflow: 'hidden',
         '&::before': {
           content: '""',
@@ -236,7 +236,7 @@ const ProductDetailsPage = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          background: 'radial-gradient(circle at 70% 20%, rgba(189, 189, 189, 0.1) 0%, transparent 60%)',
+          background: 'radial-gradient(circle at 70% 20%, #D7BFAE22 0%, transparent 60%)',
           pointerEvents: 'none',
         }
       }}>
@@ -245,21 +245,21 @@ const ProductDetailsPage = () => {
             label={product.category}
             sx={{
               mb: 3,
-              bgcolor: '#e0e0e0', // light gray
-              color: '#111111', // black text
+              bgcolor: '#D7BFAE', // pastel brown
+              color: '#8B4513', // brown text
               fontWeight: 600,
               fontSize: '1rem',
               px: 3,
               py: 1,
               borderRadius: 6,
-              boxShadow: '0 2px 8px rgba(17, 17, 17, 0.1)',
+              boxShadow: '0 2px 8px #D7BFAE22',
             }}
           />
           <Typography variant="h2" component="h1" gutterBottom sx={{
             fontWeight: 800,
             mb: 3,
             fontFamily: '"Playfair Display", serif',
-            color: '#111111',
+            color: '#8B4513',
             fontSize: { xs: '2.5rem', md: '3.5rem', lg: '4rem' },
             lineHeight: 1.2,
             letterSpacing: '1px',
@@ -271,7 +271,7 @@ const ProductDetailsPage = () => {
             fontWeight: 400,
             lineHeight: 1.6,
             fontSize: { xs: '1.1rem', md: '1.25rem' },
-            color: '#111111',
+            color: '#2D2D2D',
             fontFamily: '"Inter", sans-serif',
             maxWidth: 600,
             mx: 'auto'
@@ -347,7 +347,7 @@ const ProductDetailsPage = () => {
           <Typography
             variant="h5"
             gutterBottom
-            sx={{ fontWeight: 700, color: '#111111', position: 'relative', mb: 3 }}
+            sx={{ fontWeight: 700, color: '#2c3e50', position: 'relative', mb: 3 }}
           >
             Product Overview
             <Box
@@ -357,7 +357,7 @@ const ProductDetailsPage = () => {
                 left: 0,
                 width: 80,
                 height: 3,
-                background: '#bdbdbd',
+                background: '#e67e22',
                 borderRadius: 2,
               }}
             />
@@ -375,7 +375,7 @@ const ProductDetailsPage = () => {
 
           {product.specifications.features && (
             <>
-              <Typography variant="h6" sx={{ fontWeight: 600, color: '#bdbdbd', mb: 2 }}>
+              <Typography variant="h6" sx={{ fontWeight: 600, color: '#e67e22', mb: 2 }}>
                 Key Features
               </Typography>
               <Stack spacing={1}>
@@ -395,7 +395,7 @@ const ProductDetailsPage = () => {
                       },
                     }}
                   >
-                    <CheckCircle sx={{ mr: 1.5, color: '#757575', flexShrink: 0 }} />
+                    <CheckCircle sx={{ mr: 1.5, color: '#27ae60', flexShrink: 0 }} />
                     <Typography variant="body2" sx={{ fontWeight: 500 }}>
                       {feature}
                     </Typography>
@@ -411,12 +411,12 @@ const ProductDetailsPage = () => {
       <Paper elevation={0} sx={{
         p: { xs: 0, sm: 3, md: 6 },
         mb: 6,
-        background: 'linear-gradient(135deg, #111111 0%, #444444 100%)',
-        color: '#fffaf3',
+        background: 'linear-gradient(135deg, #2c3e50 0%, #34495e 100%)',
+        color: 'white',
         borderRadius: { xs: 0, sm: 2, md: 4 },
         position: 'relative',
         overflow: 'hidden',
-        boxShadow: '0 20px 60px rgba(17, 17, 17, 0.3)',
+        boxShadow: '0 20px 60px rgba(44, 62, 80, 0.3)',
         maxWidth: '100%',
         width: '100%',
       }}>
@@ -432,7 +432,7 @@ const ProductDetailsPage = () => {
           <Box sx={{
             width: 120,
             height: 4,
-            background: 'linear-gradient(90deg, #bdbdbd, #757575)',
+            background: 'linear-gradient(90deg, #3498db, #9b59b6)',
             borderRadius: 2,
             mx: 'auto',
             mt: 2
@@ -455,21 +455,21 @@ const ProductDetailsPage = () => {
             <thead>
               <tr>
                 <th style={{
-                  background: '#e0e0e0',
-                  color: '#111111',
+                  background: '#D7BFAE',
+                  color: '#8B4513',
                   fontWeight: 700,
                   fontSize: '1.1rem',
                   padding: '14px 12px',
-                  border: '1px solid #e0e0e0',
+                  border: '1px solid #D7BFAE',
                   textAlign: 'left'
                 }}>Specification</th>
                 <th style={{
-                  background: '#fffaf3',
-                  color: '#111111',
+                  background: '#F7E7B3',
+                  color: '#2D2D2D',
                   fontWeight: 700,
                   fontSize: '1.1rem',
                   padding: '14px 12px',
-                  border: '1px solid #e0e0e0',
+                  border: '1px solid #D7BFAE',
                   textAlign: 'left'
                 }}>Details</th>
               </tr>
@@ -483,8 +483,8 @@ const ProductDetailsPage = () => {
                   }}>
                     <td style={{
                       padding: '12px 12px',
-                      border: '1px solid #e0e0e0',
-                      color: '#111111',
+                      border: '1px solid #D7BFAE',
+                      color: '#8B4513',
                       fontWeight: 600,
                       minWidth: 160
                     }}>
@@ -492,8 +492,8 @@ const ProductDetailsPage = () => {
                     </td>
                     <td style={{
                       padding: '12px 12px',
-                      border: '1px solid #e0e0e0',
-                      color: '#111111',
+                      border: '1px solid #D7BFAE',
+                      color: '#2D2D2D',
                       fontWeight: 500
                     }}>
                       {Array.isArray(value) ? value.join(', ') : value}
@@ -506,8 +506,8 @@ const ProductDetailsPage = () => {
                 }}>
                   <td style={{
                     padding: '12px 12px',
-                    border: '1px solid #e0e0e0',
-                    color: '#111111',
+                    border: '1px solid #D7BFAE',
+                    color: '#8B4513',
                     fontWeight: 600,
                     minWidth: 160
                   }}>
@@ -515,8 +515,8 @@ const ProductDetailsPage = () => {
                   </td>
                   <td style={{
                     padding: '12px 12px',
-                    border: '1px solid #e0e0e0',
-                    color: '#111111',
+                    border: '1px solid #D7BFAE',
+                    color: '#2D2D2D',
                     fontWeight: 500
                   }}>
                     {Array.isArray(value) ? value.join(', ') : value}
@@ -533,7 +533,7 @@ const ProductDetailsPage = () => {
         p: 6,
         mb: 6,
         background: 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
-        border: '2px solid #bdbdbd20',
+        border: '2px solid #e67e2220',
         borderRadius: 4,
         position: 'relative',
         overflow: 'hidden',
@@ -546,13 +546,13 @@ const ProductDetailsPage = () => {
           left: 0,
           width: '100%',
           height: '6px',
-          background: 'linear-gradient(90deg, #bdbdbd, #e0e0e0)',
+          background: 'linear-gradient(90deg, #e67e22, #f39c12, #e67e22)',
         }
       }}>
         <Box sx={{ textAlign: 'center', mb: 6 }}>
           <Typography variant="h3" gutterBottom sx={{
             fontWeight: 700,
-            color: '#111111',
+            color: '#2c3e50',
             fontSize: { xs: '2.5rem', md: '3rem' }
           }}>
             Applications & Uses
@@ -560,7 +560,7 @@ const ProductDetailsPage = () => {
           <Box sx={{
             width: 120,
             height: 4,
-            background: 'linear-gradient(90deg, #bdbdbd, #e0e0e0)',
+            background: 'linear-gradient(90deg, #e67e22, #f39c12)',
             borderRadius: 2,
             mx: 'auto',
             mt: 2
@@ -572,8 +572,8 @@ const ProductDetailsPage = () => {
             <Grid item xs={12} sm={6} md={4} key={index}>
               <Box sx={{
                 p: 4,
-                background: 'linear-gradient(135deg, #bdbdbd08 0%, #bdbdbd15 100%)',
-                border: '2px solid #bdbdbd20',
+                background: 'linear-gradient(135deg, #e67e2208 0%, #e67e2215 100%)',
+                border: '2px solid #e67e2220',
                 borderRadius: 4,
                 textAlign: 'center',
                 transition: 'all 0.4s ease',
@@ -584,25 +584,25 @@ const ProductDetailsPage = () => {
                 justifyContent: 'center',
                 '&:hover': {
                   transform: 'translateY(-8px) scale(1.03)',
-                  border: '2px solid #bdbdbd40',
-                  boxShadow: '0 15px 40px rgba(189, 189, 189, 0.2)',
+                  border: '2px solid #e67e2240',
+                  boxShadow: '0 15px 40px rgba(230, 126, 34, 0.2)',
                 }
               }}>
                 <Avatar sx={{
                   width: 70,
                   height: 70,
                   mb: 3,
-                  background: 'linear-gradient(135deg, #bdbdbd 0%, #e0e0e0 100%)',
-                  color: '#fffaf3',
+                  background: 'linear-gradient(135deg, #e67e22 0%, #f39c12 100%)',
+                  color: 'white',
                   fontSize: '1.8rem',
                   fontWeight: 700,
-                  boxShadow: '0 8px 25px rgba(189, 189, 189, 0.3)',
+                  boxShadow: '0 8px 25px rgba(230, 126, 34, 0.3)',
                 }}>
                   {index + 1}
                 </Avatar>
                 <Typography variant="h6" sx={{
                   fontWeight: 600,
-                  color: '#111111',
+                  color: '#2c3e50',
                   lineHeight: 1.5,
                   textAlign: 'center'
                 }}>
@@ -618,12 +618,12 @@ const ProductDetailsPage = () => {
       <Paper elevation={0} sx={{
         p: 6,
         mb: 6,
-        background: 'linear-gradient(135deg, #757575 0%, #bdbdbd 100%)',
-        color: '#fffaf3',
+        background: 'linear-gradient(135deg, #27ae60 0%, #2ecc71 100%)',
+        color: 'white',
         borderRadius: 4,
         position: 'relative',
         overflow: 'hidden',
-        boxShadow: '0 20px 60px rgba(117, 117, 117, 0.3)',
+        boxShadow: '0 20px 60px rgba(39, 174, 96, 0.3)',
         maxWidth: '100%',
         width: '100%',
       }}>
@@ -691,7 +691,7 @@ const ProductDetailsPage = () => {
         p: 6,
         textAlign: 'center',
         background: 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
-        border: '2px solid #bdbdbd20',
+        border: '2px solid #f39c1220',
         borderRadius: 4,
         position: 'relative',
         overflow: 'hidden',
@@ -704,15 +704,15 @@ const ProductDetailsPage = () => {
           left: 0,
           width: '100%',
           height: '6px',
-          background: 'linear-gradient(90deg, #bdbdbd, #e0e0e0, #bdbdbd)',
+          background: 'linear-gradient(90deg, #f39c12, #e67e22, #f39c12)',
         }
       }}>
         <Stack spacing={4} alignItems="center">
           <Avatar sx={{
             width: 90,
             height: 90,
-            background: 'linear-gradient(135deg, #bdbdbd 0%, #e0e0e0 100%)',
-            boxShadow: '0 12px 40px rgba(189, 189, 189, 0.3)',
+            background: 'linear-gradient(135deg, #e67e22 0%, #f39c12 100%)',
+            boxShadow: '0 12px 40px rgba(230, 126, 34, 0.3)',
           }}>
             <ContactMail sx={{ fontSize: 45 }} />
           </Avatar>
@@ -720,7 +720,7 @@ const ProductDetailsPage = () => {
           <Box>
             <Typography variant="h4" gutterBottom sx={{
               fontWeight: 700,
-              color: '#111111',
+              color: '#2c3e50',
               mb: 2
             }}>
               Interested in this Product?
@@ -747,12 +747,12 @@ const ProductDetailsPage = () => {
                   fontSize: '1.1rem',
                   fontWeight: 600,
                   borderRadius: 3,
-                  background: 'linear-gradient(135deg, #bdbdbd 0%, #e0e0e0 100%)',
-                  boxShadow: '0 10px 30px rgba(189, 189, 189, 0.3)',
+                  background: 'linear-gradient(135deg, #e67e22 0%, #f39c12 100%)',
+                  boxShadow: '0 10px 30px rgba(230, 126, 34, 0.3)',
                   '&:hover': {
-                    background: 'linear-gradient(135deg, #444444 0%, #bdbdbd 100%)',
+                    background: 'linear-gradient(135deg, #d35400 0%, #e67e22 100%)',
                     transform: 'translateY(-3px)',
-                    boxShadow: '0 15px 40px rgba(189, 189, 189, 0.4)',
+                    boxShadow: '0 15px 40px rgba(230, 126, 34, 0.4)',
                   }
                 }}
               >
@@ -770,14 +770,14 @@ const ProductDetailsPage = () => {
                   fontSize: '1.1rem',
                   fontWeight: 600,
                   borderRadius: 3,
-                  borderColor: '#bdbdbd',
-                  color: '#bdbdbd',
+                  borderColor: '#e67e22',
+                  color: '#e67e22',
                   borderWidth: 2,
                   '&:hover': {
-                    borderColor: '#444444',
-                    backgroundColor: '#bdbdbd10',
+                    borderColor: '#d35400',
+                    backgroundColor: '#e67e2210',
                     transform: 'translateY(-3px)',
-                    boxShadow: '0 8px 25px rgba(189, 189, 189, 0.2)',
+                    boxShadow: '0 8px 25px rgba(230, 126, 34, 0.2)',
                   }
                 }}
               >
@@ -806,8 +806,8 @@ const ProductDetailsPage = () => {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          bgcolor: '#fffaf3', // cream
-          color: '#111111', // black text
+          bgcolor: '#F7E7B3', // pastel brown
+          color: '#8B4513', // brown text
           py: 3
         }}>
           <Typography variant="h6" sx={{ fontWeight: 600, fontSize: '1.25rem' }}>

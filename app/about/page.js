@@ -1,154 +1,92 @@
 'use client';
 import logo from '../../public/bgg-image.jpeg';
-import {
-  Container,
-  Typography,
-  Paper,
-  Grid,
-  Box,
-  Card,
-  CardContent,
-  Avatar,
-  Chip,
-} from '@mui/material';
-import {
-  Factory,
-  Public,
-  EmojiEvents,
-  Security,
-  TrendingUp,
-  Group,
-  Science,
-} from '@mui/icons-material';
+import { Container, Typography, Paper, Grid, Box, Card, CardContent, Avatar, Chip } from '@mui/material';
+import { Factory, Public, EmojiEvents, Security, TrendingUp, Group, Science } from '@mui/icons-material';
 
 const AboutPage = () => {
   const companyStats = [
-    {
-      icon: Factory,
-      title: 'Years of Experience',
-      value: '5+',
-      description: 'In manufacturing excellence',
-      color: '#111111',
-    },
-    {
-      icon: Public,
-      title: 'Global Reach',
-      value: '25+',
-      description: 'Countries served worldwide',
-      color: '#bdbdbd',
-    },
-    {
-      icon: EmojiEvents,
-      title: 'Quality Certifications',
-      value: '5+',
-      description: 'International standards',
-      color: '#111111',
-    },
-    {
-      icon: Security,
-      title: 'Customer Satisfaction',
-      value: '98%',
-      description: 'Client retention rate',
-      color: '#bdbdbd',
-    },
+    { icon: Factory, title: 'Years of Experience', value: '5+', description: 'In manufacturing excellence', color: '#8B4513' },
+    { icon: Public, title: 'Global Reach', value: '25+', description: 'Countries served worldwide', color: '#D4AF37' },
+    { icon: EmojiEvents, title: 'Quality Certifications', value: '5+', description: 'International standards', color: '#8B4513' },
+    { icon: Security, title: 'Customer Satisfaction', value: '98%', description: 'Client retention rate', color: '#D4AF37' },
   ];
 
   const coreValues = [
     {
       icon: TrendingUp,
       title: 'Innovation',
-      description:
-        'Continuously improving our products and processes to meet evolving market demands.',
-      color: '#757575',
+      description: 'Continuously improving our products and processes to meet evolving market demands.',
+      color: '#9b59b6'
     },
     {
       icon: Security,
       title: 'Quality',
-      description:
-        'Maintaining the highest standards in every product we manufacture and deliver.',
-      color: '#444444',
+      description: 'Maintaining the highest standards in every product we manufacture and deliver.',
+      color: '#e74c3c'
     },
     {
       icon: Group,
       title: 'Customer Focus',
-      description:
-        'Building long-term partnerships through exceptional service and reliability.',
-      color: '#757575',
+      description: 'Building long-term partnerships through exceptional service and reliability.',
+      color: '#1abc9c'
     },
     {
       icon: Science,
       title: 'Sustainability',
-      description:
-        'Committed to eco-friendly practices and responsible manufacturing.',
-      color: '#444444',
-    },
+      description: 'Committed to eco-friendly practices and responsible manufacturing.',
+      color: '#2ecc71'
+    }
   ];
 
   const StatCard = ({ stat }) => {
     const IconComponent = stat.icon;
     return (
-      <Card
-        sx={{
-          height: '100%',
-          background: `linear-gradient(135deg, #fffaf3 0%, ${stat.color}10 100%)`,
-          border: `1px solid ${stat.color}20`,
-          borderRadius: 2,
-          transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-          '&:hover': {
-            transform: 'translateY(-6px) scale(1.02)',
-            boxShadow: `0 10px 25px ${stat.color}30`,
-            border: `1px solid ${stat.color}50`,
-          },
-        }}
-      >
+      <Card sx={{
+        height: '100%',
+        background: `linear-gradient(135deg, #FEFEFE 0%, ${stat.color}10 100%)`,
+        border: `1px solid ${stat.color}20`,
+        borderRadius: 2,
+        transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+        '&:hover': {
+          transform: 'translateY(-6px) scale(1.02)',
+          boxShadow: `0 10px 25px ${stat.color}30`,
+          border: `1px solid ${stat.color}50`,
+        },
+      }}>
         <CardContent sx={{ py: 4, textAlign: 'center' }}>
-          <Avatar
-            sx={{
-              width: 64,
-              height: 64,
-              mx: 'auto',
-              mb: 2,
-              background: stat.color,
-              color: '#fffaf3',
-              boxShadow: `0 6px 20px ${stat.color}30`,
-            }}
-          >
+          <Avatar sx={{
+            width: 64,
+            height: 64,
+            mx: 'auto',
+            mb: 2,
+            background: stat.color,
+            color: 'white',
+            boxShadow: `0 6px 20px ${stat.color}30`,
+          }}>
             <IconComponent sx={{ fontSize: 32 }} />
           </Avatar>
-          <Typography
-            variant='h3'
-            component='div'
-            sx={{
-              fontWeight: 700,
-              color: stat.color,
-              mb: 1,
-              fontFamily: '"Playfair Display", serif',
-              fontSize: { xs: '2rem', md: '2.5rem' },
-            }}
-          >
+          <Typography variant="h3" component="div" sx={{
+            fontWeight: 700,
+            color: stat.color,
+            mb: 1,
+            fontFamily: '"Playfair Display", serif',
+            fontSize: { xs: '2rem', md: '2.5rem' },
+          }}>
             {stat.value}
           </Typography>
-          <Typography
-            variant='h6'
-            component='div'
-            sx={{
-              fontWeight: 600,
-              mb: 1,
-              color: '#111111',
-              fontFamily: '"Inter", sans-serif',
-            }}
-          >
+          <Typography variant="h6" component="div" sx={{
+            fontWeight: 600,
+            mb: 1,
+            color: '#2D2D2D',
+            fontFamily: '"Inter", sans-serif',
+          }}>
             {stat.title}
           </Typography>
-          <Typography
-            variant='body2'
-            color='text.secondary'
-            sx={{
-              lineHeight: 1.6,
-              fontFamily: '"Inter", sans-serif',
-              fontSize: { xs: '0.9rem', md: '1rem' },
-            }}
-          >
+          <Typography variant="body2" color="text.secondary" sx={{
+            lineHeight: 1.6,
+            fontFamily: '"Inter", sans-serif',
+            fontSize: { xs: '0.9rem', md: '1rem' },
+          }}>
             {stat.description}
           </Typography>
         </CardContent>
@@ -159,58 +97,46 @@ const AboutPage = () => {
   const ValueCard = ({ value }) => {
     const IconComponent = value.icon;
     return (
-      <Card
-        sx={{
-          height: '100%',
-          width: '100%',
-          maxWidth: '300px',
-          background: `linear-gradient(135deg, #fffaf3 0%, ${value.color}08 100%)`,
-          border: `1px solid ${value.color}20`,
-          borderRadius: 2,
-          transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-          '&:hover': {
-            transform: 'translateY(-6px)',
-            boxShadow: `0 12px 30px ${value.color}30`,
-            border: `1px solid ${value.color}50`,
-          },
-        }}
-      >
+      <Card sx={{
+        height: '100%',
+        width: "100%",
+        maxWidth: "300px",
+        background: `linear-gradient(135deg, #FEFEFE 0%, ${value.color}08 100%)`,
+        border: `1px solid ${value.color}20`,
+        borderRadius: 2,
+        transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+        '&:hover': {
+          transform: 'translateY(-6px)',
+          boxShadow: `0 12px 30px ${value.color}30`,
+          border: `1px solid ${value.color}50`,
+        },
+      }}>
         <CardContent sx={{ py: 4, textAlign: 'center' }}>
-          <Avatar
-            sx={{
-              width: 72,
-              height: 72,
-              mx: 'auto',
-              mb: 3,
-              background: value.color,
-              color: '#fffaf3',
-              boxShadow: `0 8px 25px ${value.color}30`,
-            }}
-          >
+          <Avatar sx={{
+            width: 72,
+            height: 72,
+            mx: 'auto',
+            mb: 3,
+            background: value.color,
+            color: 'white',
+            boxShadow: `0 8px 25px ${value.color}30`,
+          }}>
             <IconComponent sx={{ fontSize: 36 }} />
           </Avatar>
-          <Typography
-            variant='h5'
-            component='div'
-            sx={{
-              fontWeight: 600,
-              mb: 2,
-              color: value.color,
-              fontFamily: '"Playfair Display", serif',
-              fontSize: { xs: '1.3rem', md: '1.5rem' },
-            }}
-          >
+          <Typography variant="h5" component="div" sx={{
+            fontWeight: 600,
+            mb: 2,
+            color: value.color,
+            fontFamily: '"Playfair Display", serif',
+            fontSize: { xs: '1.3rem', md: '1.5rem' },
+          }}>
             {value.title}
           </Typography>
-          <Typography
-            variant='body2'
-            color='text.secondary'
-            sx={{
-              lineHeight: 1.7,
-              fontSize: { xs: '0.9rem', md: '0.95rem' },
-              fontFamily: '"Inter", sans-serif',
-            }}
-          >
+          <Typography variant="body2" color="text.secondary" sx={{
+            lineHeight: 1.7,
+            fontSize: { xs: '0.9rem', md: '0.95rem' },
+            fontFamily: '"Inter", sans-serif',
+          }}>
             {value.description}
           </Typography>
         </CardContent>
@@ -219,89 +145,68 @@ const AboutPage = () => {
   };
 
   return (
-    <Container maxWidth='xl' sx={{ py: { xs: 6, md: 8 } }}>
-      <Box
-        sx={{
-          textAlign: 'center',
-          mb: 8,
-          position: 'relative',
-          py: { xs: 6, md: 8 },
-          background: '#fffaf3', // cream
-          borderRadius: 3,
-          color: '#111111', // black text for contrast
-          border: '1px solid #e0e0e0', // light gray border
-          boxShadow: '0 2px 12px rgba(17, 17, 17, 0.1)', // soft shadow
-          overflow: 'hidden',
-          '&::before': {
-            content: '""',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background:
-              'radial-gradient(circle at 30% 20%, rgba(189, 189, 189, 0.1) 0%, transparent 60%)',
-            pointerEvents: 'none',
-          },
-        }}
-      >
+    <Container maxWidth="xl" sx={{ py: { xs: 6, md: 8 } }}>
+      <Box sx={{
+        textAlign: 'center',
+        mb: 8,
+        position: 'relative',
+        py: { xs: 6, md: 8 },
+        background: '#F7E7B3', // pastel gold
+        borderRadius: 3,
+        color: '#2D2D2D', // dark text for contrast
+        border: '1px solid #D7BFAE', // pastel brown border
+        boxShadow: '0 2px 12px #D7BFAE33', // very soft shadow
+        overflow: 'hidden',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'radial-gradient(circle at 30% 20%, #D7BFAE22 0%, transparent 60%)',
+          pointerEvents: 'none',
+        },
+      }}>
         <Box sx={{ position: 'relative', zIndex: 1, px: { xs: 2, md: 0 } }}>
           <Chip
-            label='Industry Leader'
+            label="Industry Leader"
             sx={{
               mb: 3,
-              bgcolor: '#e0e0e0', // light gray
-              color: '#111111', // black text
+              bgcolor: '#D7BFAE', // pastel brown
+              color: '#8B4513', // brown text
               fontWeight: 500,
               fontSize: '0.9rem',
               fontFamily: '"Inter", sans-serif',
-              boxShadow: '0 2px 8px rgba(17, 17, 17, 0.1)',
+              boxShadow: '0 2px 8px #D7BFAE22',
             }}
           />
-          <Typography
-            variant='h2'
-            component='h1'
-            gutterBottom
-            sx={{
-              fontWeight: 700,
-              mb: 2,
-              fontSize: { xs: '2.2rem', sm: '2.8rem', md: '3.2rem' },
-              fontFamily: '"Playfair Display", serif',
-              color: '#111111',
-              letterSpacing: '2px',
-            }}
-          >
+          <Typography variant="h2" component="h1" gutterBottom sx={{
+            fontWeight: 700,
+            mb: 2,
+            fontSize: { xs: '2.2rem', sm: '2.8rem', md: '3.2rem' },
+            fontFamily: '"Playfair Display", serif',
+            color: '#8B4513',
+            letterSpacing: '2px',
+          }}>
             About Lavish Polypack LLP
           </Typography>
-          <Typography
-            variant='h5'
-            sx={{
-              maxWidth: '800px',
-              mx: 'auto',
-              opacity: 0.95,
-              fontWeight: 400,
-              lineHeight: 1.5,
-              fontSize: { xs: '1.1rem', md: '1.3rem' },
-              fontFamily: '"Inter", sans-serif',
-              color: '#111111',
-            }}
-          >
-            Leading the Future of Packaging Solutions with Innovation &
-            Excellence
+          <Typography variant="h5" sx={{
+            maxWidth: '800px',
+            mx: 'auto',
+            opacity: 0.95,
+            fontWeight: 400,
+            lineHeight: 1.5,
+            fontSize: { xs: '1.1rem', md: '1.3rem' },
+            fontFamily: '"Inter", sans-serif',
+            color: '#2D2D2D',
+          }}>
+            Leading the Future of Packaging Solutions with Innovation & Excellence
           </Typography>
         </Box>
       </Box>
 
-      <Grid
-        container
-        spacing={{ xs: 2, md: 4 }}
-        sx={{
-          mb: 8,
-          display: 'flex',
-          justifyContent: 'space-around',
-          alignItems: 'center',
-        }}
-      >
+      <Grid container spacing={{ xs: 2, md: 4 }} sx={{ mb: 8, display: "flex", justifyContent: "space-around", alignItems: "center" }}>
         {companyStats.map((stat, index) => (
           <Grid item xs={12} sm={6} lg={3} key={index}>
             <StatCard stat={stat} />
@@ -314,7 +219,7 @@ const AboutPage = () => {
           width: '100%',
           mb: 6,
           height: { xs: '200px', md: '300px' },
-          backgroundImage: `url(${logo.src})`, // Fixed the typo in extension
+           backgroundImage: `url(${logo.src})`, // Fixed the typo in extension
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -462,13 +367,13 @@ your dependable global packaging partner.​
             }}
           >
             <Typography
-              variant='h4'
-              component='h3'
+              variant="h4"
+              component="h3"
               gutterBottom
               sx={{
                 fontWeight: 600,
                 mb: 2,
-                color: '#111111',
+                color: '#8B4513',
                 fontFamily: '"Playfair Display", serif',
                 fontSize: { xs: '1.3rem', md: '1.6rem' },
               }}
@@ -476,11 +381,11 @@ your dependable global packaging partner.​
               Our Mission
             </Typography>
             <Typography
-              variant='body1'
+              variant="body1"
               sx={{
                 fontSize: { xs: '0.95rem', md: '1.1rem' },
                 lineHeight: 1.8,
-                color: '#111111',
+                color: '#2D2D2D',
                 fontFamily: '"Inter", sans-serif',
               }}
             >
@@ -511,13 +416,13 @@ your dependable global packaging partner.​
             }}
           >
             <Typography
-              variant='h4'
-              component='h3'
+              variant="h4"
+              component="h3"
               gutterBottom
               sx={{
                 fontWeight: 600,
                 mb: 2,
-                color: '#111111',
+                color: '#8B4513',
                 fontFamily: '"Playfair Display", serif',
                 fontSize: { xs: '1.3rem', md: '1.6rem' },
               }}
@@ -525,11 +430,11 @@ your dependable global packaging partner.​
               Our Vision
             </Typography>
             <Typography
-              variant='body1'
+              variant="body1"
               sx={{
                 fontSize: { xs: '0.95rem', md: '1.1rem' },
                 lineHeight: 1.8,
-                color: '#111111',
+                color: '#2D2D2D',
                 fontFamily: '"Inter", sans-serif',
               }}
             >
@@ -545,51 +450,43 @@ your dependable global packaging partner.​
         </Grid>
       </Grid>
 
-      <Paper
-        elevation={0}
-        sx={{
-          p: { xs: 4, md: 6 },
-          mb: 6,
-          background: 'linear-gradient(135deg, #fffaf3 0%, #f8f6f3 100%)',
-          border: '1px solid #f0f0f0',
-          borderRadius: 3,
-          position: 'relative',
-          overflow: 'hidden',
-          '&::before': {
+      <Paper elevation={0} sx={{
+        p: { xs: 4, md: 6 },
+        mb: 6,
+        background: 'linear-gradient(135deg, #FEFEFE 0%, #F8F6F3 100%)',
+        border: '1px solid #F0F0F0',
+        borderRadius: 3,
+        position: 'relative',
+        overflow: 'hidden',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '4px',
+          background: 'linear-gradient(90deg, #8B4513, #D4AF37)',
+        },
+      }}>
+        <Typography variant="h3" component="h2" gutterBottom sx={{
+          fontWeight: 700,
+          mb: 5,
+          textAlign: 'center',
+          color: '#2D2D2D',
+          fontFamily: '"Playfair Display", serif',
+          fontSize: { xs: '1.8rem', md: '2.2rem' },
+          '&::after': {
             content: '""',
             position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '4px',
-            background: 'linear-gradient(90deg, #111111, #bdbdbd)',
+            bottom: -12,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '80px',
+            height: '3px',
+            background: 'linear-gradient(90deg, #8B4513, #D4AF37)',
+            borderRadius: 2,
           },
-        }}
-      >
-        <Typography
-          variant='h3'
-          component='h2'
-          gutterBottom
-          sx={{
-            fontWeight: 700,
-            mb: 5,
-            textAlign: 'center',
-            color: '#111111',
-            fontFamily: '"Playfair Display", serif',
-            fontSize: { xs: '1.8rem', md: '2.2rem' },
-            '&::after': {
-              content: '""',
-              position: 'absolute',
-              bottom: -12,
-              left: '50%',
-              transform: 'translateX(-50%)',
-              width: '80px',
-              height: '3px',
-              background: 'linear-gradient(90deg, #111111, #bdbdbd)',
-              borderRadius: 2,
-            },
-          }}
-        >
+        }}>
           Our Core Values
         </Typography>
         <Grid container spacing={{ xs: 2, md: 4 }}>
@@ -601,162 +498,116 @@ your dependable global packaging partner.​
         </Grid>
       </Paper>
 
-      <Paper
-        elevation={0}
-        sx={{
-          p: { xs: 4, md: 6 },
-          mb: 6,
-          background: 'linear-gradient(135deg, #2d2d2d 0%, #444 100%)',
-          color: 'white',
-          borderRadius: 3,
-          position: 'relative',
-          overflow: 'hidden',
-          boxShadow: '0 10px 25px rgba(0, 0, 0, 0.2)',
-        }}
-      >
-        <Typography
-          variant='h3'
-          component='h2'
-          gutterBottom
-          sx={{
-            fontWeight: 700,
-            mb: 4,
-            color: 'white',
-            textAlign: 'center',
-            textShadow: '0 2px 4px rgba(0,0,0,0.3)',
-            fontFamily: '"Playfair Display", serif',
-            fontSize: { xs: '1.8rem', md: '2.2rem' },
-          }}
-        >
+      <Paper elevation={0} sx={{
+        p: { xs: 4, md: 6 },
+        mb: 6,
+        background: 'linear-gradient(135deg, #2D2D2D 0%, #444 100%)',
+        color: 'white',
+        borderRadius: 3,
+        position: 'relative',
+        overflow: 'hidden',
+        boxShadow: '0 10px 25px rgba(0, 0, 0, 0.2)',
+      }}>
+        <Typography variant="h3" component="h2" gutterBottom sx={{
+          fontWeight: 700,
+          mb: 4,
+          color: "white",
+          textAlign: 'center',
+          textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+          fontFamily: '"Playfair Display", serif',
+          fontSize: { xs: '1.8rem', md: '2.2rem' },
+        }}>
           Manufacturing Excellence
         </Typography>
         <Grid container spacing={4}>
           <Grid item xs={12} md={6}>
             <Box sx={{ mb: 4 }}>
-              <Typography
-                variant='h5'
-                gutterBottom
-                sx={{
-                  fontWeight: 600,
-                  color: '#bdbdbd',
-                  mb: 2,
-                  fontFamily: '"Playfair Display", serif',
-                  fontSize: { xs: '1.3rem', md: '1.5rem' },
-                }}
-              >
+              <Typography variant="h5" gutterBottom sx={{
+                fontWeight: 600,
+                color: '#D4AF37',
+                mb: 2,
+                fontFamily: '"Playfair Display", serif',
+                fontSize: { xs: '1.3rem', md: '1.5rem' },
+              }}>
                 State-of-the-Art Infrastructure
               </Typography>
-              <Typography
-                variant='body1'
-                paragraph
-                sx={{
-                  lineHeight: 1.8,
-                  opacity: 0.9,
-                  color: 'white',
-                  fontFamily: '"Inter", sans-serif',
-                  fontSize: { xs: '0.95rem', md: '1.1rem' },
-                }}
-              >
-                Our manufacturing facility is equipped with the latest
-                technology and modern machinery, ensuring consistent quality and
-                high production capacity. We maintain strict quality control
-                measures at every stage of production.
+              <Typography variant="body1" paragraph sx={{
+                lineHeight: 1.8,
+                opacity: 0.9,
+                color: "white",
+                fontFamily: '"Inter", sans-serif',
+                fontSize: { xs: '0.95rem', md: '1.1rem' },
+              }}>
+                Our manufacturing facility is equipped with the latest technology and modern machinery, ensuring
+                consistent quality and high production capacity. We maintain strict quality control measures at
+                every stage of production.
               </Typography>
             </Box>
             <Box>
-              <Typography
-                variant='h5'
-                gutterBottom
-                sx={{
-                  fontWeight: 600,
-                  color: '#bdbdbd',
-                  mb: 2,
-                  fontFamily: '"Playfair Display", serif',
-                  fontSize: { xs: '1.3rem', md: '1.5rem' },
-                }}
-              >
+              <Typography variant="h5" gutterBottom sx={{
+                fontWeight: 600,
+                color: '#D4AF37',
+                mb: 2,
+                fontFamily: '"Playfair Display", serif',
+                fontSize: { xs: '1.3rem', md: '1.5rem' },
+              }}>
                 Skilled Workforce
               </Typography>
-              <Typography
-                variant='body1'
-                paragraph
-                sx={{
-                  lineHeight: 1.8,
-                  opacity: 0.9,
-                  color: 'white',
-                  fontFamily: '"Inter", sans-serif',
-                  fontSize: { xs: '0.95rem', md: '1.1rem' },
-                }}
-              >
-                Our team consists of experienced professionals and skilled
-                workers who are committed to delivering excellence in every
-                product. Continuous training and development programs ensure our
-                workforce stays updated with the latest industry practices.
+              <Typography variant="body1" paragraph sx={{
+                lineHeight: 1.8,
+                opacity: 0.9,
+                color: "white",
+                fontFamily: '"Inter", sans-serif',
+                fontSize: { xs: '0.95rem', md: '1.1rem' },
+              }}>
+                Our team consists of experienced professionals and skilled workers who are committed to delivering
+                excellence in every product. Continuous training and development programs ensure our workforce
+                stays updated with the latest industry practices.
               </Typography>
             </Box>
           </Grid>
           <Grid item xs={12} md={6}>
             <Box sx={{ mb: 4 }}>
-              <Typography
-                variant='h5'
-                gutterBottom
-                sx={{
-                  fontWeight: 600,
-                  color: '#bdbdbd',
-                  mb: 2,
-                  fontFamily: '"Playfair Display", serif',
-                  fontSize: { xs: '1.3rem', md: '1.5rem' },
-                }}
-              >
+              <Typography variant="h5" gutterBottom sx={{
+                fontWeight: 600,
+                color: '#D4AF37',
+                mb: 2,
+                fontFamily: '"Playfair Display", serif',
+                fontSize: { xs: '1.3rem', md: '1.5rem' },
+              }}>
                 Quality Assurance
               </Typography>
-              <Typography
-                variant='body1'
-                paragraph
-                sx={{
-                  lineHeight: 1.8,
-                  opacity: 0.9,
-                  color: 'white',
-                  fontFamily: '"Inter", sans-serif',
-                  fontSize: { xs: '0.95rem', md: '1.1rem' },
-                }}
-              >
-                We follow international quality standards and have obtained
-                various certifications including ISO, BIS, and other relevant
-                quality certifications. Our quality control team ensures that
-                every product meets our high standards before reaching
-                customers.
+              <Typography variant="body1" paragraph sx={{
+                lineHeight: 1.8,
+                opacity: 0.9,
+                color: "white",
+                fontFamily: '"Inter", sans-serif',
+                fontSize: { xs: '0.95rem', md: '1.1rem' },
+              }}>
+                We follow international quality standards and have obtained various certifications including ISO,
+                BIS, and other relevant quality certifications. Our quality control team ensures that every
+                product meets our high standards before reaching customers.
               </Typography>
             </Box>
             <Box>
-              <Typography
-                variant='h5'
-                gutterBottom
-                sx={{
-                  fontWeight: 600,
-                  color: '#bdbdbd',
-                  mb: 2,
-                  fontFamily: '"Playfair Display", serif',
-                  fontSize: { xs: '1.3rem', md: '1.5rem' },
-                }}
-              >
+              <Typography variant="h5" gutterBottom sx={{
+                fontWeight: 600,
+                color: '#D4AF37',
+                mb: 2,
+                fontFamily: '"Playfair Display", serif',
+                fontSize: { xs: '1.3rem', md: '1.5rem' },
+              }}>
                 Research & Development
               </Typography>
-              <Typography
-                variant='body1'
-                paragraph
-                sx={{
-                  lineHeight: 1.8,
-                  opacity: 0.9,
-                  color: 'white',
-                  fontFamily: '"Inter", sans-serif',
-                  fontSize: { xs: '0.95rem', md: '1.1rem' },
-                }}
-              >
-                Our dedicated R&D team continuously works on developing
-                innovative products and improving existing ones to meet the
-                evolving needs of our customers and stay ahead in the
-                competitive market.
+              <Typography variant="body1" paragraph sx={{
+                lineHeight: 1.8,
+                opacity: 0.9,
+                color: "white",
+                fontFamily: '"Inter", sans-serif',
+                fontSize: { xs: '0.95rem', md: '1.1rem' },
+              }}>
+                Our dedicated R&D team continuously works on developing innovative products and improving
+                existing ones to meet the evolving needs of our customers and stay ahead in the competitive market.
               </Typography>
             </Box>
           </Grid>

@@ -2,20 +2,20 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import LOGO from '../public/pollypack.png';
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  Drawer,
-  IconButton,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemButton,
+import { 
+  AppBar, 
+  Toolbar, 
+  Typography, 
+  Button, 
+  Drawer, 
+  IconButton, 
+  List, 
+  ListItem, 
+  ListItemText, 
+  ListItemButton, 
   Box,
   Container,
-  Divider,
+  Divider
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
@@ -43,7 +43,7 @@ const Header = () => {
   // Enhanced scroll handler
   useEffect(() => {
     let ticking = false;
-
+    
     const handleScroll = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
@@ -74,32 +74,30 @@ const Header = () => {
   };
 
   const drawer = (
-    <Drawer
-      anchor='left'
-      open={drawerOpen}
+    <Drawer 
+      anchor="left" 
+      open={drawerOpen} 
       onClose={handleDrawerToggle}
       PaperProps={{
         sx: {
-          background: '#fffaf3',
-          color: '#111111',
+          background: '#FEFEFE',
+          color: '#2D2D2D',
           width: 340,
-          boxShadow: '0 0 50px rgba(17, 17, 17, 0.1)',
-          borderRight: '1px solid #f5f5f5',
-        },
+          boxShadow: '0 0 50px rgba(0, 0, 0, 0.1)',
+          borderRight: '1px solid #F0F0F0',
+        }
       }}
     >
-      <Box
-        sx={{
-          p: 4,
-          borderBottom: '1px solid #f5f5f5',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-      >
-        <Typography
-          variant='h5'
-          sx={{
+      <Box sx={{ 
+        p: 4, 
+        borderBottom: '1px solid #F0F0F0',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      }}>
+        <Typography 
+          variant="h5" 
+          sx={{ 
             fontWeight: 300,
             color: '#8B4513',
             letterSpacing: '3px',
@@ -111,19 +109,19 @@ const Header = () => {
         </Typography>
         <IconButton
           onClick={handleDrawerToggle}
-          sx={{
+          sx={{ 
             color: '#666',
             p: 1,
             '&:hover': {
               backgroundColor: '#F8F8F8',
               color: '#8B4513',
-            },
+            }
           }}
         >
-          <CloseIcon fontSize='small' />
+          <CloseIcon fontSize="small" />
         </IconButton>
       </Box>
-
+      
       <List sx={{ pt: 3, px: 2 }}>
         {navLinks.map((link, index) => (
           <ListItem key={link.href} disablePadding sx={{ mb: 1 }}>
@@ -142,12 +140,12 @@ const Header = () => {
                   '& .MuiTypography-root': {
                     color: '#8B4513',
                     transform: 'translateX(8px)',
-                  },
+                  }
                 },
                 '&.Mui-selected': {
                   backgroundColor: '#F8F6F3',
                   '& .MuiTypography-root': {
-                    color: '#111111',
+                    color: '#8B4513',
                     fontWeight: 500,
                   },
                   '&::after': {
@@ -160,46 +158,43 @@ const Header = () => {
                     height: '60%',
                     backgroundColor: '#8B4513',
                     borderRadius: '0 2px 2px 0',
-                  },
-                },
+                  }
+                }
               }}
             >
-              <ListItemText
+              <ListItemText 
                 primary={link.label}
                 sx={{
                   '& .MuiTypography-root': {
                     fontWeight: pathname === link.href ? 500 : 400,
                     fontSize: '1rem',
                     letterSpacing: '0.5px',
-                    color: pathname === link.href ? '#111111' : '#757575',
+                    color: pathname === link.href ? '#8B4513' : '#555',
                     transition: 'all 0.3s ease',
                     fontFamily: '"Inter", sans-serif',
-                  },
+                  }
                 }}
               />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
-
+      
       <Divider sx={{ mx: 3, my: 3, backgroundColor: '#F0F0F0' }} />
-
+      
       <Box sx={{ px: 4, pb: 4 }}>
-        <Typography
-          variant='body2'
-          sx={{
-            color: '#999',
-            mb: 2,
-            fontSize: '0.85rem',
-            letterSpacing: '0.5px',
-          }}
-        >
+        <Typography variant="body2" sx={{ 
+          color: '#999', 
+          mb: 2, 
+          fontSize: '0.85rem',
+          letterSpacing: '0.5px'
+        }}>
           CONTACT INFO
         </Typography>
-        <Typography variant='body2' sx={{ color: '#666', mb: 1 }}>
+        <Typography variant="body2" sx={{ color: '#666', mb: 1 }}>
           +91 8238420382
         </Typography>
-        <Typography variant='body2' sx={{ color: '#666' }}>
+        <Typography variant="body2" sx={{ color: '#666' }}>
           lavishpolypack@gmail.com
         </Typography>
       </Box>
@@ -208,40 +203,38 @@ const Header = () => {
 
   return (
     <>
-      <AppBar
+      <AppBar 
         position='fixed'
         elevation={0}
         sx={{
-          background: scrolled
+          background: scrolled 
             ? 'rgba(255, 255, 255, 0.98)'
             : 'rgba(255, 255, 255, 0.95)',
           backdropFilter: 'blur(20px)',
-          borderBottom: scrolled
-            ? '1px solid rgba(139, 69, 19, 0.08)'
+          borderBottom: scrolled 
+            ? '1px solid rgba(139, 69, 19, 0.08)' 
             : '1px solid rgba(0, 0, 0, 0.05)',
           transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-          boxShadow: scrolled
-            ? '0 2px 40px rgba(0, 0, 0, 0.08)'
+          boxShadow: scrolled 
+            ? '0 2px 40px rgba(0, 0, 0, 0.08)' 
             : '0 1px 20px rgba(0, 0, 0, 0.03)',
           color: '#2D2D2D',
         }}
       >
-        <Container maxWidth='xl' disableGutters>
-          <Toolbar
-            sx={{
-              minHeight: { xs: 70, sm: 80 },
-              px: { xs: 2, sm: 4 },
-              justifyContent: 'space-between',
-            }}
-          >
+        <Container maxWidth="xl" disableGutters>
+          <Toolbar sx={{ 
+            minHeight: { xs: 70, sm: 80 },
+            px: { xs: 2, sm: 4 },
+            justifyContent: 'space-between',
+          }}>
             {/* Mobile Menu Button */}
             {isMobile && (
               <IconButton
-                edge='start'
-                color='inherit'
-                aria-label='menu'
+                edge="start"
+                color="inherit"
+                aria-label="menu"
                 onClick={handleDrawerToggle}
-                sx={{
+                sx={{ 
                   mr: 2,
                   p: 1.5,
                   color: '#8B4513',
@@ -249,13 +242,13 @@ const Header = () => {
                   '&:hover': {
                     backgroundColor: 'rgba(139, 69, 19, 0.08)',
                     transform: 'scale(1.05)',
-                  },
+                  }
                 }}
               >
                 <MenuIcon />
               </IconButton>
             )}
-
+            
             {/* Logo */}
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <Link href='/' passHref style={{ textDecoration: 'none' }}>
@@ -302,36 +295,30 @@ const Header = () => {
                     POLYPACK
                   </Typography>
                 </Box> */}
-                <Image
-                  src={LOGO}
-                  alt='Lavish Polypack'
-                  width={140}
-                  height={40}
-                  style={{
-                    height: 'auto',
-                    display: 'block',
-                    objectFit: 'contain',
-                  }}
-                  // onError={e => {
-                  //   e.target.onerror = null;
-                  //   e.target.src = '/products/pp-bag.jpg';
-                  // }}
-                />
+                 <Image 
+                                  src={LOGO} 
+                                  alt= "Lavish Polypack"
+                                  width={140} height={40}
+                                  style={{
+                                    height: 'auto', 
+                                    display: 'block',
+                                    objectFit: 'contain',
+                                  }} 
+                                  // onError={e => { 
+                                  //   e.target.onerror = null; 
+                                  //   e.target.src = '/products/pp-bag.jpg'; 
+                                  // }} 
+                                />
               </Link>
             </Box>
-
+            
             {/* Desktop Navigation */}
             {!isMobile && (
-              <Box component='nav'>
+              <Box component="nav">
                 {navLinks.map((link) => (
-                  <Link
-                    href={link.href}
-                    passHref
-                    key={link.href}
-                    style={{ textDecoration: 'none' }}
-                  >
-                    <Button
-                      sx={{
+                  <Link href={link.href} passHref key={link.href} style={{ textDecoration: 'none'}}>
+                    <Button 
+                      sx={{ 
                         color: pathname === link.href ? '#8B4513' : '#555',
                         fontSize: '0.95rem',
                         fontWeight: pathname === link.href ? 500 : 400,
@@ -347,7 +334,7 @@ const Header = () => {
                           color: '#8B4513',
                           '&::after': {
                             width: '100%',
-                          },
+                          }
                         },
                         '&::after': {
                           content: '""',
@@ -371,11 +358,11 @@ const Header = () => {
           </Toolbar>
         </Container>
       </AppBar>
-
+      
       {drawer}
-
+      
       <InquiryModal open={modalOpen} onClose={() => setModalOpen(false)} />
-
+      
       {/* Spacer to prevent content from hiding behind fixed header */}
       <Box sx={{ height: { xs: 70, sm: 80 } }} />
     </>

@@ -1,17 +1,6 @@
-import React, { useState } from 'react';
-import {
-  Grid,
-  Card,
-  CardContent,
-  Avatar,
-  Typography,
-  IconButton,
-  Snackbar,
-  Alert,
-  Zoom,
-  Box,
-} from '@mui/material';
-import { ContentCopy } from '@mui/icons-material';
+import React, { useState } from "react";
+import { Grid, Card, CardContent, Avatar, Typography, IconButton, Snackbar, Alert, Zoom, Box } from "@mui/material";
+import { ContentCopy } from "@mui/icons-material";
 
 const ContactCard = React.memo(({ detail }) => {
   const IconComponent = detail.icon;
@@ -30,31 +19,31 @@ const ContactCard = React.memo(({ detail }) => {
       <Card
         sx={{
           mb: 2,
-          position: 'relative',
-          background: 'rgba(255, 250, 243, 0.97)',
+          position: "relative",
+          background: "rgba(255, 255, 255, 0.97)",
           border: `1px solid ${detail.color}20`,
           borderRadius: 2,
-          transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-          overflow: 'hidden',
-          cursor: detail.action ? 'pointer' : 'default',
-          '&:hover': {
-            transform: 'translateY(-4px)',
+          transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+          overflow: "hidden",
+          cursor: detail.action ? "pointer" : "default",
+          "&:hover": {
+            transform: "translateY(-4px)",
             boxShadow: `0 12px 40px ${detail.color}25`,
             border: `1px solid ${detail.color}40`,
           },
-          '&::before': {
+          "&::before": {
             content: '""',
-            position: 'absolute',
+            position: "absolute",
             top: 0,
             left: 0,
-            width: '100%',
-            height: '3px',
+            width: "100%",
+            height: "3px",
             background: `linear-gradient(90deg, ${detail.color}, ${detail.color}80)`,
           },
         }}
         onClick={() => detail.action && detail.action()}
       >
-        <CardContent sx={{ p: 3, display: 'flex', alignItems: 'center' }}>
+        <CardContent sx={{ p: 3, display: "flex", alignItems: "center" }}>
           <Avatar
             sx={{
               width: 50,
@@ -62,7 +51,7 @@ const ContactCard = React.memo(({ detail }) => {
               mr: 3,
               backgroundColor: `${detail.color}15`,
               color: detail.color,
-              transition: 'all 0.3s ease',
+              transition: "all 0.3s ease",
               boxShadow: `0 4px 15px ${detail.color}20`,
             }}
           >
@@ -70,22 +59,22 @@ const ContactCard = React.memo(({ detail }) => {
           </Avatar>
           <Box sx={{ flexGrow: 1 }}>
             <Typography
-              variant='h6'
+              variant="h6"
               sx={{
                 fontWeight: 600,
                 color: detail.color,
                 mb: 0.5,
-                fontSize: '1rem',
+                fontSize: "1rem",
                 fontFamily: '"Inter", sans-serif',
               }}
             >
               {detail.title}
             </Typography>
             <Typography
-              variant='body2'
-              color='text.primary'
+              variant="body2"
+              color="text.primary"
               sx={{
-                fontSize: '0.95rem',
+                fontSize: "0.95rem",
                 lineHeight: 1.4,
                 fontFamily: '"Inter", sans-serif',
               }}
@@ -100,10 +89,10 @@ const ContactCard = React.memo(({ detail }) => {
               sx={{
                 ml: 1,
                 color: detail.color,
-                transition: 'all 0.3s ease',
-                '&:hover': {
+                transition: "all 0.3s ease",
+                "&:hover": {
                   backgroundColor: `${detail.color}15`,
-                  transform: 'scale(1.1)',
+                  transform: "scale(1.1)",
                 },
               }}
             >
@@ -112,11 +101,11 @@ const ContactCard = React.memo(({ detail }) => {
           )}
           <Snackbar
             open={copied}
-            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
             autoHideDuration={1200}
             onClose={() => setCopied(false)}
           >
-            <Alert severity='info' sx={{ fontFamily: '"Inter", sans-serif' }}>
+            <Alert severity="info" sx={{ fontFamily: '"Inter", sans-serif' }}>
               Copied to clipboard!
             </Alert>
           </Snackbar>
@@ -125,19 +114,12 @@ const ContactCard = React.memo(({ detail }) => {
     </Zoom>
   );
 });
-ContactCard.displayName = 'ContactCard';
+ContactCard.displayName = "ContactCard";
 
 const ContactInfoGrid = ({ contactDetails }) => (
   <Grid container spacing={2}>
     {contactDetails.map((detail) => (
-      <Grid
-        item
-        xs={12}
-        sm={6}
-        md={4}
-        lg={4}
-        key={`${detail.text}-${detail.title}`}
-      >
+      <Grid item xs={12} sm={6} md={4} lg={4} key={`${detail.text}-${detail.title}`}>
         <ContactCard detail={detail} />
       </Grid>
     ))}

@@ -14,14 +14,7 @@ import {
   Chip,
   Stack,
 } from '@mui/material';
-import {
-  Favorite,
-  FavoriteBorder,
-  Visibility,
-  Share,
-  Star,
-  ArrowForward,
-} from '@mui/icons-material';
+import { Favorite, FavoriteBorder, Visibility, Share, Star, ArrowForward } from '@mui/icons-material';
 import Link from 'next/link';
 import { products } from '../../lib/products';
 import { useRouter } from 'next/navigation';
@@ -55,10 +48,7 @@ const ProductsPage = () => {
   };
 
   return (
-    <Container
-      maxWidth='xl'
-      sx={{ py: { xs: 3, sm: 5 }, px: { xs: 1, sm: 2, md: 3 } }}
-    >
+    <Container maxWidth="xl" sx={{ py: { xs: 3, sm: 5 }, px: { xs: 1, sm: 2, md: 3 } }}>
       {/* Enhanced Header */}
       <Box sx={{ textAlign: 'center', mb: 6 }}>
         <Typography
@@ -67,8 +57,8 @@ const ProductsPage = () => {
           sx={{
             fontSize: { xs: '2.2rem', sm: '2.8rem', md: '3.2rem' },
             fontWeight: 700,
-            background: 'linear-gradient(135deg, #bdbdbd 0%, #e0e0e0 100%)',
-            color: '#fffaf3',
+            background: 'linear-gradient(135deg, #e67e22 0%, #f39c12 100%)',
+            color: 'white',
             backgroundClip: 'text',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
@@ -78,17 +68,16 @@ const ProductsPage = () => {
           Our Products
         </Typography>
         <Typography
-          variant='h6'
+          variant="h6"
           sx={{
-            color: '#757575',
+            color: '#666',
             fontWeight: 400,
             maxWidth: 600,
             mx: 'auto',
             lineHeight: 1.6,
           }}
         >
-          Discover our premium collection of high-quality products designed for
-          your needs
+          Discover our premium collection of high-quality products designed for your needs
         </Typography>
       </Box>
 
@@ -106,18 +95,18 @@ const ProductsPage = () => {
                 flexDirection: 'column',
                 // borderRadius: 2,
                 border: product.bestSeller
-                  ? '2.5px solid #bdbdbd'
-                  : '1px solid rgba(17, 17, 17, 0.1)',
+                  ? '2.5px solid #D4AF37'
+                  : '1px solid rgba(139, 69, 19, 0.1)',
                 boxShadow: product.bestSeller
-                  ? '0 8px 32px rgba(189, 189, 189, 0.25)'
-                  : '0 2px 20px rgba(17, 17, 17, 0.08)',
-                border: '1px solid rgba(17, 17, 17, 0.1)',
-                boxShadow: '0 2px 20px rgba(17, 17, 17, 0.08)',
+                  ? '0 8px 32px rgba(212, 175, 55, 0.25)'
+                  : '0 2px 20px rgba(139, 69, 19, 0.08)',
+                border: '1px solid rgba(139, 69, 19, 0.1)',
+                boxShadow: '0 2px 20px rgba(139, 69, 19, 0.08)',
                 transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                 cursor: 'pointer',
                 position: 'relative',
                 overflow: 'hidden',
-                background: '#fffaf3',
+                background: 'rgba(255, 255, 255, 0.98)',
                 backdropFilter: 'blur(20px)',
                 '&::before': {
                   content: '""',
@@ -126,15 +115,14 @@ const ProductsPage = () => {
                   left: 0,
                   right: 0,
                   height: '2px',
-                  background:
-                    'linear-gradient(90deg, #111111, #bdbdbd, #111111)',
+                  background: 'linear-gradient(90deg, #8B4513, #D4AF37, #8B4513)',
                   opacity: 0,
                   transition: 'opacity 0.3s ease',
                 },
                 '&:hover': {
                   transform: 'translateY(-8px)',
-                  boxShadow: '0 20px 40px rgba(17, 17, 17, 0.15)',
-                  borderColor: '#111111',
+                  boxShadow: '0 20px 40px rgba(139, 69, 19, 0.15)',
+                  borderColor: '#8B4513',
                   '&::before': {
                     opacity: 1,
                   },
@@ -157,7 +145,7 @@ const ProductsPage = () => {
                   width: '100%',
                   height: 240,
                   position: 'relative',
-                  background: '#fffaf3',
+                  background: '#F8F6F3',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -167,18 +155,18 @@ const ProductsPage = () => {
                 {/* Best Seller Badge */}
                 {product.bestSeller && (
                   <Chip
-                    label='Best Seller'
-                    size='small'
+                    label="Best Seller"
+                    size="small"
                     sx={{
                       position: 'absolute',
                       top: 18,
                       left: 18,
-                      background: 'linear-gradient(90deg, #bdbdbd, #e0e0e0)',
-                      color: '#111111',
+                      background: 'linear-gradient(90deg, #D4AF37, #FFD700)',
+                      color: '#8B4513',
                       fontWeight: 700,
                       fontSize: '0.8rem',
                       zIndex: 3,
-                      boxShadow: '0 2px 8px rgba(189, 189, 189, 0.2)',
+                      boxShadow: '0 2px 8px #D4AF3722',
                       textTransform: 'uppercase',
                       letterSpacing: '1px',
                     }}
@@ -187,37 +175,34 @@ const ProductsPage = () => {
                 {/* Quality Badge */}
                 <Chip
                   icon={<Star sx={{ fontSize: '16px !important' }} />}
-                  label='Premium'
-                  size='small'
-                  className='product-badge'
+                  label="Premium"
+                  size="small"
+                  className="product-badge"
                   sx={{
                     position: 'absolute',
                     top: 16,
                     right: 16,
-                    background: '#bdbdbd',
-                    color: '#fffaf3',
+                    background: '#D4AF37',
+                    color: 'white',
                     fontWeight: 600,
                     fontSize: '0.75rem',
                     fontFamily: '"Inter", sans-serif',
                     opacity: product.bestSeller ? 1 : 0,
-                    transform: product.bestSeller
-                      ? 'translateY(0)'
-                      : 'translateY(-10px)',
+                    transform: product.bestSeller ? 'translateY(0)' : 'translateY(-10px)',
                     transition: 'all 0.3s ease',
                     zIndex: 2,
                   }}
                 />
 
                 <CardMedia
-                  component='img'
-                  className='product-image'
+                  component="img"
+                  className="product-image"
                   sx={{
                     maxHeight: '100%',
                     maxWidth: '100%',
                     objectFit: 'contain',
-                    transition:
-                      'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                    filter: 'drop-shadow(0 8px 16px rgba(17, 17, 17, 0.1))',
+                    transition: 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                    filter: 'drop-shadow(0 8px 16px rgba(139, 69, 19, 0.1))',
                   }}
                   image={product.image}
                   alt={product.name}
@@ -230,15 +215,14 @@ const ProductsPage = () => {
 
                 {/* Enhanced Overlay */}
                 <Box
-                  className='product-overlay'
+                  className="product-overlay"
                   sx={{
                     position: 'absolute',
                     top: 0,
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    background:
-                      'linear-gradient(135deg, rgba(17, 17, 17, 0.1) 0%, rgba(189, 189, 189, 0.05) 100%)',
+                    background: 'linear-gradient(135deg, rgba(139, 69, 19, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%)',
                     opacity: 0,
                     transition: 'opacity 0.3s ease-in-out',
                   }}
@@ -251,8 +235,7 @@ const ProductsPage = () => {
                   width: '90%',
                   mx: 'auto',
                   my: 2,
-                  background:
-                    'linear-gradient(90deg, transparent, #bdbdbd, transparent)',
+                  background: 'linear-gradient(90deg, transparent, #D4AF37, transparent)',
                   height: '1px',
                   borderRadius: '0.5px',
                 }}
@@ -272,13 +255,13 @@ const ProductsPage = () => {
                 <Box>
                   <Typography
                     gutterBottom
-                    variant='h6'
-                    component='div'
+                    variant="h6"
+                    component="div"
                     sx={{
                       fontWeight: 600,
                       fontSize: '1.2rem',
                       mb: 2,
-                      color: '#111111',
+                      color: '#2D2D2D',
                       lineHeight: 1.3,
                       letterSpacing: '0.5px',
                       minHeight: '1.6em',
@@ -294,10 +277,10 @@ const ProductsPage = () => {
 
                   {product.description && (
                     <Typography
-                      variant='body2'
+                      variant="body2"
                       sx={{
                         lineHeight: 1.6,
-                        color: '#757575',
+                        color: '#666',
                         fontSize: '0.9rem',
                         minHeight: '3.2em',
                         overflow: 'hidden',
@@ -313,29 +296,24 @@ const ProductsPage = () => {
                   )}
 
                   {/* Feature Tags */}
-                  <Stack
-                    direction='row'
-                    spacing={1}
-                    justifyContent='center'
-                    sx={{ mb: 2 }}
-                  >
+                  <Stack direction="row" spacing={1} justifyContent="center" sx={{ mb: 2 }}>
                     <Chip
-                      label='Durable'
-                      size='small'
+                      label="Durable"
+                      size="small"
                       sx={{
-                        background: 'rgba(17, 17, 17, 0.1)',
-                        color: '#111111',
+                        background: 'rgba(139, 69, 19, 0.1)',
+                        color: '#8B4513',
                         fontSize: '0.75rem',
                         fontWeight: 500,
                         fontFamily: '"Inter", sans-serif',
                       }}
                     />
                     <Chip
-                      label='Eco-Friendly'
-                      size='small'
+                      label="Eco-Friendly"
+                      size="small"
                       sx={{
-                        background: 'rgba(189, 189, 189, 0.1)',
-                        color: '#bdbdbd',
+                        background: 'rgba(212, 175, 55, 0.1)',
+                        color: '#D4AF37',
                         fontSize: '0.75rem',
                         fontWeight: 500,
                         fontFamily: '"Inter", sans-serif',
@@ -347,7 +325,7 @@ const ProductsPage = () => {
                 <Box sx={{ width: '100%', mt: 'auto' }}>
                   <Link href={`/products/${product.id}`} passHref>
                     <Button
-                      variant='contained'
+                      variant="contained"
                       fullWidth
                       endIcon={<ArrowForward />}
                       sx={{
@@ -357,11 +335,10 @@ const ProductsPage = () => {
                         py: 1.5,
                         textTransform: 'uppercase',
                         letterSpacing: '0.5px',
-                        background: '#111111',
-                        color: '#fffaf3',
-                        boxShadow: '0 4px 15px rgba(17, 17, 17, 0.3)',
-                        transition:
-                          'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                        background: '#8B4513',
+                        color: 'white',
+                        boxShadow: '0 4px 15px rgba(139, 69, 19, 0.3)',
+                        transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                         fontFamily: '"Inter", sans-serif',
                         position: 'relative',
                         overflow: 'hidden',
@@ -372,14 +349,13 @@ const ProductsPage = () => {
                           left: '-100%',
                           width: '100%',
                           height: '100%',
-                          background:
-                            'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
+                          background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
                           transition: 'left 0.5s',
                         },
                         '&:hover': {
-                          background: '#444444',
+                          background: '#6D3410',
                           transform: 'translateY(-2px)',
-                          boxShadow: '0 8px 25px rgba(17, 17, 17, 0.4)',
+                          boxShadow: '0 8px 25px rgba(139, 69, 19, 0.4)',
                           '&::before': {
                             left: '100%',
                           },

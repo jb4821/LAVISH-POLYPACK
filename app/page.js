@@ -71,32 +71,32 @@ export default function Home() {
       icon: <PlayArrow />,
       title: 'Custom Solutions',
       description: 'Tailored packaging for your needs',
-      color: '#111111',
+      color: '#8B4513'
     },
     {
       icon: <Security />,
       title: 'Quality Assured',
       description: 'ISO certified products',
-      color: '#bdbdbd',
+      color: '#D4AF37'
     },
     {
       icon: <Support />,
       title: '24/7 Support',
       description: 'Expert technical support',
-      color: '#111111',
-    },
+      color: '#8B4513'
+    }
   ];
 
   return (
-    <Box sx={{ overflow: 'hidden', backgroundColor: '#fffaf3' }}>
+    <Box sx={{ overflow: 'hidden', backgroundColor: '#FEFEFE' }}>
       {/* Enhanced Hero Section with Brown/Gold Theme */}
       <Box
         sx={{
           position: 'relative',
           background: `linear-gradient(135deg, 
-            rgba(17, 17, 17, 0.03) 0%, 
-            rgba(189, 189, 189, 0.02) 50%, 
-            rgba(255, 250, 243, 1) 100%)`,
+            rgba(139, 69, 19, 0.03) 0%, 
+            rgba(212, 175, 55, 0.02) 50%, 
+            rgba(254, 254, 254, 1) 100%)`,
           '&::before': {
             content: '""',
             position: 'absolute',
@@ -105,10 +105,10 @@ export default function Home() {
             right: 0,
             bottom: 0,
             background: `radial-gradient(ellipse at top right, 
-              rgba(17, 17, 17, 0.08) 0%, 
+              rgba(139, 69, 19, 0.08) 0%, 
               transparent 50%), 
             radial-gradient(ellipse at bottom left, 
-              rgba(189, 189, 189, 0.06) 0%, 
+              rgba(212, 175, 55, 0.06) 0%, 
               transparent 50%)`,
             pointerEvents: 'none',
           },
@@ -125,12 +125,12 @@ export default function Home() {
             <Box sx={{ mb: 4 }}>
               <Chip
                 icon={<Verified sx={{ fontSize: '18px !important' }} />}
-                label='Trusted Since 2020'
-                variant='outlined'
+                label="Trusted Since 2020"
+                variant="outlined"
                 sx={{
-                  background: 'rgba(17, 17, 17, 0.08)',
-                  borderColor: '#111111',
-                  color: '#111111',
+                  background: 'rgba(139, 69, 19, 0.08)',
+                  borderColor: '#8B4513',
+                  color: '#8B4513',
                   fontWeight: 600,
                   fontSize: '0.875rem',
                   py: 2,
@@ -138,12 +138,12 @@ export default function Home() {
                   fontFamily: '"Inter", sans-serif',
                   letterSpacing: '0.5px',
                   '& .MuiChip-icon': {
-                    color: '#111111',
+                    color: '#8B4513',
                   },
                   '&:hover': {
-                    background: 'rgba(17, 17, 17, 0.12)',
+                    background: 'rgba(139, 69, 19, 0.12)',
                     transform: 'translateY(-1px)',
-                    boxShadow: '0 4px 12px rgba(17, 17, 17, 0.2)',
+                    boxShadow: '0 4px 12px rgba(139, 69, 19, 0.2)',
                   },
                 }}
               />
@@ -151,25 +151,19 @@ export default function Home() {
 
             {/* Main Heading with Brown/Gold Gradient */}
             <Typography
-              variant='h1'
-              component='h1'
+              variant="h1"
+              component="h1"
               sx={{
-                fontSize: {
-                  xs: '2.5rem',
-                  sm: '3.5rem',
-                  md: '4.5rem',
-                  lg: '5rem',
-                },
+                fontSize: { xs: '2.5rem', sm: '3.5rem', md: '4.5rem', lg: '5rem' },
                 fontWeight: 300,
                 mb: 3,
                 lineHeight: { xs: 1.2, md: 1.1 },
                 letterSpacing: { xs: '2px', md: '3px' },
-                background:
-                  'linear-gradient(135deg, #111111 0%, #bdbdbd 50%, #111111 100%)',
+                background: 'linear-gradient(135deg, #8B4513 0%, #D4AF37 50%, #8B4513 100%)',
                 backgroundClip: 'text',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
-                textShadow: '0 4px 20px rgba(17, 17, 17, 0.1)',
+                textShadow: '0 4px 20px rgba(139, 69, 19, 0.1)',
                 position: 'relative',
                 fontFamily: '"Playfair Display", serif',
                 textTransform: 'uppercase',
@@ -181,7 +175,7 @@ export default function Home() {
                   transform: 'translateX(-50%)',
                   width: '80px',
                   height: '2px',
-                  background: '#bdbdbd',
+                  background: '#D4AF37',
                   borderRadius: '1px',
                 },
               }}
@@ -191,9 +185,9 @@ export default function Home() {
 
             {/* Subtitle with Elegant Styling */}
             <Typography
-              variant='h4'
+              variant="h4"
               sx={{
-                color: '#757575',
+                color: '#666',
                 fontWeight: 400,
                 mb: 4,
                 fontSize: { xs: '1.25rem', sm: '1.5rem', md: '1.75rem' },
@@ -206,12 +200,14 @@ export default function Home() {
 
             {/* Enhanced Description Card */}
             <Paper
-              sx={{
-                mb: 4,
-              }}
+              sx={
+                {
+                  mb: 4,
+                }
+              }
             >
               <Typography
-                variant='body1'
+                variant="body1"
                 sx={{
                   fontSize: { xs: '1rem', sm: '1.125rem', md: '1.2rem' },
                   lineHeight: 1.8,
@@ -219,19 +215,16 @@ export default function Home() {
                   textAlign: 'left',
                   fontFamily: '"Inter", sans-serif',
                   '& strong': {
-                    color: '#111111',
+                    color: '#8B4513',
                     fontWeight: 600,
                   },
                 }}
               >
-                <strong>LAVISH POLYPACK LLP</strong> has established itself as a
-                leader in manufacturing excellent quality plastic products. Our{' '}
-                <strong>futuristic vision</strong> and commitment to innovation
-                have made us a recognized brand in today&apos;s competitive
-                market. Through tremendous effort and excellent input, we
-                consistently deliver quality and effective products with our
-                <strong> fully integrated manufacturing facility</strong>{' '}
-                featuring in-house designing and R&amp;D capabilities.
+                <strong>LAVISH POLYPACK LLP</strong> has established itself as a leader in manufacturing
+                excellent quality plastic products. Our <strong>futuristic vision</strong> and commitment
+                to innovation have made us a recognized brand in today&apos;s competitive market. Through tremendous
+                effort and excellent input, we consistently deliver quality and effective products with our
+                <strong> fully integrated manufacturing facility</strong> featuring in-house designing and R&amp;D capabilities.
               </Typography>
             </Paper>
 
@@ -239,14 +232,14 @@ export default function Home() {
             <Stack
               direction={{ xs: 'column', sm: 'row' }}
               spacing={3}
-              display='flex'
-              justifyContent='center'
-              alignItems='center'
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
             >
-              <Link href='/about' passHref>
+              <Link href="/about" passHref>
                 <Button
-                  variant='contained'
-                  size='large'
+                  variant="contained"
+                  size="large"
                   endIcon={<ArrowForward />}
                   sx={{
                     minWidth: { xs: '100%', sm: '220px' },
@@ -254,9 +247,9 @@ export default function Home() {
                     py: 2,
                     px: 4,
                     borderRadius: 1,
-                    background: '#111111',
-                    color: '#fffaf3',
-                    boxShadow: '0 4px 20px rgba(17, 17, 17, 0.3)',
+                    background: '#8B4513',
+                    color: 'white',
+                    boxShadow: '0 4px 20px rgba(139, 69, 19, 0.3)',
                     fontWeight: 500,
                     textTransform: 'uppercase',
                     letterSpacing: '1px',
@@ -271,14 +264,13 @@ export default function Home() {
                       left: '-100%',
                       width: '100%',
                       height: '100%',
-                      background:
-                        'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
+                      background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
                       transition: 'left 0.6s',
                     },
                     '&:hover': {
-                      background: '#444444',
+                      background: '#6D3410',
                       transform: 'translateY(-2px)',
-                      boxShadow: '0 8px 32px rgba(17, 17, 17, 0.4)',
+                      boxShadow: '0 8px 32px rgba(139, 69, 19, 0.4)',
                       '&::before': {
                         left: '100%',
                       },
@@ -297,30 +289,23 @@ export default function Home() {
             sx={{
               background: 'rgba(255, 255, 255, 0.95)',
               backdropFilter: 'blur(20px)',
-              border: '1px solid rgba(17, 17, 17, 0.1)',
+              border: '1px solid rgba(139, 69, 19, 0.1)',
               borderRadius: 2,
               p: 3,
               mb: 8,
               position: 'relative',
               overflow: 'hidden',
-              boxShadow: '0 2px 40px rgba(17, 17, 17, 0.08)',
+              boxShadow: '0 2px 40px rgba(139, 69, 19, 0.08)',
             }}
           >
             <Grid
               container
               spacing={3}
-              justifyContent='center'
-              alignItems='stretch'
+              justifyContent="center"
+              alignItems="stretch"
             >
               {features.map((feature, index) => (
-                <Grid
-                  item
-                  xs={12}
-                  sm={6}
-                  md={4}
-                  key={index}
-                  sx={{ display: 'flex', justifyContent: 'center' }}
-                >
+                <Grid item xs={12} sm={6} md={4} key={index} sx={{ display: 'flex', justifyContent: 'center' }}>
                   <Box
                     sx={{
                       textAlign: 'center',
@@ -329,14 +314,12 @@ export default function Home() {
                       borderRadius: 1,
                       transition: 'all 0.3s ease',
                       cursor: 'pointer',
-                      background:
-                        activeFeature === index
-                          ? 'rgba(17, 17, 17, 0.06)'
-                          : 'transparent',
-                      border:
-                        activeFeature === index
-                          ? '1px solid rgba(17, 17, 17, 0.15)'
-                          : '1px solid transparent',
+                      background: activeFeature === index
+                        ? 'rgba(139, 69, 19, 0.06)'
+                        : 'transparent',
+                      border: activeFeature === index
+                        ? '1px solid rgba(139, 69, 19, 0.15)'
+                        : '1px solid transparent',
                       minHeight: { xs: 140, sm: 160, md: 180 },
                       width: '100%',
                       display: 'flex',
@@ -344,27 +327,27 @@ export default function Home() {
                       justifyContent: 'center',
                       alignItems: 'center',
                       '&:hover': {
-                        background: 'rgba(17, 17, 17, 0.08)',
+                        background: 'rgba(139, 69, 19, 0.08)',
                         transform: 'translateY(-2px)',
-                        boxShadow: '0 4px 20px rgba(17, 17, 17, 0.1)',
+                        boxShadow: '0 4px 20px rgba(139, 69, 19, 0.1)',
                       },
                     }}
                     onClick={() => setActiveFeature(index)}
                   >
                     <IconButton
                       sx={{
-                        background: index === 1 ? '#bdbdbd' : '#111111',
-                        color: '#fffaf3',
+                        background: index === 1 ? '#D4AF37' : '#8B4513',
+                        color: 'white',
                         mb: 2,
                         '&:hover': {
-                          background: index === 1 ? '#757575' : '#444444',
+                          background: index === 1 ? '#B8941F' : '#6D3410',
                         },
                       }}
                     >
                       {feature.icon}
                     </IconButton>
                     <Typography
-                      variant='h6'
+                      variant="h6"
                       fontWeight={600}
                       gutterBottom
                       sx={{
@@ -375,9 +358,9 @@ export default function Home() {
                       {feature.title}
                     </Typography>
                     <Typography
-                      variant='body2'
+                      variant="body2"
                       sx={{
-                        color: '#757575',
+                        color: '#666',
                         fontFamily: '"Inter", sans-serif',
                       }}
                     >
@@ -397,8 +380,8 @@ export default function Home() {
           {/* Section Header */}
           <Box sx={{ textAlign: 'center', mb: 8 }}>
             <Typography
-              variant='h2'
-              component='h2'
+              variant="h2"
+              component="h2"
               sx={{
                 fontSize: { xs: '2.5rem', sm: '3rem', md: '3.5rem' },
                 fontWeight: 300,
@@ -415,7 +398,7 @@ export default function Home() {
                   transform: 'translateX(-50%)',
                   width: '100px',
                   height: '2px',
-                  background: '#bdbdbd',
+                  background: '#D4AF37',
                   borderRadius: '1px',
                 },
               }}
@@ -424,9 +407,9 @@ export default function Home() {
             </Typography>
 
             <Typography
-              variant='h5'
+              variant="h5"
               sx={{
-                color: '#757575',
+                color: '#666',
                 fontWeight: 400,
                 maxWidth: 600,
                 mx: 'auto',
@@ -437,8 +420,8 @@ export default function Home() {
                 letterSpacing: '0.5px',
               }}
             >
-              Discover our carefully crafted collection of high-quality plastic
-              products, designed with precision and built to last.
+              Discover our carefully crafted collection of high-quality plastic products,
+              designed with precision and built to last.
             </Typography>
           </Box>
 
@@ -448,13 +431,13 @@ export default function Home() {
               <Grid item key={product.id} xs={12} sm={6} lg={4}>
                 {isLoading ? (
                   <Card sx={{ height: 520, borderRadius: 2 }}>
-                    <Skeleton variant='rectangular' height={240} />
+                    <Skeleton variant="rectangular" height={240} />
                     <CardContent>
-                      <Skeleton variant='text' height={40} />
-                      <Skeleton variant='text' height={20} />
-                      <Skeleton variant='text' height={20} />
+                      <Skeleton variant="text" height={40} />
+                      <Skeleton variant="text" height={20} />
+                      <Skeleton variant="text" height={20} />
                       <Box sx={{ mt: 3 }}>
-                        <Skeleton variant='rectangular' height={45} />
+                        <Skeleton variant="rectangular" height={45} />
                       </Box>
                     </CardContent>
                   </Card>
@@ -468,15 +451,14 @@ export default function Home() {
                       flexDirection: 'column',
                       borderRadius: 2,
                       border: product.bestSeller
-                        ? '2.5px solid #bdbdbd'
-                        : '1px solid rgba(17, 17, 17, 0.1)',
+                        ? '2.5px solid #D4AF37'
+                        : '1px solid rgba(139, 69, 19, 0.1)',
                       boxShadow: product.bestSeller
-                        ? '0 8px 32px rgba(189, 189, 189, 0.25)'
-                        : '0 2px 20px rgba(17, 17, 17, 0.08)',
-                      border: '1px solid rgba(17, 17, 17, 0.1)',
-                      boxShadow: '0 2px 20px rgba(17, 17, 17, 0.08)',
-                      transition:
-                        'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                        ? '0 8px 32px rgba(212, 175, 55, 0.25)'
+                        : '0 2px 20px rgba(139, 69, 19, 0.08)',
+                      border: '1px solid rgba(139, 69, 19, 0.1)',
+                      boxShadow: '0 2px 20px rgba(139, 69, 19, 0.08)',
+                      transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                       cursor: 'pointer',
                       position: 'relative',
                       overflow: 'hidden',
@@ -489,15 +471,14 @@ export default function Home() {
                         left: 0,
                         right: 0,
                         height: '2px',
-                        background:
-                          'linear-gradient(90deg, #111111, #bdbdbd, #111111)',
+                        background: 'linear-gradient(90deg, #8B4513, #D4AF37, #8B4513)',
                         opacity: 0,
                         transition: 'opacity 0.3s ease',
                       },
                       '&:hover': {
                         transform: 'translateY(-8px)',
-                        boxShadow: '0 20px 40px rgba(17, 17, 17, 0.15)',
-                        borderColor: '#111111',
+                        boxShadow: '0 20px 40px rgba(139, 69, 19, 0.15)',
+                        borderColor: '#8B4513',
                         '&::before': {
                           opacity: 1,
                         },
@@ -530,19 +511,18 @@ export default function Home() {
                       {/* Best Seller Badge */}
                       {product.bestSeller && (
                         <Chip
-                          label='Best Seller'
-                          size='small'
+                          label="Best Seller"
+                          size="small"
                           sx={{
                             position: 'absolute',
                             top: 18,
                             left: 18,
-                            background:
-                              'linear-gradient(90deg, #bdbdbd, #fffaf3)',
-                            color: '#111111',
+                            background: 'linear-gradient(90deg, #D4AF37, #FFD700)',
+                            color: '#8B4513',
                             fontWeight: 700,
                             fontSize: '0.8rem',
                             zIndex: 3,
-                            boxShadow: '0 2px 8px #bdbdbd22',
+                            boxShadow: '0 2px 8px #D4AF3722',
                             textTransform: 'uppercase',
                             letterSpacing: '1px',
                           }}
@@ -551,38 +531,34 @@ export default function Home() {
                       {/* Quality Badge */}
                       <Chip
                         icon={<Star sx={{ fontSize: '16px !important' }} />}
-                        label='Premium'
-                        size='small'
-                        className='product-badge'
+                        label="Premium"
+                        size="small"
+                        className="product-badge"
                         sx={{
                           position: 'absolute',
                           top: 16,
                           right: 16,
-                          background: '#bdbdbd',
-                          color: '#fffaf3',
+                          background: '#D4AF37',
+                          color: 'white',
                           fontWeight: 600,
                           fontSize: '0.75rem',
                           fontFamily: '"Inter", sans-serif',
                           opacity: product.bestSeller ? 1 : 0,
-                          transform: product.bestSeller
-                            ? 'translateY(0)'
-                            : 'translateY(-10px)',
+                          transform: product.bestSeller ? 'translateY(0)' : 'translateY(-10px)',
                           transition: 'all 0.3s ease',
                           zIndex: 2,
                         }}
                       />
 
                       <CardMedia
-                        component='img'
-                        className='product-image'
+                        component="img"
+                        className="product-image"
                         sx={{
                           maxHeight: '80%',
                           maxWidth: '80%',
                           objectFit: 'contain',
-                          transition:
-                            'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                          filter:
-                            'drop-shadow(0 8px 16px rgba(17, 17, 17, 0.1))',
+                          transition: 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                          filter: 'drop-shadow(0 8px 16px rgba(139, 69, 19, 0.1))',
                         }}
                         image={product.image}
                         alt={product.name}
@@ -595,15 +571,14 @@ export default function Home() {
 
                       {/* Enhanced Overlay */}
                       <Box
-                        className='product-overlay'
+                        className="product-overlay"
                         sx={{
                           position: 'absolute',
                           top: 0,
                           left: 0,
                           right: 0,
                           bottom: 0,
-                          background:
-                            'linear-gradient(135deg, rgba(17, 17, 17, 0.1) 0%, rgba(189, 189, 189, 0.05) 100%)',
+                          background: 'linear-gradient(135deg, rgba(139, 69, 19, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%)',
                           opacity: 0,
                           transition: 'opacity 0.3s ease-in-out',
                         }}
@@ -616,8 +591,7 @@ export default function Home() {
                         width: '90%',
                         mx: 'auto',
                         my: 2,
-                        background:
-                          'linear-gradient(90deg, transparent, #bdbdbd, transparent)',
+                        background: 'linear-gradient(90deg, transparent, #D4AF37, transparent)',
                         height: '1px',
                         borderRadius: '0.5px',
                       }}
@@ -637,8 +611,8 @@ export default function Home() {
                       <Box>
                         <Typography
                           gutterBottom
-                          variant='h6'
-                          component='div'
+                          variant="h6"
+                          component="div"
                           sx={{
                             fontWeight: 600,
                             fontSize: '1.2rem',
@@ -659,10 +633,10 @@ export default function Home() {
 
                         {product.description && (
                           <Typography
-                            variant='body2'
+                            variant="body2"
                             sx={{
                               lineHeight: 1.6,
-                              color: '#757575',
+                              color: '#666',
                               fontSize: '0.9rem',
                               minHeight: '3.2em',
                               overflow: 'hidden',
@@ -678,29 +652,24 @@ export default function Home() {
                         )}
 
                         {/* Feature Tags */}
-                        <Stack
-                          direction='row'
-                          spacing={1}
-                          justifyContent='center'
-                          sx={{ mb: 2 }}
-                        >
+                        <Stack direction="row" spacing={1} justifyContent="center" sx={{ mb: 2 }}>
                           <Chip
-                            label='Durable'
-                            size='small'
+                            label="Durable"
+                            size="small"
                             sx={{
-                              background: 'rgba(17, 17, 17, 0.1)',
-                              color: '#111111',
+                              background: 'rgba(139, 69, 19, 0.1)',
+                              color: '#8B4513',
                               fontSize: '0.75rem',
                               fontWeight: 500,
                               fontFamily: '"Inter", sans-serif',
                             }}
                           />
                           <Chip
-                            label='Eco-Friendly'
-                            size='small'
+                            label="Eco-Friendly"
+                            size="small"
                             sx={{
-                              background: 'rgba(189, 189, 189, 0.1)',
-                              color: '#bdbdbd',
+                              background: 'rgba(212, 175, 55, 0.1)',
+                              color: '#D4AF37',
                               fontSize: '0.75rem',
                               fontWeight: 500,
                               fontFamily: '"Inter", sans-serif',
@@ -713,7 +682,7 @@ export default function Home() {
                       <Box sx={{ width: '100%', mt: 'auto' }}>
                         <Link href={`/products/${product.id}`} passHref>
                           <Button
-                            variant='contained'
+                            variant="contained"
                             fullWidth
                             endIcon={<ArrowForward />}
                             sx={{
@@ -723,11 +692,10 @@ export default function Home() {
                               py: 1.5,
                               textTransform: 'uppercase',
                               letterSpacing: '0.5px',
-                              background: '#111111',
-                              color: '#fffaf3',
-                              boxShadow: '0 4px 15px rgba(17, 17, 17, 0.3)',
-                              transition:
-                                'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                              background: '#8B4513',
+                              color: 'white',
+                              boxShadow: '0 4px 15px rgba(139, 69, 19, 0.3)',
+                              transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                               fontFamily: '"Inter", sans-serif',
                               position: 'relative',
                               overflow: 'hidden',
@@ -738,14 +706,13 @@ export default function Home() {
                                 left: '-100%',
                                 width: '100%',
                                 height: '100%',
-                                background:
-                                  'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
+                                background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
                                 transition: 'left 0.5s',
                               },
                               '&:hover': {
-                                background: '#444444',
+                                background: '#6D3410',
                                 transform: 'translateY(-2px)',
-                                boxShadow: '0 8px 25px rgba(17, 17, 17, 0.4)',
+                                boxShadow: '0 8px 25px rgba(139, 69, 19, 0.4)',
                                 '&::before': {
                                   left: '100%',
                                 },
@@ -765,10 +732,10 @@ export default function Home() {
 
           {/* Enhanced View All Products Button */}
           <Box sx={{ textAlign: 'center', mt: 8 }}>
-            <Link href='/products' passHref>
+            <Link href="/products" passHref>
               <Button
-                variant='contained'
-                size='large'
+                variant="contained"
+                size="large"
                 endIcon={<TrendingUp />}
                 sx={{
                   minWidth: { xs: '100%', sm: '280px' },
@@ -776,9 +743,9 @@ export default function Home() {
                   py: 2,
                   px: 6,
                   borderRadius: 1,
-                  background: '#bdbdbd',
-                  color: '#fffaf3',
-                  boxShadow: '0 4px 20px rgba(189, 189, 189, 0.3)',
+                  background: '#D4AF37',
+                  color: 'white',
+                  boxShadow: '0 4px 20px rgba(212, 175, 55, 0.3)',
                   fontWeight: 500,
                   textTransform: 'uppercase',
                   letterSpacing: '1px',
@@ -793,14 +760,13 @@ export default function Home() {
                     left: '-100%',
                     width: '100%',
                     height: '100%',
-                    background:
-                      'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
+                    background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
                     transition: 'left 0.6s',
                   },
                   '&:hover': {
-                    background: '#757575',
+                    background: '#B8941F',
                     transform: 'translateY(-3px)',
-                    boxShadow: '0 8px 32px rgba(189, 189, 189, 0.4)',
+                    boxShadow: '0 8px 32px rgba(212, 175, 55, 0.4)',
                     '&::before': {
                       left: '100%',
                     },

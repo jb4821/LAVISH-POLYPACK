@@ -34,10 +34,10 @@ const FloatingActionButtons = () => {
         <Fab
           aria-label='call'
           sx={{
-            backgroundColor: '#757575',
-            color: '#fffaf3',
+            backgroundColor: '#EA4335',
+            color: 'white',
             boxShadow: 3,
-            '&:hover': { backgroundColor: '#444444' },
+            '&:hover': { backgroundColor: '#c62828' },
           }}
           onClick={() => window.open('tel:+918238420382', '_self')}
         >
@@ -56,10 +56,10 @@ const FloatingActionButtons = () => {
         <Fab
           aria-label='whatsapp'
           sx={{
-            backgroundColor: '#bdbdbd',
-            color: '#fffaf3',
+            backgroundColor: '#25D366',
+            color: 'white',
             boxShadow: 3,
-            '&:hover': { backgroundColor: '#757575' },
+            '&:hover': { backgroundColor: '#1ebe57' },
           }}
           onClick={() => window.open('https://wa.me/918238420382', '_blank')}
         >
@@ -81,10 +81,10 @@ const FloatingActionButtons = () => {
             aria-label='scroll to top'
             onClick={handleScrollTop}
             sx={{
-              backgroundColor: '#111111',
-              color: '#fffaf3',
+              backgroundColor: '#333',
+              color: 'white',
               boxShadow: 3,
-              '&:hover': { backgroundColor: '#444444' },
+              '&:hover': { backgroundColor: '#222' },
             }}
           >
             <KeyboardArrowUpIcon fontSize='large' />
