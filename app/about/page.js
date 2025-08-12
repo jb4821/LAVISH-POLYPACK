@@ -378,7 +378,7 @@ const AboutPage = () => {
               We are dedicated to engineering excellence, timely service, and customer
               satisfaction by continuously evolving with the latest technology and industry
               trends. With a strong focus on sustainable manufacturing, we aim to minimize
-              our environmental impact while maximizing value for our clients. Whether it's
+              our environmental impact while maximizing value for our clients. Whether it is
               a small enterprise or a multinational corporation, we believe in building
               relationships that are rooted in trust, transparency, and long-term
               collaboration.
