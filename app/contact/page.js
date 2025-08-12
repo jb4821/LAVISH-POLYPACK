@@ -73,7 +73,7 @@ const ContactPage = () => {
       icon: Business,
       title: "Domestic Inquiry",
       text: "+91-8238420382",
-      color: "#8B4513",
+      color: "#D4AF37",
       copyable: true,
       action: () => window.open("tel:+918238420382"),
     },
@@ -89,7 +89,15 @@ const ContactPage = () => {
       icon: Email,
       title: "Inquiry Email",
       text: "lavishpolypack@gmail.com",
-      color: "#8B4513",
+      color: "#D4AF37",
+      copyable: true,
+      action: () => window.open("mailto:lavishpolypack@gmail.com"),
+    },
+      {
+      icon: Email,
+      title: "Export Inquiry Email",
+      text: "sales@lavishpolypack.in",
+      color: "#D4AF37",
       copyable: true,
       action: () => window.open("mailto:lavishpolypack@gmail.com"),
     },
@@ -113,7 +121,7 @@ const ContactPage = () => {
       icon: LocationOn,
       title: "Our Location",
       text: "LAVISH POLYPACK LLP, Tankara, Gujarat 363650, India",
-      color: "#8B4513",
+      color: "#D4AF37",
       copyable: true,
       action: () =>
         window.open(
@@ -124,10 +132,10 @@ const ContactPage = () => {
   ];
 
   const whatsappNumbers = [
-    { number: "+919879260200", label: "General Inquiry" },
-    { number: "+919979466066", label: "Customer Support" },
-    { number: "+919904972444", label: "Domestic Bags" },
-    { number: "+917567781212", label: "Export Inquiry" },
+    { number: "+91918238420382", label: "General Inquiry" },
+    { number: "+91918238420382", label: "Customer Support" },
+    { number: "+91918238420382", label: "Domestic Bags" },
+    { number: "+91918238420382", label: "Export Inquiry" },
   ];
 
   const handleInputChange = (field) => (event) => {
@@ -437,21 +445,22 @@ const ContactPage = () => {
         </Grid>
 
         {/* Form and Map Column */}
-        <Grid item xs={12} lg={7}  ref={inquiryRef}>
-          <Grid container spacing={4}>
+        <Grid item xs={12} lg={7} ref={inquiryRef}>
+          <Grid container spacing={4} alignItems="stretch">
             {/* Contact Form */}
-            <Grid item xs={12} lg={7}>
-              <Fade in={true} timeout={1400}>
-                <Paper
+            <Grid item xs={12} lg={7} sx={{ display: 'flex' }}>
+              <Fade in={true} timeout={1400} style={{ width: '100%' }}>
+                <Box
                   elevation={0}
                   sx={{
                     p: 5,
                     background: "rgba(255, 255, 255, 0.95)",
-                    border: "1px solid rgba(212, 175, 55, 0.1)",
-                    borderRadius: 3,
+                    // border: "1px solid rgba(212, 175, 55, 0.1)",
+                    // borderRadius: 3,
                     position: "relative",
                     overflow: "hidden",
                     backdropFilter: "blur(20px)",
+                    width: '100%',
                   }}
                 >
                   <Typography
@@ -576,7 +585,7 @@ const ContactPage = () => {
                             label="Your Message *"
                             variant="outlined"
                             fullWidth
-                            multiline
+                            // multiline
                             rows={4}
                             value={formData.message}
                             onChange={handleInputChange("message")}
@@ -642,174 +651,137 @@ const ContactPage = () => {
                       </Box>
                     </Box>
                   </form>
-                </Paper>
-              </Fade>
-            </Grid>
-            {/* Map Section */}
-            <Grid item xs={12}>
-              <Fade in={true} timeout={1600}>
-                <Box
-                  sx={{
-                    width: "100%",
-                    px: { xs: 2, md: 4 },
-                    maxWidth: '100%',
-                    overflowX: 'hidden',
-                  }}
-                >
-                  <Paper
-                    elevation={0}
-                    sx={{
-                      p: 2,
-                      background: "rgba(255, 255, 255, 0.95)",
-                      border: "1px solid rgba(139, 69, 19, 0.1)",
-                      borderRadius: 3,
-                      position: "relative",
-                      overflow: "hidden",
-                      maxWidth: "100%",
-                      mx: "auto",
-                      backdropFilter: "blur(20px)",
-                    }}
-                  >
-                    <Typography
-                      variant="h5"
-                      component="h3"
-                      gutterBottom
-                      sx={{
-                        fontWeight: 300,
-                        mb: 3,
-                        color: "#8B4513",
-                        textAlign: "center",
-                        fontFamily: '"Playfair Display", serif',
-                        letterSpacing: "1px",
-                      }}
-                    >
-                      Find Us On Map
-                    </Typography>
-                    <Box
-                      sx={{
-                        height: { xs: "300px", md: "500px" },
-                        width: "100%",
-                        borderRadius: 2,
-                        overflow: "hidden",
-                        border: "2px solid rgba(139, 69, 19, 0.1)",
-                        boxShadow: "0 8px 25px rgba(0,0,0,0.1)",
-                      }}
-                    >
-                      <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.81559806443!2d70.644480!3d22.596371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDM1JzQ2LjkiTiA3MMKwMzgnNDAuMSJF!5e0!3m2!1sen!2sus!4v1626883271884!5m2!1sen!2sus"
-                        width="100%"
-                        height="100%"
-                        style={{ border: 0 }}
-                        allowFullScreen=""
-                        loading="lazy"
-                        title="LAVISH POLYPACK Location"
-                      />
-                    </Box>
-                  </Paper>
                 </Box>
               </Fade>
+            </Grid>
+            <Grid item xs={12} lg={7} sx={{ display: 'flex', flexDirection: 'column' }}>
+              <Box sx={{ flex: 1, width: '100%' }}>
+                <Box
+                  sx={{
+                    width: '100%',
+                    height: { xs: '350px', sm: '400px', md: '450px', lg: '500px' },
+                    overflow: 'hidden',
+                  }}
+                >
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.81559806443!2d70.644480!3d22.596371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDM1JzQ2LjkiTiA3MMKwMzgnNDAuMSJF!5e0!3m2!1sen!2sus!4v1626883271884!5m2!1sen!2sus"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0, display: 'block' }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    title="LAVISH POLYPACK Location"
+                  />
+                </Box>
+              </Box>
             </Grid>
           </Grid>
         </Grid>
       </Grid>
 
-      {/* Business Hours Section */}
-      <Fade in={true} timeout={1800}>
-        <Box sx={{ mt: 8 }}>
-          <Grid container spacing={4} justifyContent="center" alignItems="stretch">
-            <Grid item xs={12} md={4}>
-              <Card
-                sx={{
-                  p: 3,
-                  textAlign: "center",
-                  background: "#F7E7B3",
-                  color: "#2D2D2D",
-                  borderRadius: 3,
-                  border: "1px solid #D7BFAE",
-                  boxShadow: "0 2px 12px #D7BFAE33",
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                }}
-              >
-                <Schedule sx={{ fontSize: 40, mb: 2, color: "#8B4513" }} />
-                <Typography
-                  variant="h6"
-                  sx={{ mb: 2, fontFamily: '"Inter", sans-serif', color: "#8B4513", fontWeight: 600 }}
-                >
-                  Business Hours
-                </Typography>
-                <Typography variant="body2" sx={{ opacity: 0.95 }}>
-                  Monday - Saturday: 9:00 AM - 6:00 PM
-                  <br />
-                  Sunday: Closed
-                </Typography>
-              </Card>
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <Card
-                sx={{
-                  p: 3,
-                  textAlign: "center",
-                  background: "#F3F3F3",
-                  color: "#2D2D2D",
-                  borderRadius: 3,
-                  border: "1px solid #D7BFAE",
-                  boxShadow: "0 2px 12px #D7BFAE33",
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                }}
-              >
-                <Email sx={{ fontSize: 40, mb: 2, color: "#D4AF37" }} />
-                <Typography
-                  variant="h6"
-                  sx={{ mb: 2, fontFamily: '"Inter", sans-serif', color: "#D4AF37", fontWeight: 600 }}
-                >
-                  Email Response
-                </Typography>
-                <Typography variant="body2" sx={{ opacity: 0.95 }}>
-                  We respond to all emails
-                  <br />
-                  within 2-4 hours during business hours
-                </Typography>
-              </Card>
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <Card
-                sx={{
-                  p: 3,
-                  textAlign: "center",
-                  background: "#D7BFAE",
-                  color: "#2D2D2D",
-                  borderRadius: 3,
-                  border: "1px solid #F7E7B3",
-                  boxShadow: "0 2px 12px #D7BFAE33",
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                }}
-              >
-                <WhatsApp sx={{ fontSize: 40, mb: 2, color: "#25D366" }} />
-                <Typography
-                  variant="h6"
-                  sx={{ mb: 2, fontFamily: '"Inter", sans-serif', color: "#25D366", fontWeight: 600 }}
-                >
-                  WhatsApp Support
-                </Typography>
-                <Typography variant="body2" sx={{ opacity: 0.95 }}>
-                  Get instant replies on WhatsApp
-                  <br />
-                  24/7 available for urgent queries
-                </Typography>
-              </Card>
-            </Grid>
-          </Grid>
-        </Box>
-      </Fade>
+<Fade in={true} timeout={1800}>
+  <Box sx={{ mt: 8 }}>
+    <Grid
+      container
+      spacing={4}
+      justifyContent="center"
+      alignItems="stretch"
+      sx={{
+        // Prevents uneven widths on large screens
+        flexWrap: "wrap",
+      }}
+    >
+      {[
+        {
+          icon: <Schedule sx={{ fontSize: 40, mb: 2, color: "#8B4513" }} />,
+          title: "Business Hours",
+          bg: "#F7E7B3",
+          border: "#D7BFAE",
+          textColor: "#8B4513",
+          content: (
+            <>
+              Monday - Saturday: 9:00 AM - 6:00 PM
+              <br />
+              Sunday: Closed
+            </>
+          ),
+        },
+        {
+          icon: <Email sx={{ fontSize: 40, mb: 2, color: "#D4AF37" }} />,
+          title: "Email Response",
+          bg: "#F3F3F3",
+          border: "#D7BFAE",
+          textColor: "#D4AF37",
+          content: (
+            <>
+              We respond to all emails
+              <br />
+              within 2-4 hours during business hours
+            </>
+          ),
+        },
+        {
+          icon: <WhatsApp sx={{ fontSize: 40, mb: 2, color: "#25D366" }} />,
+          title: "WhatsApp Support",
+          bg: "#D7BFAE",
+          border: "#F7E7B3",
+          textColor: "#25D366",
+          content: (
+            <>
+              Get instant replies on WhatsApp
+              <br />
+              24/7 available for urgent queries
+            </>
+          ),
+        },
+      ].map((item, index) => (
+        <Grid
+          item
+          key={index}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            flex: "0 0 auto", // Prevents shrinking unevenly
+          }}
+        >
+          <Card
+            sx={{
+              p: 3,
+              textAlign: "center",
+              background: item.bg,
+              color: "#2D2D2D",
+              borderRadius: 3,
+              border: `1px solid ${item.border}`,
+              boxShadow: "0 2px 12px #D7BFAE33",
+              height: "100%",
+              width: 320, // fixed width for all cards
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+            }}
+          >
+            {item.icon}
+            <Typography
+              variant="h6"
+              sx={{
+                mb: 2,
+                fontFamily: '"Inter", sans-serif',
+                color: item.textColor,
+                fontWeight: 600,
+              }}
+            >
+              {item.title}
+            </Typography>
+            <Typography variant="body2" sx={{ opacity: 0.95 }}>
+              {item.content}
+            </Typography>
+          </Card>
+        </Grid>
+      ))}
+    </Grid>
+  </Box>
+</Fade>
+
 
       {/* Snackbar for notifications */}
       <Snackbar

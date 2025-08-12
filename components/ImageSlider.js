@@ -349,19 +349,24 @@ const ImageSlider = () => {
   // Enhanced slides data with content for overlays
   const slides = [
     {
-      src: '/image-1.jpg',
-      title: 'Welcome to Paradise',
-      description: 'Experience breathtaking views and unforgettable moments in this stunning destination.',
+      src: '/image_1_slide.JPG',
+      title: 'ONE OF THE LEADING MANUFACTURERS AND EXPORTERS',
+      description: 'Leading manufacturer and exporter of premium quality PP woven packaging solutions worldwide',
     },
     {
-      src: '/image-2.png',
-      title: 'Adventure Awaits',
-      description: 'Discover new horizons and create memories that will last a lifetime.',
+      src: '/image_2_slide.JPG',
+      title: 'Unmatched quality you can trust',
+      description: 'Delivering unmatched quality with precision-engineered PP woven products you can trust.',
     },
     {
-      src: '/image-3.png',
-      title: 'Pure Serenity',
-      description: 'Find your perfect escape in our tranquil and luxurious environment.',
+      src: '/image_3_slide.JPG',
+      title: 'Strength that outperforms the competition',
+      description: 'Exceptional strength and innovation to thrive in today’s competitive world.',
+    },
+     {
+      src: '/image_4_slide.JPG',
+      title: 'State-of-the-art machinery for flawless production',
+      description: 'Advanced machinery delivering consistent quality and high-volume production with excellence.',
     }
   ];
   

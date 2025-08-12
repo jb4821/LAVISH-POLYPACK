@@ -218,7 +218,7 @@ const InquiryModal = ({ open, onClose }) => {
                   label="Your Message *"
                   fullWidth
                   required
-                  multiline
+                  // multiline
                   rows={3}
                   value={formData.message}
                   onChange={handleInputChange("message")}

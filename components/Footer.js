@@ -115,7 +115,7 @@ const Footer = () => {
             </Typography>
             <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 0.5 }}>
               <EmailIcon sx={{ fontSize: 18, color: "#8B4513" }} />
-              <Typography variant="body2" sx={{ color: "#2D2D2D" }}>export@lavishpolypack.com</Typography>
+              <Typography variant="body2" sx={{ color: "#2D2D2D" }}>sales@lavishpolypack.in</Typography>
             </Stack>
             <Stack direction="row" alignItems="center" spacing={1}>
               <PhoneIcon sx={{ fontSize: 18, color: "#8B4513" }} />

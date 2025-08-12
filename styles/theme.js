@@ -2,6 +2,9 @@
 import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
+   typography: {
+    fontFamily: '"Raleway", "Helvetica", "Arial", sans-serif',
+  },
   palette: {
     mode: 'light',
     primary: {

@@ -28,6 +28,7 @@ import {
   Phone,
   Email,
   LocationOn,
+  Eco,
 } from '@mui/icons-material';
 import ImageSlider from '../components/ImageSlider';
 import Link from 'next/link';
@@ -35,9 +36,12 @@ import { products } from '../lib/products';
 import Stats from '../components/Stats';
 import { useState, useEffect } from 'react';
 import 'yet-another-react-lightbox/styles.css';
+import AboutVideoSection from '@/components/AboutVideoSection';
+import { ChevronRight, Leaf, Shield } from 'lucide-react';
 
 export default function Home() {
-  const displayedProducts = products.slice(0, 6);
+  const displayedProducts = products.slice(0, 4);
+  const [hoveredProduct, setHoveredProduct] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [activeFeature, setActiveFeature] = useState(0);
 
@@ -87,8 +91,10 @@ export default function Home() {
     }
   ];
 
+  // Use first product as default background
+  const backgroundImage = hoveredProduct !== null ? products[hoveredProduct].image : products[0].image;
   return (
-    <Box sx={{ overflow: 'hidden', backgroundColor: '#FEFEFE' }}>
+    <Box sx={{ backgroundColor: '#FEFEFE' }}>
       {/* Enhanced Hero Section with Brown/Gold Theme */}
       <Box
         sx={{
@@ -284,101 +290,95 @@ export default function Home() {
           </Box>
 
           {/* Enhanced Features Bar with Brown/Gold Theme */}
-          <Paper
-            elevation={0}
-            sx={{
-              background: 'rgba(255, 255, 255, 0.95)',
-              backdropFilter: 'blur(20px)',
-              border: '1px solid rgba(139, 69, 19, 0.1)',
-              borderRadius: 2,
-              p: 3,
-              mb: 8,
-              position: 'relative',
-              overflow: 'hidden',
-              boxShadow: '0 2px 40px rgba(139, 69, 19, 0.08)',
-            }}
+          <Grid
+            container
+            spacing={3}
+            justifyContent="center"
+            alignItems="stretch"
           >
-            <Grid
-              container
-              spacing={3}
-              justifyContent="center"
-              alignItems="stretch"
-            >
-              {features.map((feature, index) => (
-                <Grid item xs={12} sm={6} md={4} key={index} sx={{ display: 'flex', justifyContent: 'center' }}>
-                  <Box
+            {features.map((feature, index) => (
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                key={index}
+                sx={{ display: 'flex', justifyContent: 'center' }}
+              >
+                <Box
+                  sx={{
+                    textAlign: 'center',
+                    position: 'relative',
+                    p: 2,
+                    borderRadius: 1,
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer',
+                    background: activeFeature === index
+                      ? 'rgba(139, 69, 19, 0.06)'
+                      : 'transparent',
+                    border: activeFeature === index
+                      ? '1px solid rgba(139, 69, 19, 0.15)'
+                      : '1px solid transparent',
+                    width: { xs: 260, sm: 280, md: 300 }, // fixed width for all
+                    height: { xs: 200, sm: 220, md: 240 }, // fixed height for all
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    '&:hover': {
+                      background: 'rgba(139, 69, 19, 0.08)',
+                      transform: 'translateY(-2px)',
+                      boxShadow: '0 4px 20px rgba(139, 69, 19, 0.1)',
+                    },
+                  }}
+                  onClick={() => setActiveFeature(index)}
+                >
+                  <IconButton
                     sx={{
-                      textAlign: 'center',
-                      position: 'relative',
-                      p: 2,
-                      borderRadius: 1,
-                      transition: 'all 0.3s ease',
-                      cursor: 'pointer',
-                      background: activeFeature === index
-                        ? 'rgba(139, 69, 19, 0.06)'
-                        : 'transparent',
-                      border: activeFeature === index
-                        ? '1px solid rgba(139, 69, 19, 0.15)'
-                        : '1px solid transparent',
-                      minHeight: { xs: 140, sm: 160, md: 180 },
-                      width: '100%',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'center',
-                      alignItems: 'center',
+                      background: index === 1 ? '#D4AF37' : '#8B4513',
+                      color: 'white',
+                      mb: 2,
                       '&:hover': {
-                        background: 'rgba(139, 69, 19, 0.08)',
-                        transform: 'translateY(-2px)',
-                        boxShadow: '0 4px 20px rgba(139, 69, 19, 0.1)',
+                        background: index === 1 ? '#B8941F' : '#6D3410',
                       },
                     }}
-                    onClick={() => setActiveFeature(index)}
                   >
-                    <IconButton
-                      sx={{
-                        background: index === 1 ? '#D4AF37' : '#8B4513',
-                        color: 'white',
-                        mb: 2,
-                        '&:hover': {
-                          background: index === 1 ? '#B8941F' : '#6D3410',
-                        },
-                      }}
-                    >
-                      {feature.icon}
-                    </IconButton>
-                    <Typography
-                      variant="h6"
-                      fontWeight={600}
-                      gutterBottom
-                      sx={{
-                        color: '#2D2D2D',
-                        fontFamily: '"Inter", sans-serif',
-                      }}
-                    >
-                      {feature.title}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        color: '#666',
-                        fontFamily: '"Inter", sans-serif',
-                      }}
-                    >
-                      {feature.description}
-                    </Typography>
-                  </Box>
-                </Grid>
-              ))}
-            </Grid>
-          </Paper>
+                    {feature.icon}
+                  </IconButton>
+                  <Typography
+                    variant="h6"
+                    fontWeight={600}
+                    gutterBottom
+                    sx={{
+                      color: '#2D2D2D',
+                      fontFamily: '"Inter", sans-serif',
+                    }}
+                  >
+                    {feature.title}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: '#666',
+                      fontFamily: '"Inter", sans-serif',
+                    }}
+                  >
+                    {feature.description}
+                  </Typography>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+
         </Container>
       </Box>
+      <AboutVideoSection text='Lavish Polypack LLP stands at the forefront of PP Woven Fabric and bag manufacturing, delivering unmatched quality and strength in every product. Powered by our own Solar energy plant, we produce with minimal environmental impact, ensuring our operations remain both efficient and eco-conscious. Each fabric and bag is crafted with precision, offering durability and performance that meet the toughest demands. By merging innovative technology with sustainable Solar-powered manufacturing, Lavish Polypack LLP delivers packaging solutions that protect products, preserve resources, and promote a cleaner future.' />
 
       {/* Enhanced Products Section with Brown/Gold Theme */}
-      <Container sx={{ px: { xs: 2, sm: 4, md: 6 } }}>
-        <Box sx={{ py: { xs: 6, sm: 8 } }}>
+      <Container >
+        <Box >
           {/* Section Header */}
-          <Box sx={{ textAlign: 'center', mb: 8 }}>
+          <Box sx={{ textAlign: 'center', mb: 4 }}>
             <Typography
               variant="h2"
               component="h2"
@@ -403,7 +403,7 @@ export default function Home() {
                 },
               }}
             >
-              Our Premium Products
+              What We Offer
             </Typography>
 
             <Typography
@@ -426,309 +426,240 @@ export default function Home() {
           </Box>
 
           {/* Enhanced Product Grid */}
-          <Grid container spacing={4} sx={{ justifyContent: 'center' }}>
-            {displayedProducts.map((product, index) => (
-              <Grid item key={product.id} xs={12} sm={6} lg={4}>
-                {isLoading ? (
-                  <Card sx={{ height: 520, borderRadius: 2 }}>
-                    <Skeleton variant="rectangular" height={240} />
-                    <CardContent>
-                      <Skeleton variant="text" height={40} />
-                      <Skeleton variant="text" height={20} />
-                      <Skeleton variant="text" height={20} />
-                      <Box sx={{ mt: 3 }}>
-                        <Skeleton variant="rectangular" height={45} />
-                      </Box>
-                    </CardContent>
-                  </Card>
-                ) : (
-                  <Card
+          <Box
+            sx={{
+              position: 'relative',
+              width: '100%',
+              height: '100vh',
+              overflow: 'hidden',
+            }}
+          >
+            {/* Background Image */}
+            <Box
+              sx={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                backgroundImage: `url(${backgroundImage})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                transition: 'all 0.8s ease-in-out',
+                '&::after': {
+                  content: '""',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                }
+              }}
+            />
+
+            <Container
+              maxWidth="lg"
+              sx={{
+                position: 'relative',
+                zIndex: 10,
+                height: '100%',
+                display: 'flex',
+                alignItems: 'center'
+              }}
+            >
+
+              {/* Mobile Layout */}
+              <Box sx={{ display: { xs: 'block', lg: 'none' }, width: '100%' }}>
+                {displayedProducts.map((product, index) => (
+                  <Box
+                    key={product.id}
+                    onClick={() => setHoveredProduct(hoveredProduct === index ? null : index)}
                     sx={{
-                      height: 520,
-                      maxWidth: 380,
-                      mx: 'auto',
-                      display: 'flex',
-                      flexDirection: 'column',
+                      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                      backdropFilter: 'blur(10px)',
                       borderRadius: 2,
-                      border: product.bestSeller
-                        ? '2.5px solid #D4AF37'
-                        : '1px solid rgba(139, 69, 19, 0.1)',
-                      boxShadow: product.bestSeller
-                        ? '0 8px 32px rgba(212, 175, 55, 0.25)'
-                        : '0 2px 20px rgba(139, 69, 19, 0.08)',
-                      border: '1px solid rgba(139, 69, 19, 0.1)',
-                      boxShadow: '0 2px 20px rgba(139, 69, 19, 0.08)',
-                      transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                      p: 3,
+                      mb: 2,
+                      border: '1px solid rgba(255, 255, 255, 0.2)',
                       cursor: 'pointer',
-                      position: 'relative',
-                      overflow: 'hidden',
-                      background: 'rgba(255, 255, 255, 0.98)',
-                      backdropFilter: 'blur(20px)',
-                      '&::before': {
-                        content: '""',
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        height: '2px',
-                        background: 'linear-gradient(90deg, #8B4513, #D4AF37, #8B4513)',
-                        opacity: 0,
-                        transition: 'opacity 0.3s ease',
-                      },
+                      transition: 'all 0.5s ease',
                       '&:hover': {
-                        transform: 'translateY(-8px)',
-                        boxShadow: '0 20px 40px rgba(139, 69, 19, 0.15)',
-                        borderColor: '#8B4513',
-                        '&::before': {
-                          opacity: 1,
-                        },
-                        '& .product-image': {
-                          transform: 'scale(1.05)',
-                        },
-                        '& .product-overlay': {
-                          opacity: 1,
-                        },
-                        '& .product-badge': {
-                          opacity: 1,
-                          transform: 'translateY(0)',
-                        },
-                      },
+                        backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                        transform: 'scale(1.02)',
+                      }
                     }}
                   >
-                    {/* Enhanced Image Container */}
-                    <Box
-                      sx={{
-                        width: '100%',
-                        height: 240,
-                        position: 'relative',
-                        background: '#F8F6F3',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        overflow: 'hidden',
-                      }}
-                    >
-                      {/* Best Seller Badge */}
-                      {product.bestSeller && (
+                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
+                      <Typography variant="h6" sx={{ color: 'white', fontWeight: 600 }}>
+                        {product.name}
+                      </Typography>
+                      {displayedProducts.bestSeller && (
                         <Chip
+                          icon={<Star sx={{ fontSize: '16px !important', color: '#000' }} />}
                           label="Best Seller"
                           size="small"
                           sx={{
-                            position: 'absolute',
-                            top: 18,
-                            left: 18,
-                            background: 'linear-gradient(90deg, #D4AF37, #FFD700)',
-                            color: '#8B4513',
-                            fontWeight: 700,
-                            fontSize: '0.8rem',
-                            zIndex: 3,
-                            boxShadow: '0 2px 8px #D4AF3722',
-                            textTransform: 'uppercase',
-                            letterSpacing: '1px',
+                            backgroundColor: '#FFD700',
+                            color: '#000',
+                            fontWeight: 600,
+                            fontSize: '0.7rem'
                           }}
                         />
                       )}
-                      {/* Quality Badge */}
-                      <Chip
-                        icon={<Star sx={{ fontSize: '16px !important' }} />}
-                        label="Premium"
-                        size="small"
-                        className="product-badge"
-                        sx={{
-                          position: 'absolute',
-                          top: 16,
-                          right: 16,
-                          background: '#D4AF37',
-                          color: 'white',
-                          fontWeight: 600,
-                          fontSize: '0.75rem',
-                          fontFamily: '"Inter", sans-serif',
-                          opacity: product.bestSeller ? 1 : 0,
-                          transform: product.bestSeller ? 'translateY(0)' : 'translateY(-10px)',
-                          transition: 'all 0.3s ease',
-                          zIndex: 2,
-                        }}
-                      />
-
-                      <CardMedia
-                        component="img"
-                        className="product-image"
-                        sx={{
-                          maxHeight: '80%',
-                          maxWidth: '80%',
-                          objectFit: 'contain',
-                          transition: 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                          filter: 'drop-shadow(0 8px 16px rgba(139, 69, 19, 0.1))',
-                        }}
-                        image={product.image}
-                        alt={product.name}
-                        onError={(e) => {
-                          e.target.onerror = null;
-                          e.target.src = '/products/pp-bag.jpg';
-                        }}
-                        onClick={() => handleImageClick(product.image)}
-                      />
-
-                      {/* Enhanced Overlay */}
-                      <Box
-                        className="product-overlay"
-                        sx={{
-                          position: 'absolute',
-                          top: 0,
-                          left: 0,
-                          right: 0,
-                          bottom: 0,
-                          background: 'linear-gradient(135deg, rgba(139, 69, 19, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%)',
-                          opacity: 0,
-                          transition: 'opacity 0.3s ease-in-out',
-                        }}
-                      />
                     </Box>
 
-                    {/* Enhanced Divider */}
-                    <Divider
+                    <Box
                       sx={{
-                        width: '90%',
-                        mx: 'auto',
-                        my: 2,
-                        background: 'linear-gradient(90deg, transparent, #D4AF37, transparent)',
-                        height: '1px',
-                        borderRadius: '0.5px',
+                        maxHeight: hoveredProduct === index ? '200px' : '0px',
+                        overflow: 'hidden',
+                        transition: 'all 0.5s ease',
+                        opacity: hoveredProduct === index ? 1 : 0,
                       }}
-                    />
+                    >
+                      <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.8)', mb: 2, lineHeight: 1.6 }}>
+                        {product.description}
+                      </Typography>
+                    </Box>
+                  </Box>
+                ))}
+              </Box>
 
-                    {/* Enhanced Content Section */}
-                    <CardContent
+              {/* Desktop Layout */}
+              <Box sx={{ display: { xs: 'none', lg: 'flex' }, width: '100%', height: '100%' }}>
+                {displayedProducts.map((product, index) => (
+                  <Box
+                    key={product.id}
+                    onMouseEnter={() => setHoveredProduct(index)}
+                    onMouseLeave={() => setHoveredProduct(null)}
+                    sx={{
+                      flex: hoveredProduct === index ? '2.5' : hoveredProduct !== null ? '0.3' : '1',
+                      height: '100%',
+                      backgroundColor: 'transparent',
+                      backdropFilter: 'blur(15px)',
+                      border: '1px solid rgba(255, 255, 255, 0.2)',
+                      borderRight: index === products.length - 1 ? '1px solid rgba(255, 255, 255, 0.2)' : 'none',
+                      cursor: 'pointer',
+                      transition: 'all 0.7s cubic-bezier(0.4, 0, 0.2, 1)',
+                      position: 'relative',
+                      overflow: 'hidden',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      '&:hover': {
+                        backgroundColor: 'transparent',
+                      }
+                    }}
+                  >
+                    {/* Collapsed State - Product Name */}
+                    <Box
                       sx={{
-                        flexGrow: 1,
-                        textAlign: 'center',
-                        p: 3,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        height: '100%',
+                        // p: 2,
+                        opacity: hoveredProduct === index ? 0 : 1,
+                        transition: 'opacity 0.3s ease',
+                        position: hoveredProduct === index ? 'absolute' : 'relative',
+                        width: '100%',
+                      }}
+                    >
+                      <Typography
+                        variant="h6"
+                        sx={{
+                          color: 'white',
+                          fontWeight: 600,
+                          textAlign: 'center',
+                          lineHeight: 1.3,
+                          transform: hoveredProduct !== null && hoveredProduct !== index ? 'rotate(-90deg)' : 'none',
+                          transition: 'transform 0.7s ease',
+                          whiteSpace: hoveredProduct !== null && hoveredProduct !== index ? 'nowrap' : 'normal',
+                          fontSize: hoveredProduct !== null && hoveredProduct !== index ? '1rem' : '1.25rem',
+                        }}
+                      >
+                        {product.name}
+                      </Typography>
+                    </Box>
+
+                    {/* Expanded State - Full Content */}
+                    <Box
+                      sx={{
+                        opacity: hoveredProduct === index ? 1 : 0,
+                        transform: hoveredProduct === index ? 'translateY(0)' : 'translateY(20px)',
+                        transition: 'all 0.5s ease 0.2s',
+                        p: 4,
+                        height: '100%',
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'space-between',
+                        position: hoveredProduct === index ? 'relative' : 'absolute',
+                        width: '100%',
+                        top: 0,
                       }}
                     >
                       <Box>
-                        <Typography
-                          gutterBottom
-                          variant="h6"
-                          component="div"
+                        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
+                          <Typography variant="h5" sx={{ color: 'white', fontWeight: 700 }}>
+                            {product.name}
+                          </Typography>
+                          {product.bestSeller && (
+                            <Chip
+                              icon={<Star sx={{ fontSize: '18px !important' }} />}
+                              label="Best Seller"
+                              sx={{
+                                backgroundColor: '#FFD700',
+                                color: '#000',
+                                fontWeight: 600,
+                                fontSize: '0.75rem'
+                              }}
+                            />
+                          )}
+                        </Box>
+
+                        <Chip
+                          label={product.category}
+                          size="small"
                           sx={{
-                            fontWeight: 600,
-                            fontSize: '1.2rem',
-                            mb: 2,
-                            color: '#2D2D2D',
-                            lineHeight: 1.3,
-                            letterSpacing: '0.5px',
-                            minHeight: '1.6em',
-                            overflow: 'hidden',
-                            display: '-webkit-box',
-                            WebkitLineClamp: 1,
-                            WebkitBoxOrient: 'vertical',
-                            fontFamily: '"Inter", sans-serif',
+                            backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                            color: 'white',
+                            mb: 3,
+                            fontSize: '0.7rem'
+                          }}
+                        />
+
+                        <Typography
+                          variant="body1"
+                          sx={{
+                            color: 'rgba(255, 255, 255, 0.9)',
+                            lineHeight: 1.6,
+                            mb: 4,
+                            fontSize: '0.95rem'
                           }}
                         >
-                          {product.name}
+                          {product.description}
                         </Typography>
 
-                        {product.description && (
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              lineHeight: 1.6,
-                              color: '#666',
-                              fontSize: '0.9rem',
-                              minHeight: '3.2em',
-                              overflow: 'hidden',
-                              display: '-webkit-box',
-                              WebkitLineClamp: 2,
-                              WebkitBoxOrient: 'vertical',
-                              mb: 2,
-                              fontFamily: '"Inter", sans-serif',
-                            }}
-                          >
-                            {truncateDescription(product.description, 100)}
-                          </Typography>
-                        )}
-
-                        {/* Feature Tags */}
-                        <Stack direction="row" spacing={1} justifyContent="center" sx={{ mb: 2 }}>
-                          <Chip
-                            label="Durable"
-                            size="small"
-                            sx={{
-                              background: 'rgba(139, 69, 19, 0.1)',
-                              color: '#8B4513',
-                              fontSize: '0.75rem',
-                              fontWeight: 500,
-                              fontFamily: '"Inter", sans-serif',
-                            }}
-                          />
-                          <Chip
-                            label="Eco-Friendly"
-                            size="small"
-                            sx={{
-                              background: 'rgba(212, 175, 55, 0.1)',
-                              color: '#D4AF37',
-                              fontSize: '0.75rem',
-                              fontWeight: 500,
-                              fontFamily: '"Inter", sans-serif',
-                            }}
-                          />
-                        </Stack>
+                        <Box sx={{ display: 'flex', gap: 2, mb: 4 }}>
+                          <Box sx={{ display: 'flex', alignItems: 'center', color: '#4CAF50' }}>
+                            <Security sx={{ fontSize: '20px', mr: 1 }} />
+                            <Typography variant="body2" sx={{ fontWeight: 500, color: '#D4AF37' }}>
+                              Eco-Friendly
+                            </Typography>
+                          </Box>
+                          <Box sx={{ display: 'flex', alignItems: 'center', color: '#2196F3' }}>
+                            <Security sx={{ fontSize: '20px', mr: 1 }} />
+                            <Typography variant="body2" sx={{ fontWeight: 500, color: '#D4AF37' }}>
+                              Durable
+                            </Typography>
+                          </Box>
+                        </Box>
                       </Box>
-
-                      {/* Enhanced CTA Button */}
-                      <Box sx={{ width: '100%', mt: 'auto' }}>
-                        <Link href={`/products/${product.id}`} passHref>
-                          <Button
-                            variant="contained"
-                            fullWidth
-                            endIcon={<ArrowForward />}
-                            sx={{
-                              fontWeight: 500,
-                              borderRadius: 1,
-                              fontSize: '0.9rem',
-                              py: 1.5,
-                              textTransform: 'uppercase',
-                              letterSpacing: '0.5px',
-                              background: '#8B4513',
-                              color: 'white',
-                              boxShadow: '0 4px 15px rgba(139, 69, 19, 0.3)',
-                              transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                              fontFamily: '"Inter", sans-serif',
-                              position: 'relative',
-                              overflow: 'hidden',
-                              '&::before': {
-                                content: '""',
-                                position: 'absolute',
-                                top: 0,
-                                left: '-100%',
-                                width: '100%',
-                                height: '100%',
-                                background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
-                                transition: 'left 0.5s',
-                              },
-                              '&:hover': {
-                                background: '#6D3410',
-                                transform: 'translateY(-2px)',
-                                boxShadow: '0 8px 25px rgba(139, 69, 19, 0.4)',
-                                '&::before': {
-                                  left: '100%',
-                                },
-                              },
-                            }}
-                          >
-                            View Details
-                          </Button>
-                        </Link>
-                      </Box>
-                    </CardContent>
-                  </Card>
-                )}
-              </Grid>
-            ))}
-          </Grid>
+                    </Box>
+                  </Box>
+                ))}
+              </Box>
+            </Container>
+          </Box>
 
           {/* Enhanced View All Products Button */}
           <Box sx={{ textAlign: 'center', mt: 8 }}>
