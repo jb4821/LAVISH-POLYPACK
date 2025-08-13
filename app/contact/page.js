@@ -132,10 +132,10 @@ const ContactPage = () => {
   ];
 
   const whatsappNumbers = [
-    { number: "+91918238420382", label: "General Inquiry" },
-    { number: "+91918238420382", label: "Customer Support" },
-    { number: "+91918238420382", label: "Domestic Bags" },
-    { number: "+91918238420382", label: "Export Inquiry" },
+    { number: "+918238420382", label: "General Inquiry" },
+    { number: "+918238420382", label: "Customer Support" },
+    { number: "+918238420382", label: "Domestic Bags" },
+    { number: "+918238420382", label: "Export Inquiry" },
   ];
 
   const handleInputChange = (field) => (event) => {
