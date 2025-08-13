@@ -375,7 +375,7 @@ export default function Home() {
       <AboutVideoSection text='Lavish Polypack LLP stands at the forefront of PP Woven Fabric and bag manufacturing, delivering unmatched quality and strength in every product. Powered by our own Solar energy plant, we produce with minimal environmental impact, ensuring our operations remain both efficient and eco-conscious. Each fabric and bag is crafted with precision, offering durability and performance that meet the toughest demands. By merging innovative technology with sustainable Solar-powered manufacturing, Lavish Polypack LLP delivers packaging solutions that protect products, preserve resources, and promote a cleaner future.' />
 
       {/* Enhanced Products Section with Brown/Gold Theme */}
-      <Container >
+      <Box>
         <Box >
           {/* Section Header */}
           <Box sx={{ textAlign: 'center', mb: 4 }}>
@@ -430,7 +430,7 @@ export default function Home() {
             sx={{
               position: 'relative',
               width: '100%',
-              height: '100vh',
+              height: '80vh',
               overflow: 'hidden',
             }}
           >
@@ -458,8 +458,7 @@ export default function Home() {
               }}
             />
 
-            <Container
-              maxWidth="lg"
+            <Box
               sx={{
                 position: 'relative',
                 zIndex: 10,
@@ -477,7 +476,7 @@ export default function Home() {
                     onClick={() => setHoveredProduct(hoveredProduct === index ? null : index)}
                     sx={{
                       backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                      backdropFilter: 'blur(10px)',
+                      backdropFilter: 'blur(1px)',
                       borderRadius: 2,
                       p: 3,
                       mb: 2,
@@ -536,7 +535,7 @@ export default function Home() {
                       flex: hoveredProduct === index ? '2.5' : hoveredProduct !== null ? '0.3' : '1',
                       height: '100%',
                       backgroundColor: 'transparent',
-                      backdropFilter: 'blur(15px)',
+                      backdropFilter: 'blur(1px)',
                       border: '1px solid rgba(255, 255, 255, 0.2)',
                       borderRight: index === products.length - 1 ? '1px solid rgba(255, 255, 255, 0.2)' : 'none',
                       cursor: 'pointer',
@@ -658,7 +657,7 @@ export default function Home() {
                   </Box>
                 ))}
               </Box>
-            </Container>
+            </Box>
           </Box>
 
           {/* Enhanced View All Products Button */}
@@ -714,7 +713,7 @@ export default function Home() {
         <Box sx={{ py: 4 }}>
           <Stats />
         </Box>
-      </Container>
+      </Box>
     </Box>
   );
 }
