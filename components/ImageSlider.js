@@ -76,7 +76,7 @@
 //         sx={{
 //           position: 'absolute',
 //           bottom: '1rem',
-//           left: '50%',  
+//           left: '50%',
 //           transform: 'translateX(-50%)',
 //           display: 'flex',
 //           gap: '1rem',
@@ -179,20 +179,17 @@ const EmblaCarousel = ({ slides, options }) => {
     onSettle();
 
     setIsPlaying(emblaApi.plugins().autoplay.isPlaying());
-    
+
     // Initial animation trigger
     setTimeout(() => setIsAnimating(true), 500);
   }, [emblaApi]);
 
   return (
-    <Box
-      sx={{ position: 'relative', overflow: 'hidden' }}
-      ref={emblaRef}
-    >
+    <Box sx={{ position: 'relative', overflow: 'hidden' }} ref={emblaRef}>
       <Box sx={{ display: 'flex' }}>
         {slides.map((slide, index) => (
           <Box
-            sx={{ position: 'relative', flex: '0 0 100%', height: '500px' }}
+            sx={{ position: 'relative', flex: '0 0 100%', height: '600px' }}
             key={index}
           >
             <Image
@@ -201,7 +198,7 @@ const EmblaCarousel = ({ slides, options }) => {
               fill
               style={{ objectFit: 'cover' }}
             />
-            
+
             {/* Animated Text Overlay */}
             <Box
               sx={{
@@ -210,7 +207,8 @@ const EmblaCarousel = ({ slides, options }) => {
                 left: 0,
                 right: 0,
                 bottom: 0,
-                background: 'linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.1) 100%)',
+                background:
+                  'linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.1) 100%)',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
@@ -220,15 +218,16 @@ const EmblaCarousel = ({ slides, options }) => {
               }}
             >
               <Typography
-                variant="h2"
+                variant='h2'
                 sx={{
                   color: 'white',
                   fontWeight: 'bold',
                   marginBottom: '1rem',
                   textShadow: '2px 2px 4px rgba(0,0,0,0.7)',
-                  transform: index === selectedIndex && isAnimating 
-                    ? 'translateY(0) scale(1)' 
-                    : 'translateY(50px) scale(0.8)',
+                  transform:
+                    index === selectedIndex && isAnimating
+                      ? 'translateY(0) scale(1)'
+                      : 'translateY(50px) scale(0.8)',
                   opacity: index === selectedIndex && isAnimating ? 1 : 0,
                   transition: 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                   transitionDelay: index === selectedIndex ? '0.2s' : '0s',
@@ -236,17 +235,18 @@ const EmblaCarousel = ({ slides, options }) => {
               >
                 {slide.title}
               </Typography>
-              
+
               <Typography
-                variant="h6"
+                variant='h6'
                 sx={{
                   color: 'rgba(255,255,255,0.9)',
                   maxWidth: '600px',
                   lineHeight: 1.6,
                   textShadow: '1px 1px 2px rgba(0,0,0,0.7)',
-                  transform: index === selectedIndex && isAnimating 
-                    ? 'translateY(0)' 
-                    : 'translateY(30px)',
+                  transform:
+                    index === selectedIndex && isAnimating
+                      ? 'translateY(0)'
+                      : 'translateY(30px)',
                   opacity: index === selectedIndex && isAnimating ? 1 : 0,
                   transition: 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                   transitionDelay: index === selectedIndex ? '0.5s' : '0s',
@@ -254,10 +254,10 @@ const EmblaCarousel = ({ slides, options }) => {
               >
                 {slide.description}
               </Typography>
-              
+
               {slide.buttonText && (
                 <Button
-                  variant="contained"
+                  variant='contained'
                   sx={{
                     marginTop: '2rem',
                     backgroundColor: 'rgba(255,255,255,0.2)',
@@ -267,9 +267,10 @@ const EmblaCarousel = ({ slides, options }) => {
                     padding: '12px 32px',
                     fontSize: '1.1rem',
                     fontWeight: 'bold',
-                    transform: index === selectedIndex && isAnimating 
-                      ? 'translateY(0) scale(1)' 
-                      : 'translateY(20px) scale(0.9)',
+                    transform:
+                      index === selectedIndex && isAnimating
+                        ? 'translateY(0) scale(1)'
+                        : 'translateY(20px) scale(0.9)',
                     opacity: index === selectedIndex && isAnimating ? 1 : 0,
                     transition: 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                     transitionDelay: index === selectedIndex ? '0.8s' : '0s',
@@ -278,7 +279,9 @@ const EmblaCarousel = ({ slides, options }) => {
                       transform: 'translateY(-2px) scale(1.05)',
                     },
                   }}
-                  onClick={() => console.log(`Button clicked for slide ${index + 1}`)}
+                  onClick={() =>
+                    console.log(`Button clicked for slide ${index + 1}`)
+                  }
                 >
                   {slide.buttonText}
                 </Button>
@@ -304,12 +307,12 @@ const EmblaCarousel = ({ slides, options }) => {
         }}
       >
         {scrollSnaps.map((_, index) => (
-          <IconButton key={index} onClick={() => scrollTo(index)} size="small">
+          <IconButton key={index} onClick={() => scrollTo(index)} size='small'>
             <CircleIcon
               sx={{
+                color: index === selectedIndex ? '#8B4513' : 'common.white',
                 color:
-                  index === selectedIndex ? '#8B4513' : 'common.white',
-                color: index === selectedIndex ? '#ffffff' : 'rgba(255,255,255,0.5)',
+                  index === selectedIndex ? '#ffffff' : 'rgba(255,255,255,0.5)',
                 fontSize: '12px',
                 transition: 'all 0.3s ease',
                 transform: index === selectedIndex ? 'scale(1.2)' : 'scale(1)',
@@ -351,25 +354,29 @@ const ImageSlider = () => {
     {
       src: '/image_1_slide.JPG',
       title: 'ONE OF THE LEADING MANUFACTURERS AND EXPORTERS',
-      description: 'Leading manufacturer and exporter of premium quality PP woven packaging solutions worldwide',
+      description:
+        'Leading manufacturer and exporter of premium quality PP woven packaging solutions worldwide',
     },
     {
       src: '/image_2_slide.JPG',
       title: 'Unmatched quality you can trust',
-      description: 'Delivering unmatched quality with precision-engineered PP woven products you can trust.',
+      description:
+        'Delivering unmatched quality with precision-engineered PP woven products you can trust.',
     },
     {
       src: '/image_3_slide.JPG',
       title: 'Strength that outperforms the competition',
-      description: 'Exceptional strength and innovation to thrive in today’s competitive world.',
+      description:
+        'Exceptional strength and innovation to thrive in today’s competitive world.',
     },
-     {
+    {
       src: '/image_4_slide.JPG',
       title: 'State-of-the-art machinery for flawless production',
-      description: 'Advanced machinery delivering consistent quality and high-volume production with excellence.',
-    }
+      description:
+        'Advanced machinery delivering consistent quality and high-volume production with excellence.',
+    },
   ];
-  
+
   const options = { loop: true };
 
   return <EmblaCarousel slides={slides} options={options} />;
