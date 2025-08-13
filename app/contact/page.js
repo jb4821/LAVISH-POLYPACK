@@ -260,7 +260,7 @@ const ContactPage = () => {
   const openWhatsApp = (number, message = "") => {
     const text =
       message ||
-      `Hello! I&apos;m interested in your packaging products. Can you please provide more information?`;
+      `Hello! I am interested in your packaging products. Can you please provide more information?`;
     window.open(
       `https://wa.me/${number.replace(/[^\d]/g, "")}?text=${encodeURIComponent(
         text
