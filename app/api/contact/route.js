@@ -1,9 +1,10 @@
 import nodemailer from 'nodemailer';
 
 export async function POST(req) {
-  const { name, email, mobile, location, product, inquiry_type, message } = await req.json();
+  const { name, email, mobile, location, product, inquiry_type, message } =
+    await req.json();
 
-  const time = new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
+  const time = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
   const html = `
     <!DOCTYPE html>
     <html>
