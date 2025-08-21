@@ -19,7 +19,7 @@ import {
   DialogContent,
   DialogTitle,
   Breadcrumbs,
-  Stack
+  Stack,
 } from '@mui/material';
 import {
   ArrowBack,
@@ -33,7 +33,7 @@ import {
   ContactMail,
   NavigateNext,
   PhotoLibrary,
-  Verified
+  Verified,
 } from '@mui/icons-material';
 import Link from 'next/link';
 import { products } from '../../../lib/products';
@@ -42,42 +42,54 @@ import Image from 'next/image';
 const ProductDetailsPage = () => {
   const params = useParams();
   const productId = params.productId;
-  const product = products.find(p => p.id === productId);
+  const product = products.find((p) => p.id === productId);
   const [imageDialog, setImageDialog] = useState(false);
 
   if (!product) {
     return (
       <Container sx={{ py: 8 }}>
-        <Box sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          textAlign: 'center',
-          minHeight: '60vh',
-        }}>
-          <Box sx={{
-            background: 'linear-gradient(135deg, #e67e22 0%, #f39c12 100%)',
-            color: 'white',
-            p: 6,
-            borderRadius: 4,
-            boxShadow: '0 20px 60px rgba(230, 126, 34, 0.3)',
-            maxWidth: 600,
-            width: '100%',
-          }}>
-            <Typography variant="h3" gutterBottom sx={{
-              fontWeight: 700,
-              fontSize: { xs: '2rem', md: '3rem' }
-            }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            textAlign: 'center',
+            minHeight: '60vh',
+          }}
+        >
+          <Box
+            sx={{
+              background: 'linear-gradient(135deg, #e67e22 0%, #f39c12 100%)',
+              color: 'white',
+              p: 6,
+              // borderRadius: 4,
+              boxShadow: '0 20px 60px rgba(230, 126, 34, 0.3)',
+              maxWidth: 600,
+              width: '100%',
+            }}
+          >
+            <Typography
+              variant='h3'
+              gutterBottom
+              sx={{
+                fontWeight: 700,
+                fontSize: { xs: '2rem', md: '3rem' },
+              }}
+            >
               Product Not Found
             </Typography>
-            <Typography variant="h6" sx={{ mb: 4, opacity: 0.9, lineHeight: 1.6 }}>
-              The product you&apos;re looking for doesn&apos;t exist or may have been moved.
+            <Typography
+              variant='h6'
+              sx={{ mb: 4, opacity: 0.9, lineHeight: 1.6 }}
+            >
+              The product you&apos;re looking for doesn&apos;t exist or may have
+              been moved.
             </Typography>
-            <Link href="/products" passHref>
+            <Link href='/products' passHref>
               <Button
-                variant="contained"
-                size="large"
+                variant='contained'
+                size='large'
                 startIcon={<ArrowBack />}
                 sx={{
                   bgcolor: 'rgba(255,255,255,0.2)',
@@ -86,7 +98,7 @@ const ProductDetailsPage = () => {
                   py: 1.5,
                   fontSize: '1.1rem',
                   fontWeight: 600,
-                  borderRadius: 3,
+                  // borderRadius: 3,
                   '&:hover': {
                     bgcolor: 'rgba(255,255,255,0.3)',
                     transform: 'translateY(-2px)',
@@ -103,106 +115,127 @@ const ProductDetailsPage = () => {
     );
   }
 
-  const FeatureCard = ({ icon: IconComponent, title, children, color = '#e67e22' }) => (
-    <Card sx={{
-      height: '100%',
-      position: 'relative',
-      background: `linear-gradient(135deg, ${color}08 0%, ${color}15 100%)`,
-      border: `2px solid ${color}20`,
-      borderRadius: 3,
-      transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-      overflow: 'hidden',
-      '&:hover': {
-        transform: 'translateY(-8px) scale(1.02)',
-        boxShadow: `0 25px 50px ${color}25`,
-        border: `2px solid ${color}40`,
-      },
-      '&::before': {
-        content: '""',
-        position: 'absolute',
-        top: 0,
-        left: '-100%',
-        width: '100%',
+  const FeatureCard = ({
+    icon: IconComponent,
+    title,
+    children,
+    color = '#e67e22',
+  }) => (
+    <Card
+      sx={{
         height: '100%',
-        background: `linear-gradient(90deg, transparent, ${color}10, transparent)`,
-        transition: 'left 0.6s ease',
-      },
-      '&:hover::before': {
-        left: '100%',
-      }
-    }}>
-      <CardContent sx={{ p: 4, position: 'relative', zIndex: 1, height: '100%' }}>
+        position: 'relative',
+        background: `linear-gradient(135deg, ${color}08 0%, ${color}15 100%)`,
+        border: `2px solid ${color}20`,
+        // borderRadius: 3,
+        transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+        overflow: 'hidden',
+        '&:hover': {
+          transform: 'translateY(-8px) scale(1.02)',
+          boxShadow: `0 25px 50px ${color}25`,
+          border: `2px solid ${color}40`,
+        },
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: '-100%',
+          width: '100%',
+          height: '100%',
+          background: `linear-gradient(90deg, transparent, ${color}10, transparent)`,
+          transition: 'left 0.6s ease',
+        },
+        '&:hover::before': {
+          left: '100%',
+        },
+      }}
+    >
+      <CardContent
+        sx={{ p: 4, position: 'relative', zIndex: 1, height: '100%' }}
+      >
         <Stack spacing={3} sx={{ height: '100%' }}>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Avatar sx={{
-              width: 56,
-              height: 56,
-              mr: 2,
-              background: `linear-gradient(135deg, ${color} 0%, ${color}cc 100%)`,
-              color: 'white',
-              boxShadow: `0 8px 25px ${color}30`,
-            }}>
+            <Avatar
+              sx={{
+                width: 56,
+                height: 56,
+                mr: 2,
+                background: `linear-gradient(135deg, ${color} 0%, ${color}cc 100%)`,
+                color: 'white',
+                boxShadow: `0 8px 25px ${color}30`,
+              }}
+            >
               <IconComponent sx={{ fontSize: 28 }} />
             </Avatar>
-            <Typography variant="h6" sx={{
-              fontWeight: 600,
-              color,
-              fontSize: '1.25rem'
-            }}>
+            <Typography
+              variant='h6'
+              sx={{
+                fontWeight: 600,
+                color,
+                fontSize: '1.25rem',
+              }}
+            >
               {title}
             </Typography>
           </Box>
-          <Box sx={{ flex: 1 }}>
-            {children}
-          </Box>
+          <Box sx={{ flex: 1 }}>{children}</Box>
         </Stack>
       </CardContent>
     </Card>
   );
 
   return (
-    <Container maxWidth="xl" sx={{ py: 4, overflowX: 'hidden', width: '100%', maxWidth: '100vw' }}>
+    <Container
+      maxWidth='xl'
+      sx={{ py: 4, overflowX: 'hidden', width: '100%', maxWidth: '100vw' }}
+    >
       {/* Breadcrumbs */}
       <Box sx={{ mb: 4 }}>
         <Breadcrumbs
-          separator={<NavigateNext fontSize="small" />}
+          separator={<NavigateNext fontSize='small' />}
           sx={{ mb: 3 }}
-          aria-label="breadcrumb"
+          aria-label='breadcrumb'
         >
-          <Link href="/" style={{ textDecoration: 'none' }}>
-            <Typography color="text.primary" sx={{
-              '&:hover': { color: '#e67e22' },
-              transition: 'color 0.3s ease',
-              cursor: 'pointer'
-            }}>
+          <Link href='/' style={{ textDecoration: 'none' }}>
+            <Typography
+              color='text.primary'
+              sx={{
+                '&:hover': { color: '#e67e22' },
+                transition: 'color 0.3s ease',
+                cursor: 'pointer',
+              }}
+            >
               Home
             </Typography>
           </Link>
-          <Link href="/products" style={{ textDecoration: 'none' }}>
-            <Typography color="text.primary" sx={{
-              '&:hover': { color: '#e67e22' },
-              transition: 'color 0.3s ease',
-              cursor: 'pointer'
-            }}>
+          <Link href='/products' style={{ textDecoration: 'none' }}>
+            <Typography
+              color='text.primary'
+              sx={{
+                '&:hover': { color: '#e67e22' },
+                transition: 'color 0.3s ease',
+                cursor: 'pointer',
+              }}
+            >
               Products
             </Typography>
           </Link>
-          <Typography color="#8B4513" sx={{ fontWeight: 600 }}>
+          <Typography color='#8B4513' sx={{ fontWeight: 600 }}>
             {product.name}
           </Typography>
         </Breadcrumbs>
 
         {/* Back Button */}
-        <Link href="/products" passHref>
+        <Link href='/products' passHref>
           <Button
-            variant="outlined"
+            variant='outlined'
             startIcon={<ArrowBack />}
             sx={{
               borderColor: '#D7BFAE',
               color: '#8B4513',
               px: 3,
               py: 1,
-              borderRadius: 3,
+              // borderRadius: 3,
               fontWeight: 600,
               '&:hover': {
                 borderColor: '#d35400',
@@ -218,29 +251,40 @@ const ProductDetailsPage = () => {
       </Box>
 
       {/* Product Header */}
-      <Box sx={{
-        textAlign: 'center',
-        mb: 6,
-        position: 'relative',
-        py: { xs: 4, md: 6 },
-        background: '#F7E7B3', // pastel gold
-        borderRadius: 4,
-        color: '#2D2D2D', // dark text for contrast
-        border: '1px solid #D7BFAE', // pastel brown border
-        boxShadow: '0 4px 24px #D7BFAE33', // soft shadow
-        overflow: 'hidden',
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: 'radial-gradient(circle at 70% 20%, #D7BFAE22 0%, transparent 60%)',
-          pointerEvents: 'none',
-        }
-      }}>
-        <Box sx={{ position: 'relative', zIndex: 1, maxWidth: 800, mx: 'auto', px: 2 }}>
+      <Box
+        sx={{
+          textAlign: 'center',
+          mb: 6,
+          position: 'relative',
+          py: { xs: 4, md: 6 },
+          background: '#F7E7B3', // pastel gold
+          // borderRadius: 4,
+          color: '#2D2D2D', // dark text for contrast
+          border: '1px solid #D7BFAE', // pastel brown border
+          boxShadow: '0 4px 24px #D7BFAE33', // soft shadow
+          overflow: 'hidden',
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background:
+              'radial-gradient(circle at 70% 20%, #D7BFAE22 0%, transparent 60%)',
+            pointerEvents: 'none',
+          },
+        }}
+      >
+        <Box
+          sx={{
+            position: 'relative',
+            zIndex: 1,
+            maxWidth: 800,
+            mx: 'auto',
+            px: 2,
+          }}
+        >
           <Chip
             label={product.category}
             sx={{
@@ -255,34 +299,51 @@ const ProductDetailsPage = () => {
               boxShadow: '0 2px 8px #D7BFAE22',
             }}
           />
-          <Typography variant="h2" component="h1" gutterBottom sx={{
-            fontWeight: 800,
-            mb: 3,
-            fontFamily: '"Playfair Display", serif',
-            color: '#8B4513',
-            fontSize: { xs: '2.5rem', md: '3.5rem', lg: '4rem' },
-            lineHeight: 1.2,
-            letterSpacing: '1px',
-          }}>
+          <Typography
+            variant='h2'
+            component='h1'
+            gutterBottom
+            sx={{
+              fontWeight: 800,
+              mb: 3,
+              fontFamily: '"Playfair Display", serif',
+              color: '#8B4513',
+              fontSize: { xs: '2.5rem', md: '3.5rem', lg: '4rem' },
+              lineHeight: 1.2,
+              letterSpacing: '1px',
+            }}
+          >
             {product.name}
           </Typography>
-          <Typography variant="h6" sx={{
-            opacity: 0.95,
-            fontWeight: 400,
-            lineHeight: 1.6,
-            fontSize: { xs: '1.1rem', md: '1.25rem' },
-            color: '#2D2D2D',
-            fontFamily: '"Inter", sans-serif',
-            maxWidth: 600,
-            mx: 'auto'
-          }}>
+          <Typography
+            variant='h6'
+            sx={{
+              opacity: 0.95,
+              fontWeight: 400,
+              lineHeight: 1.6,
+              fontSize: { xs: '1.1rem', md: '1.25rem' },
+              color: '#2D2D2D',
+              fontFamily: '"Inter", sans-serif',
+              maxWidth: 600,
+              mx: 'auto',
+            }}
+          >
             Premium Quality Packaging Solutions for Your Business Needs
           </Typography>
         </Box>
       </Box>
 
       {/* Main Content Grid */}
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 6, py: { xs: 4, md: 6 }, alignItems: 'flex-start', '@media (max-width: 960px)': { flexDirection: 'column' } }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: 6,
+          py: { xs: 4, md: 6 },
+          alignItems: 'flex-start',
+          '@media (max-width: 960px)': { flexDirection: 'column' },
+        }}
+      >
         {/* Gallery Section */}
         <Box sx={{ flex: 1, minWidth: 0 }}>
           <Box
@@ -319,8 +380,8 @@ const ProductDetailsPage = () => {
               height={350}
               style={{
                 width: '100%',
-                height: '30rem', 
-                objectFit: 'cover', 
+                height: '30rem',
+                objectFit: 'cover',
               }}
             />
             <Box
@@ -335,7 +396,7 @@ const ProductDetailsPage = () => {
                 textAlign: 'center',
               }}
             >
-              <Typography variant="body2" sx={{ fontWeight: 500 }}>
+              <Typography variant='body2' sx={{ fontWeight: 500 }}>
                 Click to enlarge
               </Typography>
             </Box>
@@ -345,9 +406,14 @@ const ProductDetailsPage = () => {
         {/* Product Overview Section */}
         <Box sx={{ flex: 1, minWidth: 0 }}>
           <Typography
-            variant="h5"
+            variant='h5'
             gutterBottom
-            sx={{ fontWeight: 700, color: '#2c3e50', position: 'relative', mb: 3 }}
+            sx={{
+              fontWeight: 700,
+              color: '#2c3e50',
+              position: 'relative',
+              mb: 3,
+            }}
           >
             Product Overview
             <Box
@@ -363,44 +429,58 @@ const ProductDetailsPage = () => {
             />
           </Typography>
 
-          <Typography variant="body1" sx={{ lineHeight: 1.7, textAlign: 'justify', mb: 2 }}>
+          <Typography
+            variant='body1'
+            sx={{ lineHeight: 1.7, textAlign: 'justify', mb: 2 }}
+          >
             {product.description}
           </Typography>
 
           {product.longDescription && (
-            <Typography variant="body1" sx={{ lineHeight: 1.7, textAlign: 'justify', mb: 2 }}>
+            <Typography
+              variant='body1'
+              sx={{ lineHeight: 1.7, textAlign: 'justify', mb: 2 }}
+            >
               {product.longDescription}
             </Typography>
           )}
 
           {product.specifications.features && (
             <>
-              <Typography variant="h6" sx={{ fontWeight: 600, color: '#e67e22', mb: 2 }}>
+              <Typography
+                variant='h6'
+                sx={{ fontWeight: 600, color: '#e67e22', mb: 2 }}
+              >
                 Key Features
               </Typography>
               <Stack spacing={1}>
-                {product.specifications.features.slice(0, 4).map((feature, index) => (
-                  <Box
-                    key={index}
-                    sx={{
-                      display: 'flex',
-                      alignItems: 'flex-start',
-                      p: 1.5,
-                      background: 'linear-gradient(135deg, #f8f9fa 0%, #e8f5e8 100%)',
-                      borderRadius: 2,
-                      transition: 'all 0.3s ease-in-out',
-                      '&:hover': {
-                        transform: 'translateX(4px)',
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
-                      },
-                    }}
-                  >
-                    <CheckCircle sx={{ mr: 1.5, color: '#27ae60', flexShrink: 0 }} />
-                    <Typography variant="body2" sx={{ fontWeight: 500 }}>
-                      {feature}
-                    </Typography>
-                  </Box>
-                ))}
+                {product.specifications.features
+                  .slice(0, 4)
+                  .map((feature, index) => (
+                    <Box
+                      key={index}
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'flex-start',
+                        p: 1.5,
+                        background:
+                          'linear-gradient(135deg, #f8f9fa 0%, #e8f5e8 100%)',
+                        borderRadius: 2,
+                        transition: 'all 0.3s ease-in-out',
+                        '&:hover': {
+                          transform: 'translateX(4px)',
+                          boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+                        },
+                      }}
+                    >
+                      <CheckCircle
+                        sx={{ mr: 1.5, color: '#27ae60', flexShrink: 0 }}
+                      />
+                      <Typography variant='body2' sx={{ fontWeight: 500 }}>
+                        {feature}
+                      </Typography>
+                    </Box>
+                  ))}
               </Stack>
             </>
           )}
@@ -408,204 +488,268 @@ const ProductDetailsPage = () => {
       </Box>
 
       {/* Specifications Section */}
-      <Paper elevation={0} sx={{
-        p: { xs: 0, sm: 3, md: 6 },
-        mb: 6,
-        background: 'linear-gradient(135deg, #2c3e50 0%, #34495e 100%)',
-        color: 'white',
-        borderRadius: { xs: 0, sm: 2, md: 4 },
-        position: 'relative',
-        overflow: 'hidden',
-        boxShadow: '0 20px 60px rgba(44, 62, 80, 0.3)',
-        maxWidth: '100%',
-        width: '100%',
-      }}>
+      <Paper
+        elevation={0}
+        sx={{
+          p: { xs: 0, sm: 3, md: 6 },
+          mb: 6,
+          background: 'linear-gradient(135deg, #2c3e50 0%, #34495e 100%)',
+          color: 'white',
+          // borderRadius: { xs: 0, sm: 2, md: 4 },
+          position: 'relative',
+          overflow: 'hidden',
+          boxShadow: '0 20px 60px rgba(44, 62, 80, 0.3)',
+          maxWidth: '100%',
+          width: '100%',
+        }}
+      >
         <Box sx={{ textAlign: 'center', mb: 6 }}>
-          <Typography variant="h3" gutterBottom sx={{
-            fontWeight: 700,
-            color: "white",
-            textShadow: '0 2px 4px rgba(0,0,0,0.3)',
-            fontSize: { xs: '2.5rem', md: '3rem' }
-          }}>
+          <Typography
+            variant='h3'
+            gutterBottom
+            sx={{
+              fontWeight: 700,
+              color: 'white',
+              textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+              fontSize: { xs: '2.5rem', md: '3rem' },
+            }}
+          >
             Technical Specifications
           </Typography>
-          <Box sx={{
-            width: 120,
-            height: 4,
-            background: 'linear-gradient(90deg, #3498db, #9b59b6)',
-            borderRadius: 2,
-            mx: 'auto',
-            mt: 2
-          }} />
+          <Box
+            sx={{
+              width: 120,
+              height: 4,
+              background: 'linear-gradient(90deg, #3498db, #9b59b6)',
+              borderRadius: 2,
+              mx: 'auto',
+              mt: 2,
+            }}
+          />
         </Box>
 
         {/* Add responsive px here */}
-        <Box sx={{
-          overflowX: 'auto',
-          background: 'rgba(255,255,255,0.03)',
-          borderRadius: { xs: 0, sm: 3, md: 3 },
-        }}>
-          <table style={{
-            width: '100%',
-            borderCollapse: 'collapse',
-            minWidth: 320,
-            fontFamily: '"Inter", sans-serif',
-            background: 'rgba(255,255,255,0.01)'
-          }}>
+        <Box
+          sx={{
+            overflowX: 'auto',
+            background: 'rgba(255,255,255,0.03)',
+            borderRadius: { xs: 0, sm: 3, md: 3 },
+          }}
+        >
+          <table
+            style={{
+              width: '100%',
+              borderCollapse: 'collapse',
+              minWidth: 320,
+              fontFamily: '"Inter", sans-serif',
+              background: 'rgba(255,255,255,0.01)',
+            }}
+          >
             <thead>
               <tr>
-                <th style={{
-                  background: '#D7BFAE',
-                  color: '#8B4513',
-                  fontWeight: 700,
-                  fontSize: '1.1rem',
-                  padding: '14px 12px',
-                  border: '1px solid #D7BFAE',
-                  textAlign: 'left'
-                }}>Specification</th>
-                <th style={{
-                  background: '#F7E7B3',
-                  color: '#2D2D2D',
-                  fontWeight: 700,
-                  fontSize: '1.1rem',
-                  padding: '14px 12px',
-                  border: '1px solid #D7BFAE',
-                  textAlign: 'left'
-                }}>Details</th>
+                <th
+                  style={{
+                    background: '#D7BFAE',
+                    color: '#8B4513',
+                    fontWeight: 700,
+                    fontSize: '1.1rem',
+                    padding: '14px 12px',
+                    border: '1px solid #D7BFAE',
+                    textAlign: 'left',
+                  }}
+                >
+                  Specification
+                </th>
+                <th
+                  style={{
+                    background: '#F7E7B3',
+                    color: '#2D2D2D',
+                    fontWeight: 700,
+                    fontSize: '1.1rem',
+                    padding: '14px 12px',
+                    border: '1px solid #D7BFAE',
+                    textAlign: 'left',
+                  }}
+                >
+                  Details
+                </th>
               </tr>
             </thead>
             <tbody>
               {Object.entries(product.specifications)
                 .filter(([key]) => key !== 'features')
                 .map(([key, value], idx) => (
-                  <tr key={key} style={{
-                    background: idx % 2 === 0 ? '#fffbe9' : '#f3f3f3'
-                  }}>
-                    <td style={{
-                      padding: '12px 12px',
-                      border: '1px solid #D7BFAE',
-                      color: '#8B4513',
-                      fontWeight: 600,
-                      minWidth: 160
-                    }}>
-                      {key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
+                  <tr
+                    key={key}
+                    style={{
+                      background: idx % 2 === 0 ? '#fffbe9' : '#f3f3f3',
+                    }}
+                  >
+                    <td
+                      style={{
+                        padding: '12px 12px',
+                        border: '1px solid #D7BFAE',
+                        color: '#8B4513',
+                        fontWeight: 600,
+                        minWidth: 160,
+                      }}
+                    >
+                      {key
+                        .replace(/([A-Z])/g, ' $1')
+                        .replace(/^./, (str) => str.toUpperCase())}
                     </td>
-                    <td style={{
-                      padding: '12px 12px',
-                      border: '1px solid #D7BFAE',
-                      color: '#2D2D2D',
-                      fontWeight: 500
-                    }}>
+                    <td
+                      style={{
+                        padding: '12px 12px',
+                        border: '1px solid #D7BFAE',
+                        color: '#2D2D2D',
+                        fontWeight: 500,
+                      }}
+                    >
                       {Array.isArray(value) ? value.join(', ') : value}
                     </td>
                   </tr>
                 ))}
-              {Object.entries(product.technicalDetails).map(([key, value], idx) => (
-                <tr key={key} style={{
-                  background: (Object.keys(product.specifications).length + idx) % 2 === 0 ? '#fffbe9' : '#f3f3f3'
-                }}>
-                  <td style={{
-                    padding: '12px 12px',
-                    border: '1px solid #D7BFAE',
-                    color: '#8B4513',
-                    fontWeight: 600,
-                    minWidth: 160
-                  }}>
-                    {key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
-                  </td>
-                  <td style={{
-                    padding: '12px 12px',
-                    border: '1px solid #D7BFAE',
-                    color: '#2D2D2D',
-                    fontWeight: 500
-                  }}>
-                    {Array.isArray(value) ? value.join(', ') : value}
-                  </td>
-                </tr>
-              ))}
+              {Object.entries(product.technicalDetails).map(
+                ([key, value], idx) => (
+                  <tr
+                    key={key}
+                    style={{
+                      background:
+                        (Object.keys(product.specifications).length + idx) %
+                          2 ===
+                        0
+                          ? '#fffbe9'
+                          : '#f3f3f3',
+                    }}
+                  >
+                    <td
+                      style={{
+                        padding: '12px 12px',
+                        border: '1px solid #D7BFAE',
+                        color: '#8B4513',
+                        fontWeight: 600,
+                        minWidth: 160,
+                      }}
+                    >
+                      {key
+                        .replace(/([A-Z])/g, ' $1')
+                        .replace(/^./, (str) => str.toUpperCase())}
+                    </td>
+                    <td
+                      style={{
+                        padding: '12px 12px',
+                        border: '1px solid #D7BFAE',
+                        color: '#2D2D2D',
+                        fontWeight: 500,
+                      }}
+                    >
+                      {Array.isArray(value) ? value.join(', ') : value}
+                    </td>
+                  </tr>
+                )
+              )}
             </tbody>
           </table>
         </Box>
       </Paper>
 
       {/* Applications Section */}
-      <Paper elevation={0} sx={{
-        p: 6,
-        mb: 6,
-        background: 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
-        border: '2px solid #e67e2220',
-        borderRadius: 4,
-        position: 'relative',
-        overflow: 'hidden',
-        maxWidth: '100%',
-        width: '100%',
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          top: 0,
-          left: 0,
+      <Paper
+        elevation={0}
+        sx={{
+          p: 6,
+          mb: 6,
+          background: 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
+          border: '2px solid #e67e2220',
+          // borderRadius: 4,
+          position: 'relative',
+          overflow: 'hidden',
+          maxWidth: '100%',
           width: '100%',
-          height: '6px',
-          background: 'linear-gradient(90deg, #e67e22, #f39c12, #e67e22)',
-        }
-      }}>
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '6px',
+            background: 'linear-gradient(90deg, #e67e22, #f39c12, #e67e22)',
+          },
+        }}
+      >
         <Box sx={{ textAlign: 'center', mb: 6 }}>
-          <Typography variant="h3" gutterBottom sx={{
-            fontWeight: 700,
-            color: '#2c3e50',
-            fontSize: { xs: '2.5rem', md: '3rem' }
-          }}>
+          <Typography
+            variant='h3'
+            gutterBottom
+            sx={{
+              fontWeight: 700,
+              color: '#2c3e50',
+              fontSize: { xs: '2.5rem', md: '3rem' },
+            }}
+          >
             Applications & Uses
           </Typography>
-          <Box sx={{
-            width: 120,
-            height: 4,
-            background: 'linear-gradient(90deg, #e67e22, #f39c12)',
-            borderRadius: 2,
-            mx: 'auto',
-            mt: 2
-          }} />
+          <Box
+            sx={{
+              width: 120,
+              height: 4,
+              background: 'linear-gradient(90deg, #e67e22, #f39c12)',
+              // borderRadius: 2,
+              mx: 'auto',
+              mt: 2,
+            }}
+          />
         </Box>
 
         <Grid container spacing={3} sx={{ justifyContent: 'center' }}>
           {product.applications.map((application, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
-              <Box sx={{
-                p: 4,
-                background: 'linear-gradient(135deg, #e67e2208 0%, #e67e2215 100%)',
-                border: '2px solid #e67e2220',
-                borderRadius: 4,
-                textAlign: 'center',
-                transition: 'all 0.4s ease',
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                '&:hover': {
-                  transform: 'translateY(-8px) scale(1.03)',
-                  border: '2px solid #e67e2240',
-                  boxShadow: '0 15px 40px rgba(230, 126, 34, 0.2)',
-                }
-              }}>
-                <Avatar sx={{
-                  width: 70,
-                  height: 70,
-                  mb: 3,
-                  background: 'linear-gradient(135deg, #e67e22 0%, #f39c12 100%)',
-                  color: 'white',
-                  fontSize: '1.8rem',
-                  fontWeight: 700,
-                  boxShadow: '0 8px 25px rgba(230, 126, 34, 0.3)',
-                }}>
+              <Box
+                sx={{
+                  p: 4,
+                  background:
+                    'linear-gradient(135deg, #e67e2208 0%, #e67e2215 100%)',
+                  border: '2px solid #e67e2220',
+                  // borderRadius: 4,
+                  textAlign: 'center',
+                  transition: 'all 0.4s ease',
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  '&:hover': {
+                    transform: 'translateY(-8px) scale(1.03)',
+                    border: '2px solid #e67e2240',
+                    boxShadow: '0 15px 40px rgba(230, 126, 34, 0.2)',
+                  },
+                }}
+              >
+                <Avatar
+                  sx={{
+                    width: 70,
+                    height: 70,
+                    mb: 3,
+                    background:
+                      'linear-gradient(135deg, #e67e22 0%, #f39c12 100%)',
+                    color: 'white',
+                    fontSize: '1.8rem',
+                    fontWeight: 700,
+                    boxShadow: '0 8px 25px rgba(230, 126, 34, 0.3)',
+                  }}
+                >
                   {index + 1}
                 </Avatar>
-                <Typography variant="h6" sx={{
-                  fontWeight: 600,
-                  color: '#2c3e50',
-                  lineHeight: 1.5,
-                  textAlign: 'center'
-                }}>
+                <Typography
+                  variant='h6'
+                  sx={{
+                    fontWeight: 600,
+                    color: '#2c3e50',
+                    lineHeight: 1.5,
+                    textAlign: 'center',
+                  }}
+                >
                   {application}
                 </Typography>
               </Box>
@@ -615,69 +759,91 @@ const ProductDetailsPage = () => {
       </Paper>
 
       {/* Advantages Section */}
-      <Paper elevation={0} sx={{
-        p: 6,
-        mb: 6,
-        background: 'linear-gradient(135deg, #27ae60 0%, #2ecc71 100%)',
-        color: 'white',
-        borderRadius: 4,
-        position: 'relative',
-        overflow: 'hidden',
-        boxShadow: '0 20px 60px rgba(39, 174, 96, 0.3)',
-        maxWidth: '100%',
-        width: '100%',
-      }}>
+      <Paper
+        elevation={0}
+        sx={{
+          p: 6,
+          mb: 6,
+          background: 'linear-gradient(135deg, #27ae60 0%, #2ecc71 100%)',
+          color: 'white',
+          // borderRadius: 4,
+          position: 'relative',
+          overflow: 'hidden',
+          boxShadow: '0 20px 60px rgba(39, 174, 96, 0.3)',
+          maxWidth: '100%',
+          width: '100%',
+        }}
+      >
         <Box sx={{ textAlign: 'center', mb: 6 }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 2 }}>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              mb: 2,
+            }}
+          >
             <Verified sx={{ fontSize: 40, mr: 2 }} />
-            <Typography variant="h3" sx={{
-              fontWeight: 700,
-              textShadow: '0 2px 4px rgba(0,0,0,0.2)',
-              fontSize: { xs: '2.5rem', md: '3rem' }
-            }}>
+            <Typography
+              variant='h3'
+              sx={{
+                fontWeight: 700,
+                textShadow: '0 2px 4px rgba(0,0,0,0.2)',
+                fontSize: { xs: '2.5rem', md: '3rem' },
+              }}
+            >
               Key Advantages
             </Typography>
           </Box>
-          <Box sx={{
-            width: 120,
-            height: 4,
-            background: 'rgba(255,255,255,0.3)',
-            borderRadius: 2,
-            mx: 'auto'
-          }} />
+          <Box
+            sx={{
+              width: 120,
+              height: 4,
+              background: 'rgba(255,255,255,0.3)',
+              borderRadius: 2,
+              mx: 'auto',
+            }}
+          />
         </Box>
 
         <Grid container spacing={3}>
           {product.advantages.map((advantage, index) => (
             <Grid item xs={12} md={6} key={index}>
-              <Box sx={{
-                display: 'flex',
-                alignItems: 'flex-start',
-                p: 3,
-                background: 'rgba(255,255,255,0.1)',
-                borderRadius: 4,
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255,255,255,0.2)',
-                transition: 'all 0.4s ease',
-                '&:hover': {
-                  transform: 'translateY(-4px)',
-                  background: 'rgba(255,255,255,0.15)',
-                  boxShadow: '0 12px 30px rgba(0,0,0,0.1)',
-                }
-              }}>
-                <CheckCircle sx={{
-                  mr: 3,
-                  mt: 0.5,
-                  fontSize: '1.8rem',
-                  color: 'rgba(255,255,255,0.9)',
-                  flexShrink: 0
-                }} />
-                <Typography variant="body1" sx={{
-                  lineHeight: 1.7,
-                  fontSize: '1.1rem',
-                  opacity: 0.95,
-                  fontWeight: 400
-                }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  p: 3,
+                  background: 'rgba(255,255,255,0.1)',
+                  borderRadius: 4,
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  transition: 'all 0.4s ease',
+                  '&:hover': {
+                    transform: 'translateY(-4px)',
+                    background: 'rgba(255,255,255,0.15)',
+                    boxShadow: '0 12px 30px rgba(0,0,0,0.1)',
+                  },
+                }}
+              >
+                <CheckCircle
+                  sx={{
+                    mr: 3,
+                    mt: 0.5,
+                    fontSize: '1.8rem',
+                    color: 'rgba(255,255,255,0.9)',
+                    flexShrink: 0,
+                  }}
+                />
+                <Typography
+                  variant='body1'
+                  sx={{
+                    lineHeight: 1.7,
+                    fontSize: '1.1rem',
+                    opacity: 0.95,
+                    fontWeight: 400,
+                  }}
+                >
                   {advantage}
                 </Typography>
               </Box>
@@ -687,89 +853,108 @@ const ProductDetailsPage = () => {
       </Paper>
 
       {/* Contact Section */}
-      <Paper elevation={0} sx={{
-        p: 6,
-        textAlign: 'center',
-        background: 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
-        border: '2px solid #f39c1220',
-        borderRadius: 4,
-        position: 'relative',
-        overflow: 'hidden',
-        maxWidth: '100%',
-        width: '100%',
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          top: 0,
-          left: 0,
+      <Paper
+        elevation={0}
+        sx={{
+          p: 6,
+          textAlign: 'center',
+          background: 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
+          border: '2px solid #f39c1220',
+          // borderRadius: 4,
+          position: 'relative',
+          overflow: 'hidden',
+          maxWidth: '100%',
           width: '100%',
-          height: '6px',
-          background: 'linear-gradient(90deg, #f39c12, #e67e22, #f39c12)',
-        }
-      }}>
-        <Stack spacing={4} alignItems="center">
-          <Avatar sx={{
-            width: 90,
-            height: 90,
-            background: 'linear-gradient(135deg, #e67e22 0%, #f39c12 100%)',
-            boxShadow: '0 12px 40px rgba(230, 126, 34, 0.3)',
-          }}>
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '6px',
+            background: 'linear-gradient(90deg, #f39c12, #e67e22, #f39c12)',
+          },
+        }}
+      >
+        <Stack spacing={4} alignItems='center'>
+          <Avatar
+            sx={{
+              width: 90,
+              height: 90,
+              background: 'linear-gradient(135deg, #e67e22 0%, #f39c12 100%)',
+              boxShadow: '0 12px 40px rgba(230, 126, 34, 0.3)',
+            }}
+          >
             <ContactMail sx={{ fontSize: 45 }} />
           </Avatar>
 
           <Box>
-            <Typography variant="h4" gutterBottom sx={{
-              fontWeight: 700,
-              color: '#2c3e50',
-              mb: 2
-            }}>
+            <Typography
+              variant='h4'
+              gutterBottom
+              sx={{
+                fontWeight: 700,
+                color: '#2c3e50',
+                mb: 2,
+              }}
+            >
               Interested in this Product?
             </Typography>
-            <Typography variant="h6" sx={{
-              color: 'text.secondary',
-              maxWidth: '600px',
-              mx: 'auto',
-              lineHeight: 1.6
-            }}>
-              Contact us for pricing, customization options, bulk orders, and technical specifications.
+            <Typography
+              variant='h6'
+              sx={{
+                color: 'text.secondary',
+                maxWidth: '600px',
+                mx: 'auto',
+                lineHeight: 1.6,
+              }}
+            >
+              Contact us for pricing, customization options, bulk orders, and
+              technical specifications.
             </Typography>
           </Box>
 
-          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3} sx={{ pt: 2 }}>
-            <Link href="/contact" passHref>
+          <Stack
+            direction={{ xs: 'column', sm: 'row' }}
+            spacing={3}
+            sx={{ pt: 2 }}
+          >
+            <Link href='/contact' passHref>
               <Button
-                variant="contained"
-                size="large"
+                variant='contained'
+                size='large'
                 startIcon={<ContactMail />}
                 sx={{
                   px: 5,
                   py: 2,
                   fontSize: '1.1rem',
                   fontWeight: 600,
-                  borderRadius: 3,
-                  background: 'linear-gradient(135deg, #e67e22 0%, #f39c12 100%)',
+                  // borderRadius: 3,
+                  background:
+                    'linear-gradient(135deg, #e67e22 0%, #f39c12 100%)',
                   boxShadow: '0 10px 30px rgba(230, 126, 34, 0.3)',
                   '&:hover': {
-                    background: 'linear-gradient(135deg, #d35400 0%, #e67e22 100%)',
+                    background:
+                      'linear-gradient(135deg, #d35400 0%, #e67e22 100%)',
                     transform: 'translateY(-3px)',
                     boxShadow: '0 15px 40px rgba(230, 126, 34, 0.4)',
-                  }
+                  },
                 }}
               >
                 Get Quote Now
               </Button>
             </Link>
-            <Link href="/products" passHref>
+            <Link href='/products' passHref>
               <Button
-                variant="outlined"
-                size="large"
+                variant='outlined'
+                size='large'
                 startIcon={<Business />}
                 sx={{
                   px: 5,
                   py: 2,
                   fontSize: '1.1rem',
                   fontWeight: 600,
-                  borderRadius: 3,
+                  // borderRadius: 3,
                   borderColor: '#e67e22',
                   color: '#e67e22',
                   borderWidth: 2,
@@ -778,7 +963,7 @@ const ProductDetailsPage = () => {
                     backgroundColor: '#e67e2210',
                     transform: 'translateY(-3px)',
                     boxShadow: '0 8px 25px rgba(230, 126, 34, 0.2)',
-                  }
+                  },
                 }}
               >
                 View All Products
@@ -792,25 +977,30 @@ const ProductDetailsPage = () => {
       <Dialog
         open={imageDialog}
         onClose={() => setImageDialog(false)}
-        maxWidth="lg"
+        maxWidth='lg'
         fullWidth
         PaperProps={{
           sx: {
             borderRadius: 4,
             overflow: 'hidden',
-            maxHeight: '90vh'
-          }
+            maxHeight: '90vh',
+          },
         }}
       >
-        <DialogTitle sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          bgcolor: '#F7E7B3', // pastel brown
-          color: '#8B4513', // brown text
-          py: 3
-        }}>
-          <Typography variant="h6" sx={{ fontWeight: 600, fontSize: '1.25rem' }}>
+        <DialogTitle
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            bgcolor: '#F7E7B3', // pastel brown
+            color: '#8B4513', // brown text
+            py: 3,
+          }}
+        >
+          <Typography
+            variant='h6'
+            sx={{ fontWeight: 600, fontSize: '1.25rem' }}
+          >
             {product.name}
           </Typography>
           <IconButton
@@ -819,25 +1009,29 @@ const ProductDetailsPage = () => {
               color: 'white',
               '&:hover': {
                 backgroundColor: 'rgba(255,255,255,0.1)',
-                transform: 'scale(1.1)'
+                transform: 'scale(1.1)',
               },
-              transition: 'all 0.3s ease'
+              transition: 'all 0.3s ease',
             }}
           >
             <Close />
           </IconButton>
         </DialogTitle>
-        <DialogContent sx={{ p: 0, backgroundColor: '#f8f9fa', overflowX: 'hidden' }}>
-          <Box sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            p: 2,
-            backgroundColor: '#ffffff',
-            width: '100%',
-            maxWidth: '100%',
-            overflowX: 'hidden',
-          }}>
+        <DialogContent
+          sx={{ p: 0, backgroundColor: '#f8f9fa', overflowX: 'hidden' }}
+        >
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              p: 2,
+              backgroundColor: '#ffffff',
+              width: '100%',
+              maxWidth: '100%',
+              overflowX: 'hidden',
+            }}
+          >
             <Image
               src={product.image}
               alt={product.name}
@@ -849,7 +1043,7 @@ const ProductDetailsPage = () => {
                 height: 'auto',
                 maxHeight: '70vh',
                 objectFit: 'contain',
-                borderRadius: 8
+                borderRadius: 8,
               }}
               onError={(e) => {
                 e.target.onerror = null;

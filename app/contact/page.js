@@ -1,5 +1,5 @@
-"use client";
-import React, { useState, useRef } from "react";
+'use client';
+import React, { useState, useRef } from 'react';
 import {
   Container,
   Typography,
@@ -18,7 +18,7 @@ import {
   CircularProgress,
   Fade,
   Zoom,
-} from "@mui/material";
+} from '@mui/material';
 import {
   LocationOn,
   Phone,
@@ -29,23 +29,23 @@ import {
   ContentCopy,
   WhatsApp,
   Schedule,
-} from "@mui/icons-material";
-import ContactInfoGrid from "@/components/ContactInfoGrid";
+} from '@mui/icons-material';
+import ContactInfoGrid from '@/components/ContactInfoGrid';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
-    productName: "",
-    message: "",
-    name: "",
-    email: "",
-    mobile: "",
-    location: "",
-    inquiryType: "general",
+    productName: '',
+    message: '',
+    name: '',
+    email: '',
+    mobile: '',
+    location: '',
+    inquiryType: 'general',
   });
   const [snackbar, setSnackbar] = useState({
     open: false,
-    message: "",
-    severity: "success",
+    message: '',
+    severity: 'success',
   });
   const [loading, setLoading] = useState(false);
 
@@ -55,27 +55,30 @@ const ContactPage = () => {
   const contactDetails = [
     {
       icon: Phone,
-      title: "Customer Support",
-      text: "+91-8238420382",
-      color: "#D4AF37",
+      title: 'Customer Support',
+      text: `+91-${process.env.NEXT_PUBLIC_DOMESTIC_PHONE}`,
+      color: '#D4AF37',
       copyable: true,
-      action: () => window.open("tel:+918238420382"),
+      action: () =>
+        window.open(`tel:+91${process.env.NEXT_PUBLIC_DOMESTIC_PHONE}`),
     },
     {
       icon: Phone,
-      title: "Export Inquiry",
-      text: "+91-8000230060",
-      color: "#D4AF37",
+      title: 'Export Inquiry',
+      text: `+91-${process.env.NEXT_PUBLIC_EXPORT_PHONE}`,
+      color: '#D4AF37',
       copyable: true,
-      action: () => window.open("tel:+918000230060"),
+      action: () =>
+        window.open(`tel:+91${process.env.NEXT_PUBLIC_EXPORT_PHONE}`),
     },
     {
       icon: Business,
-      title: "Domestic Inquiry",
-      text: "+91-8238420382",
-      color: "#D4AF37",
+      title: 'Domestic Inquiry',
+      text: `+91-${process.env.NEXT_PUBLIC_DOMESTIC_PHONE}`,
+      color: '#D4AF37',
       copyable: true,
-      action: () => window.open("tel:+918238420382"),
+      action: () =>
+        window.open(`tel:+91${process.env.NEXT_PUBLIC_DOMESTIC_PHONE}`),
     },
     // {
     //   icon: Public,
@@ -87,19 +90,20 @@ const ContactPage = () => {
     // },
     {
       icon: Email,
-      title: "Inquiry Email",
-      text: "lavishpolypack@gmail.com",
-      color: "#D4AF37",
+      title: 'Inquiry Email',
+      text: `${process.env.NEXT_PUBLIC_EMAIL}`,
+      color: '#D4AF37',
       copyable: true,
-      action: () => window.open("mailto:lavishpolypack@gmail.com"),
+      action: () => window.open(`mailto:${process.env.NEXT_PUBLIC_EMAIL}`),
     },
-      {
+    {
       icon: Email,
-      title: "Export Inquiry Email",
-      text: "sales@lavishpolypack.in",
-      color: "#D4AF37",
+      title: 'Export Inquiry Email',
+      text: `${process.env.NEXT_PUBLIC_SALES_EMAIL}`,
+      color: '#D4AF37',
       copyable: true,
-      action: () => window.open("mailto:lavishpolypack@gmail.com"),
+      action: () =>
+        window.open(`mailto:${process.env.NEXT_PUBLIC_SALES_EMAIL}`),
     },
     // {
     //   icon: Email,
@@ -119,23 +123,35 @@ const ContactPage = () => {
     // },
     {
       icon: LocationOn,
-      title: "Our Location",
-      text: "LAVISH POLYPACK LLP, Tankara, Gujarat 363650, India",
-      color: "#D4AF37",
+      title: 'Our Location',
+      text: 'LAVISH POLYPACK LLP, Tankara, Gujarat 363650, India',
+      color: '#D4AF37',
       copyable: true,
       action: () =>
         window.open(
-          "https://maps.google.com/?q=LAVISH+POLYPACK+LLP+Tankara+Gujarat",
-          "_blank"
+          'https://maps.google.com/?q=LAVISH+POLYPACK+LLP+Tankara+Gujarat',
+          '_blank'
         ),
     },
   ];
 
   const whatsappNumbers = [
-    { number: "+918238420382", label: "General Inquiry" },
-    { number: "+918238420382", label: "Customer Support" },
-    { number: "+918238420382", label: "Domestic Bags" },
-    { number: "+918000230060", label: "Export Inquiry" },
+    {
+      number: `+91${process.env.NEXT_PUBLIC_DOMESTIC_PHONE}`,
+      label: 'General Inquiry',
+    },
+    {
+      number: `+91${process.env.NEXT_PUBLIC_DOMESTIC_PHONE}`,
+      label: 'Customer Support',
+    },
+    {
+      number: `+91${process.env.NEXT_PUBLIC_DOMESTIC_PHONE}`,
+      label: 'Domestic Bags',
+    },
+    {
+      number: `+91${process.env.NEXT_PUBLIC_EXPORT_PHONE}`,
+      label: 'Export Inquiry',
+    },
   ];
 
   const handleInputChange = (field) => (event) => {
@@ -155,8 +171,8 @@ const ContactPage = () => {
     ) {
       setSnackbar({
         open: true,
-        message: "Please fill in all required fields",
-        severity: "error",
+        message: 'Please fill in all required fields',
+        severity: 'error',
       });
       setLoading(false);
       return;
@@ -167,8 +183,8 @@ const ContactPage = () => {
     if (!emailRegex.test(formData.email)) {
       setSnackbar({
         open: true,
-        message: "Please enter a valid email address",
-        severity: "error",
+        message: 'Please enter a valid email address',
+        severity: 'error',
       });
       setLoading(false);
       return;
@@ -176,12 +192,12 @@ const ContactPage = () => {
 
     // Mobile validation (Indian mobile number)
     const mobileRegex = /^[6-9]\d{9}$/;
-    const cleanMobile = formData.mobile.replace(/[^\d]/g, "");
+    const cleanMobile = formData.mobile.replace(/[^\d]/g, '');
     if (!mobileRegex.test(cleanMobile)) {
       setSnackbar({
         open: true,
-        message: "Please enter a valid 10-digit mobile number",
-        severity: "error",
+        message: 'Please enter a valid 10-digit mobile number',
+        severity: 'error',
       });
       setLoading(false);
       return;
@@ -205,28 +221,30 @@ const ContactPage = () => {
         body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error('Failed to send inquiry');
-      const inquiryTime = new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
+      const inquiryTime = new Date().toLocaleString('en-IN', {
+        timeZone: 'Asia/Kolkata',
+      });
       setSnackbar({
         open: true,
         message:
           "✅ Your inquiry has been sent successfully! We'll contact you within 24 hours.",
-        severity: "success",
+        severity: 'success',
       });
       setFormData({
-        productName: "",
-        message: "",
-        name: "",
-        email: "",
-        mobile: "",
-        location: "",
-        inquiryType: "general",
+        productName: '',
+        message: '',
+        name: '',
+        email: '',
+        mobile: '',
+        location: '',
+        inquiryType: 'general',
       });
     } catch (error) {
       setSnackbar({
         open: true,
         message:
-          "Failed to send inquiry. Please try again or contact us directly.",
-        severity: "error",
+          'Failed to send inquiry. Please try again or contact us directly.',
+        severity: 'error',
       });
     } finally {
       setLoading(false);
@@ -237,108 +255,109 @@ const ContactPage = () => {
     navigator.clipboard.writeText(text).then(() => {
       setSnackbar({
         open: true,
-        message: "Copied to clipboard! 📋",
-        severity: "info",
+        message: 'Copied to clipboard! 📋',
+        severity: 'info',
       });
     });
   };
 
   const commonTextFieldStyles = {
     sx: {
-      "& .MuiOutlinedInput-root": {
+      '& .MuiOutlinedInput-root': {
         fontFamily: '"Inter", sans-serif',
-        "&:hover fieldset": { borderColor: "#8B4513" },
-        "&.Mui-focused fieldset": {
-          borderColor: "#D4AF37",
+        '&:hover fieldset': { borderColor: '#8B4513' },
+        '&.Mui-focused fieldset': {
+          borderColor: '#D4AF37',
         },
       },
-      "& .MuiInputLabel-root.Mui-focused": {
-        color: "#8B4513",
+      '& .MuiInputLabel-root.Mui-focused': {
+        color: '#8B4513',
       },
     },
   };
-  const openWhatsApp = (number, message = "") => {
+  const openWhatsApp = (number, message = '') => {
     const text =
       message ||
       `Hello! I am interested in your packaging products. Can you please provide more information?`;
     window.open(
-      `https://wa.me/${number.replace(/[^\d]/g, "")}?text=${encodeURIComponent(
+      `https://wa.me/${number.replace(/[^\d]/g, '')}?text=${encodeURIComponent(
         text
       )}`,
-      "_blank"
+      '_blank'
     );
   };
 
   return (
-    <Container maxWidth="xl" sx={{ py: 4, overflowX: 'hidden' }}>
+    <Container maxWidth='xl' sx={{ py: 4, overflowX: 'hidden' }}>
       {/* Hero Section */}
       <Fade in={true} timeout={1000}>
         <Box
           sx={{
-            textAlign: "center",
+            textAlign: 'center',
             mb: 8,
-            position: "relative",
+            position: 'relative',
             py: 6,
-            background: "#F7E7B3", // pastel gold
-            borderRadius: 3,
-            color: "#2D2D2D", // dark text for contrast
-            border: "1px solid #D7BFAE", // pastel brown border
-            boxShadow: "0 2px 12px #D7BFAE33", // very soft shadow
-            overflow: "hidden",
-            "&::before": {
+            background: '#F7E7B3', // pastel gold
+            // borderRadius: 3,
+            color: '#2D2D2D', // dark text for contrast
+            border: '1px solid #D7BFAE', // pastel brown border
+            boxShadow: '0 2px 12px #D7BFAE33', // very soft shadow
+            overflow: 'hidden',
+            '&::before': {
               content: '""',
-              position: "absolute",
+              position: 'absolute',
               top: 0,
               left: 0,
               right: 0,
               bottom: 0,
-              background: "radial-gradient(circle at 70% 30%, #D7BFAE22 0%, transparent 60%)",
-              pointerEvents: "none",
+              background:
+                'radial-gradient(circle at 70% 30%, #D7BFAE22 0%, transparent 60%)',
+              pointerEvents: 'none',
             },
           }}
         >
-          <Box sx={{ position: "relative", zIndex: 1 }}>
+          <Box sx={{ position: 'relative', zIndex: 1 }}>
             <Chip
-              label="Get In Touch"
+              label='Get In Touch'
               sx={{
                 mb: 3,
-                bgcolor: "#D7BFAE", // pastel brown
-                color: "#8B4513", // brown text
+                bgcolor: '#D7BFAE', // pastel brown
+                color: '#8B4513', // brown text
                 fontWeight: 600,
-                fontSize: "0.9rem",
+                fontSize: '0.9rem',
                 fontFamily: '"Inter", sans-serif',
-                boxShadow: "0 2px 8px #D7BFAE22",
-                cursor: "pointer"
+                boxShadow: '0 2px 8px #D7BFAE22',
+                cursor: 'pointer',
               }}
               onClick={() => {
-                inquiryRef.current?.scrollIntoView({ behavior: "smooth" });
+                inquiryRef.current?.scrollIntoView({ behavior: 'smooth' });
               }}
             />
             <Typography
-              variant="h2"
-              component="h1"
+              variant='h2'
+              component='h1'
               gutterBottom
               sx={{
                 fontWeight: 700,
                 mb: 2,
-                fontSize: { xs: "2.5rem", md: "3.5rem" },
+                fontSize: { xs: '2.5rem', md: '3.5rem' },
                 fontFamily: '"Playfair Display", serif',
-                color: "#8B4513",
-                letterSpacing: "2px",
+                color: '#8B4513',
+                letterSpacing: '2px',
               }}
             >
               Contact LAVISH POLYPACK LLP
             </Typography>
             <Typography
-              variant="h5"
+              variant='h5'
               sx={{
-                maxWidth: "800px",
-                mx: "auto",
+                maxWidth: '800px',
+                mx: 'auto',
                 opacity: 0.95,
                 fontWeight: 400,
                 lineHeight: 1.4,
                 fontFamily: '"Inter", sans-serif',
-                color: "#2D2D2D",
+                color: '#2D2D2D',
               }}
             >
               Partner with Gujarat&apos;s Premier Packaging Solutions Provider
@@ -355,36 +374,36 @@ const ContactPage = () => {
               elevation={0}
               sx={{
                 p: 4,
-                background: "rgba(255, 255, 255, 0.95)",
-                border: "1px solid rgba(139, 69, 19, 0.1)",
-                borderRadius: 3,
-                position: "relative",
-                overflow: "hidden",
-                height: "fit-content",
-                backdropFilter: "blur(20px)",
+                background: 'rgba(255, 255, 255, 0.95)',
+                border: '1px solid rgba(139, 69, 19, 0.1)',
+                // borderRadius: 3,
+                position: 'relative',
+                overflow: 'hidden',
+                height: 'fit-content',
+                backdropFilter: 'blur(20px)',
               }}
             >
               <Typography
-                variant="h4"
-                component="h2"
+                variant='h4'
+                component='h2'
                 gutterBottom
                 sx={{
                   fontWeight: 300,
                   mb: 4,
-                  color: "#8B4513",
-                  textAlign: "center",
-                  position: "relative",
+                  color: '#8B4513',
+                  textAlign: 'center',
+                  position: 'relative',
                   fontFamily: '"Playfair Display", serif',
-                  letterSpacing: "1px",
-                  "&::after": {
+                  letterSpacing: '1px',
+                  '&::after': {
                     content: '""',
-                    position: "absolute",
+                    position: 'absolute',
                     bottom: -12,
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    width: "80px",
-                    height: "2px",
-                    background: "linear-gradient(90deg, #8B4513, #D4AF37)",
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: '80px',
+                    height: '2px',
+                    background: 'linear-gradient(90deg, #8B4513, #D4AF37)',
                     borderRadius: 2,
                   },
                 }}
@@ -400,17 +419,17 @@ const ContactPage = () => {
                   mt: 4,
                   p: 3,
                   background:
-                    "linear-gradient(135deg, #25D366 0%, #128C7E 100%)",
+                    'linear-gradient(135deg, #25D366 0%, #128C7E 100%)',
                   borderRadius: 2,
-                  color: "white",
+                  color: 'white',
                 }}
               >
                 <Typography
-                  variant="h6"
+                  variant='h6'
                   sx={{
                     mb: 2,
-                    display: "flex",
-                    alignItems: "center",
+                    display: 'flex',
+                    alignItems: 'center',
                     fontFamily: '"Inter", sans-serif',
                   }}
                 >
@@ -422,15 +441,15 @@ const ContactPage = () => {
                     <Grid item xs={6} key={index}>
                       <Button
                         fullWidth
-                        size="small"
+                        size='small'
                         onClick={() => openWhatsApp(item.number)}
                         sx={{
-                          color: "white",
-                          border: "1px solid rgba(255,255,255,0.3)",
-                          fontSize: "0.75rem",
+                          color: 'white',
+                          border: '1px solid rgba(255,255,255,0.3)',
+                          fontSize: '0.75rem',
                           py: 1,
-                          "&:hover": {
-                            backgroundColor: "rgba(255,255,255,0.1)",
+                          '&:hover': {
+                            backgroundColor: 'rgba(255,255,255,0.1)',
                           },
                         }}
                       >
@@ -446,7 +465,7 @@ const ContactPage = () => {
 
         {/* Form and Map Column */}
         <Grid item xs={12} lg={7} ref={inquiryRef}>
-          <Grid container spacing={4} alignItems="stretch">
+          <Grid container spacing={4} alignItems='stretch'>
             {/* Contact Form */}
             <Grid item xs={12} lg={7} sx={{ display: 'flex' }}>
               <Fade in={true} timeout={1400} style={{ width: '100%' }}>
@@ -454,36 +473,36 @@ const ContactPage = () => {
                   elevation={0}
                   sx={{
                     p: 5,
-                    background: "rgba(255, 255, 255, 0.95)",
+                    background: 'rgba(255, 255, 255, 0.95)',
                     // border: "1px solid rgba(212, 175, 55, 0.1)",
                     // borderRadius: 3,
-                    position: "relative",
-                    overflow: "hidden",
-                    backdropFilter: "blur(20px)",
+                    position: 'relative',
+                    overflow: 'hidden',
+                    backdropFilter: 'blur(20px)',
                     width: '100%',
                   }}
                 >
                   <Typography
-                    variant="h4"
-                    component="h2"
+                    variant='h4'
+                    component='h2'
                     gutterBottom
                     sx={{
                       fontWeight: 300,
                       mb: 4,
-                      color: "#8B4513",
-                      textAlign: "center",
-                      position: "relative",
+                      color: '#8B4513',
+                      textAlign: 'center',
+                      position: 'relative',
                       fontFamily: '"Playfair Display", serif',
-                      letterSpacing: "1px",
-                      "&::after": {
+                      letterSpacing: '1px',
+                      '&::after': {
                         content: '""',
-                        position: "absolute",
+                        position: 'absolute',
                         bottom: -12,
-                        left: "50%",
-                        transform: "translateX(-50%)",
-                        width: "100px",
-                        height: "2px",
-                        background: "linear-gradient(90deg, #D4AF37, #8B4513)",
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        width: '100px',
+                        height: '2px',
+                        background: 'linear-gradient(90deg, #D4AF37, #8B4513)',
                         borderRadius: 2,
                       },
                     }}
@@ -491,7 +510,7 @@ const ContactPage = () => {
                     Send Your Inquiry
                   </Typography>
                   <Typography
-                    variant="subtitle1"
+                    variant='subtitle1'
                     sx={{
                       textAlign: 'center',
                       color: '#8B4513',
@@ -500,14 +519,15 @@ const ContactPage = () => {
                       fontFamily: '"Inter", sans-serif',
                     }}
                   >
-                    Fill out the form below and our team will get back to you promptly.
+                    Fill out the form below and our team will get back to you
+                    promptly.
                   </Typography>
 
                   <form onSubmit={handleSubmit}>
                     <Box
                       sx={{
-                        maxWidth: "900px",
-                        mx: "auto",
+                        maxWidth: '900px',
+                        mx: 'auto',
                         px: { xs: 2, sm: 3 },
                         py: 4,
                       }}
@@ -516,26 +536,26 @@ const ContactPage = () => {
                         {/* Full Name & Email */}
                         <Grid item xs={12} md={6}>
                           <TextField
-                            label="Full Name *"
-                            variant="outlined"
+                            label='Full Name *'
+                            variant='outlined'
                             fullWidth
                             value={formData.name}
-                            onChange={handleInputChange("name")}
+                            onChange={handleInputChange('name')}
                             required
-                            placeholder="Enter your full name"
+                            placeholder='Enter your full name'
                             {...commonTextFieldStyles}
                           />
                         </Grid>
                         <Grid item xs={12} md={6}>
                           <TextField
-                            label="Email Address *"
-                            variant="outlined"
+                            label='Email Address *'
+                            variant='outlined'
                             fullWidth
-                            type="email"
+                            type='email'
                             value={formData.email}
-                            onChange={handleInputChange("email")}
+                            onChange={handleInputChange('email')}
                             required
-                            placeholder="example@domain.com"
+                            placeholder='example@domain.com'
                             {...commonTextFieldStyles}
                           />
                         </Grid>
@@ -543,25 +563,25 @@ const ContactPage = () => {
                         {/* Mobile & Location */}
                         <Grid item xs={12} md={6}>
                           <TextField
-                            label="Mobile Number *"
-                            variant="outlined"
+                            label='Mobile Number *'
+                            variant='outlined'
                             fullWidth
                             value={formData.mobile}
-                            onChange={handleInputChange("mobile")}
+                            onChange={handleInputChange('mobile')}
                             required
-                            placeholder="10-digit mobile number"
+                            placeholder='10-digit mobile number'
                             inputProps={{ maxLength: 10 }}
                             {...commonTextFieldStyles}
                           />
                         </Grid>
                         <Grid item xs={12} md={6}>
                           <TextField
-                            label="Your Location"
-                            variant="outlined"
+                            label='Your Location'
+                            variant='outlined'
                             fullWidth
                             value={formData.location}
-                            onChange={handleInputChange("location")}
-                            placeholder="City / State"
+                            onChange={handleInputChange('location')}
+                            placeholder='City / State'
                             {...commonTextFieldStyles}
                           />
                         </Grid>
@@ -569,12 +589,12 @@ const ContactPage = () => {
                         {/* Product Interest */}
                         <Grid item xs={12}>
                           <TextField
-                            label="Product Name / Interest"
-                            variant="outlined"
+                            label='Product Name / Interest'
+                            variant='outlined'
                             fullWidth
                             value={formData.productName}
-                            onChange={handleInputChange("productName")}
-                            placeholder="e.g., FIBC Bags, PP Woven Bags, etc."
+                            onChange={handleInputChange('productName')}
+                            placeholder='e.g., FIBC Bags, PP Woven Bags, etc.'
                             {...commonTextFieldStyles}
                           />
                         </Grid>
@@ -582,31 +602,31 @@ const ContactPage = () => {
                         {/* Message */}
                         <Grid item xs={12}>
                           <TextField
-                            label="Your Message *"
-                            variant="outlined"
+                            label='Your Message *'
+                            variant='outlined'
                             fullWidth
                             // multiline
                             rows={4}
                             value={formData.message}
-                            onChange={handleInputChange("message")}
+                            onChange={handleInputChange('message')}
                             required
-                            placeholder="Describe your requirements, timeline, or any specific questions..."
+                            placeholder='Describe your requirements, timeline, or any specific questions...'
                             {...commonTextFieldStyles}
                           />
                         </Grid>
                       </Grid>
                     </Box>
                     <Box
-                      sx={{ mt: 4, display: "flex", gap: 2, flexWrap: "wrap" }}
+                      sx={{ mt: 4, display: 'flex', gap: 2, flexWrap: 'wrap' }}
                     >
                       <Button
-                        variant="contained"
-                        type="submit"
-                        size="large"
+                        variant='contained'
+                        type='submit'
+                        size='large'
                         disabled={loading}
                         startIcon={
                           loading ? (
-                            <CircularProgress size={20} color="inherit" />
+                            <CircularProgress size={20} color='inherit' />
                           ) : (
                             <Send />
                           )
@@ -614,36 +634,36 @@ const ContactPage = () => {
                         sx={{
                           px: 4,
                           py: 1.5,
-                          fontSize: "1.1rem",
+                          fontSize: '1.1rem',
                           fontWeight: 500,
                           background:
-                            "linear-gradient(135deg, #8B4513 0%, #D4AF37 100%)",
+                            'linear-gradient(135deg, #8B4513 0%, #D4AF37 100%)',
                           borderRadius: 2,
-                          textTransform: "none",
-                          boxShadow: "0 8px 25px rgba(139, 69, 19, 0.3)",
-                          transition: "all 0.3s ease",
+                          textTransform: 'none',
+                          boxShadow: '0 8px 25px rgba(139, 69, 19, 0.3)',
+                          transition: 'all 0.3s ease',
                           fontFamily: '"Inter", sans-serif',
-                          "&:hover": {
+                          '&:hover': {
                             background:
-                              "linear-gradient(135deg, #7A3F0F 0%, #B8941F 100%)",
-                            transform: "translateY(-2px)",
-                            boxShadow: "0 12px 35px rgba(139, 69, 19, 0.4)",
+                              'linear-gradient(135deg, #7A3F0F 0%, #B8941F 100%)',
+                            transform: 'translateY(-2px)',
+                            boxShadow: '0 12px 35px rgba(139, 69, 19, 0.4)',
                           },
-                          "&:disabled": {
-                            background: "rgba(139, 69, 19, 0.3)",
+                          '&:disabled': {
+                            background: 'rgba(139, 69, 19, 0.3)',
                           },
                         }}
                       >
-                        {loading ? "Sending..." : "Send Inquiry"}
+                        {loading ? 'Sending...' : 'Send Inquiry'}
                       </Button>
 
                       <Box
                         sx={{
-                          display: "flex",
-                          alignItems: "center",
+                          display: 'flex',
+                          alignItems: 'center',
                           gap: 1,
-                          color: "#666",
-                          fontSize: "0.9rem",
+                          color: '#666',
+                          fontSize: '0.9rem',
                         }}
                       >
                         <Schedule sx={{ fontSize: 16 }} />
@@ -654,23 +674,33 @@ const ContactPage = () => {
                 </Box>
               </Fade>
             </Grid>
-            <Grid item xs={12} lg={7} sx={{ display: 'flex', flexDirection: 'column' }}>
+            <Grid
+              item
+              xs={12}
+              lg={7}
+              sx={{ display: 'flex', flexDirection: 'column' }}
+            >
               <Box sx={{ flex: 1, width: '100%' }}>
                 <Box
                   sx={{
                     width: '100%',
-                    height: { xs: '350px', sm: '400px', md: '450px', lg: '500px' },
+                    height: {
+                      xs: '350px',
+                      sm: '400px',
+                      md: '450px',
+                      lg: '500px',
+                    },
                     overflow: 'hidden',
                   }}
                 >
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.81559806443!2d70.644480!3d22.596371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDM1JzQ2LjkiTiA3MMKwMzgnNDAuMSJF!5e0!3m2!1sen!2sus!4v1626883271884!5m2!1sen!2sus"
-                    width="100%"
-                    height="100%"
+                    src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.81559806443!2d70.644480!3d22.596371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDM1JzQ2LjkiTiA3MMKwMzgnNDAuMSJF!5e0!3m2!1sen!2sus!4v1626883271884!5m2!1sen!2sus'
+                    width='100%'
+                    height='100%'
                     style={{ border: 0, display: 'block' }}
-                    allowFullScreen=""
-                    loading="lazy"
-                    title="LAVISH POLYPACK Location"
+                    allowFullScreen=''
+                    loading='lazy'
+                    title='LAVISH POLYPACK Location'
                   />
                 </Box>
               </Box>
@@ -679,125 +709,128 @@ const ContactPage = () => {
         </Grid>
       </Grid>
 
-<Fade in={true} timeout={1800}>
-  <Box sx={{ mt: 8 }}>
-    <Grid
-      container
-      spacing={4}
-      justifyContent="center"
-      alignItems="stretch"
-      sx={{
-        // Prevents uneven widths on large screens
-        flexWrap: "wrap",
-      }}
-    >
-      {[
-        {
-          icon: <Schedule sx={{ fontSize: 40, mb: 2, color: "#8B4513" }} />,
-          title: "Business Hours",
-          bg: "#F7E7B3",
-          border: "#D7BFAE",
-          textColor: "#8B4513",
-          content: (
-            <>
-              Monday - Saturday: 9:00 AM - 6:00 PM
-              <br />
-              Sunday: Closed
-            </>
-          ),
-        },
-        {
-          icon: <Email sx={{ fontSize: 40, mb: 2, color: "#D4AF37" }} />,
-          title: "Email Response",
-          bg: "#F3F3F3",
-          border: "#D7BFAE",
-          textColor: "#D4AF37",
-          content: (
-            <>
-              We respond to all emails
-              <br />
-              within 2-4 hours during business hours
-            </>
-          ),
-        },
-        {
-          icon: <WhatsApp sx={{ fontSize: 40, mb: 2, color: "#25D366" }} />,
-          title: "WhatsApp Support",
-          bg: "#D7BFAE",
-          border: "#F7E7B3",
-          textColor: "#25D366",
-          content: (
-            <>
-              Get instant replies on WhatsApp
-              <br />
-              24/7 available for urgent queries
-            </>
-          ),
-        },
-      ].map((item, index) => (
-        <Grid
-          item
-          key={index}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            flex: "0 0 auto", // Prevents shrinking unevenly
-          }}
-        >
-          <Card
+      <Fade in={true} timeout={1800}>
+        <Box sx={{ mt: 8 }}>
+          <Grid
+            container
+            spacing={4}
+            justifyContent='center'
+            alignItems='stretch'
             sx={{
-              p: 3,
-              textAlign: "center",
-              background: item.bg,
-              color: "#2D2D2D",
-              borderRadius: 0,
-              border: `1px solid ${item.border}`,
-              boxShadow: "0 2px 12px #D7BFAE33",
-              height: "100%",
-              width: 320, // fixed width for all cards
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
+              // Prevents uneven widths on large screens
+              flexWrap: 'wrap',
             }}
           >
-            {item.icon}
-            <Typography
-              variant="h6"
-              sx={{
-                mb: 2,
-                fontFamily: '"Inter", sans-serif',
-                color: item.textColor,
-                fontWeight: 600,
-              }}
-            >
-              {item.title}
-            </Typography>
-            <Typography variant="body2" sx={{ opacity: 0.95 }}>
-              {item.content}
-            </Typography>
-          </Card>
-        </Grid>
-      ))}
-    </Grid>
-  </Box>
-</Fade>
-
+            {[
+              {
+                icon: (
+                  <Schedule sx={{ fontSize: 40, mb: 2, color: '#8B4513' }} />
+                ),
+                title: 'Business Hours',
+                bg: '#F7E7B3',
+                border: '#D7BFAE',
+                textColor: '#8B4513',
+                content: (
+                  <>
+                    Monday - Saturday: 9:00 AM - 6:00 PM
+                    <br />
+                    Sunday: Closed
+                  </>
+                ),
+              },
+              {
+                icon: <Email sx={{ fontSize: 40, mb: 2, color: '#D4AF37' }} />,
+                title: 'Email Response',
+                bg: '#F3F3F3',
+                border: '#D7BFAE',
+                textColor: '#D4AF37',
+                content: (
+                  <>
+                    We respond to all emails
+                    <br />
+                    within 2-4 hours during business hours
+                  </>
+                ),
+              },
+              {
+                icon: (
+                  <WhatsApp sx={{ fontSize: 40, mb: 2, color: '#25D366' }} />
+                ),
+                title: 'WhatsApp Support',
+                bg: '#D7BFAE',
+                border: '#F7E7B3',
+                textColor: '#25D366',
+                content: (
+                  <>
+                    Get instant replies on WhatsApp
+                    <br />
+                    24/7 available for urgent queries
+                  </>
+                ),
+              },
+            ].map((item, index) => (
+              <Grid
+                item
+                key={index}
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  flex: '0 0 auto', // Prevents shrinking unevenly
+                }}
+              >
+                <Card
+                  sx={{
+                    p: 3,
+                    textAlign: 'center',
+                    background: item.bg,
+                    color: '#2D2D2D',
+                    borderRadius: 0,
+                    border: `1px solid ${item.border}`,
+                    boxShadow: '0 2px 12px #D7BFAE33',
+                    height: '100%',
+                    width: 320, // fixed width for all cards
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                  }}
+                >
+                  {item.icon}
+                  <Typography
+                    variant='h6'
+                    sx={{
+                      mb: 2,
+                      fontFamily: '"Inter", sans-serif',
+                      color: item.textColor,
+                      fontWeight: 600,
+                    }}
+                  >
+                    {item.title}
+                  </Typography>
+                  <Typography variant='body2' sx={{ opacity: 0.95 }}>
+                    {item.content}
+                  </Typography>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+      </Fade>
 
       {/* Snackbar for notifications */}
       <Snackbar
         open={snackbar.open}
         autoHideDuration={6000}
         onClose={() => setSnackbar({ ...snackbar, open: false })}
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       >
         <Alert
           onClose={() => setSnackbar({ ...snackbar, open: false })}
           severity={snackbar.severity}
           sx={{
-            width: "100%",
+            width: '100%',
             fontFamily: '"Inter", sans-serif',
-            "& .MuiAlert-message": {
-              fontSize: "0.95rem",
+            '& .MuiAlert-message': {
+              fontSize: '0.95rem',
             },
           }}
         >
