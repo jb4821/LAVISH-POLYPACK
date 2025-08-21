@@ -46,7 +46,7 @@ const AboutPage = () => {
         height: '100%',
         background: `linear-gradient(135deg, #FEFEFE 0%, ${stat.color}10 100%)`,
         border: `1px solid ${stat.color}20`,
-        borderRadius: 2,
+         borderRadius: 0,
         transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
         '&:hover': {
           transform: 'translateY(-6px) scale(1.02)',
@@ -104,7 +104,7 @@ const AboutPage = () => {
         maxWidth: "300px",
         background: `linear-gradient(135deg, #FEFEFE 0%, ${value.color}08 100%)`,
         border: `1px solid ${value.color}20`,
-        borderRadius: 2,
+        borderRadius: 0,
         transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
         '&:hover': {
           transform: 'translateY(-6px)',
@@ -153,7 +153,7 @@ const AboutPage = () => {
         position: 'relative',
         py: { xs: 6, md: 8 },
         background: '#F7E7B3', // pastel gold
-        borderRadius: 3,
+        // borderRadius: 3,
         color: '#2D2D2D', // dark text for contrast
         border: '1px solid #D7BFAE', // pastel brown border
         boxShadow: '0 2px 12px #D7BFAE33', // very soft shadow
@@ -491,7 +491,7 @@ const AboutPage = () => {
         mb: 6,
         background: 'linear-gradient(135deg, #2D2D2D 0%, #444 100%)',
         color: 'white',
-        borderRadius: 3,
+        borderRadius: 0,
         position: 'relative',
         overflow: 'hidden',
         boxShadow: '0 10px 25px rgba(0, 0, 0, 0.2)',
