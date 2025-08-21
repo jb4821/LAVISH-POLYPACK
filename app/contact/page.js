@@ -135,7 +135,7 @@ const ContactPage = () => {
     { number: "+918238420382", label: "General Inquiry" },
     { number: "+918238420382", label: "Customer Support" },
     { number: "+918238420382", label: "Domestic Bags" },
-    { number: "+918238420382", label: "Export Inquiry" },
+    { number: "+918000230060", label: "Export Inquiry" },
   ];
 
   const handleInputChange = (field) => (event) => {
@@ -750,7 +750,7 @@ const ContactPage = () => {
               textAlign: "center",
               background: item.bg,
               color: "#2D2D2D",
-              borderRadius: 3,
+              borderRadius: 0,
               border: `1px solid ${item.border}`,
               boxShadow: "0 2px 12px #D7BFAE33",
               height: "100%",

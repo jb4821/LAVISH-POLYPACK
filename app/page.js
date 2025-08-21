@@ -92,7 +92,8 @@ export default function Home() {
   ];
 
   // Use first product as default background
-  const backgroundImage = hoveredProduct !== null ? products[hoveredProduct].image : products[0].image;
+
+  const backgroundImage = hoveredProduct !== null ? products[hoveredProduct].product_page_image ?products[hoveredProduct].product_page_image : products[hoveredProduct].image  : products[0].image;
   return (
     <Box sx={{ backgroundColor: '#FEFEFE' }}>
       {/* Enhanced Hero Section with Brown/Gold Theme */}
@@ -310,7 +311,7 @@ export default function Home() {
                     textAlign: 'center',
                     position: 'relative',
                     p: 2,
-                    borderRadius: 1,
+                    borderRadius: 0,
                     transition: 'all 0.3s ease',
                     cursor: 'pointer',
                     background: activeFeature === index
@@ -443,7 +444,8 @@ export default function Home() {
                 width: '100%',
                 height: '100%',
                 backgroundImage: `url(${backgroundImage})`,
-                backgroundSize: 'cover',
+                backgroundSize: 'contain',
+                backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center',
                 transition: 'all 0.8s ease-in-out',
                 '&::after': {
